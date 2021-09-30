@@ -2,6 +2,7 @@
 
 index.html -> Landing Page <br>
 NutritionServlet -> Hitting the API <br>
+Dish -> POJO. Holds dish objects. <br>
 Constants -> Constant keywords <br>
 
 # Functionality
