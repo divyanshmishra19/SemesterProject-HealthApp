@@ -50,40 +50,40 @@ public class SliderController {
         String imageDescription = "";
 
         switch (imageFilename) {
-            case "photo1.png":
+            case "photo1.jpg":
                 imageDescription = "Roasted Beet and Citrus Salad With Ricotta and Pistachio Vinaigrette";
                 break;
-            case "photo2.png":
+            case "photo2.jpg":
                 imageDescription = "Shrimp and Pasta Primavera";
                 break;
-            case "photo3.png":
+            case "photo3.jfif":
                 imageDescription = "Vanilla Cake";
                 break;
-            case "photo4.png":
+            case "photo4.jpg":
                 imageDescription = "Chicken with Sourdough-Mushroom Stuffing";
                 break;
-            case "photo5.png":
+            case "photo5.jpg":
                 imageDescription = "The Best Minestrone Soup Recipe";
                 break;
-            case "photo6.png":
+            case "photo6.jpg":
                 imageDescription = "Almond-Cardamom Baklava";
                 break;
-            case "photo7.png":
+            case "photo7.jpg":
                 imageDescription = "Lemon Pepper Dill Tilapia";
                 break;
-            case "photo8.png":
+            case "photo8.jpg":
                 imageDescription = "Pumpkin Pecan Cheesecake Cookie Bars";
                 break;
-            case "photo9.png":
+            case "photo9.jpg":
                 imageDescription = "Parmesan Crusted Chicken";
                 break;
-            case "photo10.png":
+            case "photo10.jpeg":
                 imageDescription = "Mint Chocolate Ice Cream Sandwich";
                 break;
-            case "photo11.png":
+            case "photo11.jfif":
                 imageDescription = "Red Cabbage Salad with Roasted Cipollini Onions";
                 break;
-            case "photo12.png":
+            case "photo12.jpeg":
                 imageDescription = "Buffalo Chicken Drumsticks with Blue Cheese Dip";
                 break;
         }
