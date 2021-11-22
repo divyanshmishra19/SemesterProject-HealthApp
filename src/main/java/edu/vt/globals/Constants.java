@@ -8,6 +8,18 @@ public class Constants {
     public static final String PHOTOS_ABSOLUTE_PATH = "C:/Users/hp/DocRoot/PhotoStorage/";
     public static final String API_APP_NAME = "API signup";
     public static final String CHART_API_URL = "https://image-charts.com/chart?cht=";
+    public static final String[] QUESTIONS = {
+            "In what city or town did your mother and father meet?",
+            "In what city or town were you born?",
+            "What did you want to be when you grew up?",
+            "What do you remember most from your childhood?",
+            "What is the name of the boy or girl that you first kissed?",
+            "What is the name of the first school you attended?",
+            "What is the name of your favorite childhood friend?",
+            "What is the name of your first pet?",
+            "What is your mother's maiden name?",
+            "What was your favorite place to visit as a child?"
+    };
     public static final String SAMPLE_JSON = "{\n" +
             "   \"uri\":\"http://www.edamam.com/ontologies/edamam.owl#recipe_43ab2d767b17403c8d015f7788f1a8a0\",\n" +
             "   \"yield\":8.0,\n" +
