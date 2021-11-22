@@ -20,25 +20,25 @@
     <ui:define name="editableContent">
         <!-- In case of JSF validation error, set 'selected' to null in videoController -->
         <c:if test="#{facesContext.validationFailed}">
-            ${videoController.unselect()}
+            ${recipeController.unselect()}
         </c:if>
         <!-- Set 'selected' to null in videoController when the user refreshes / reloads this JSF page -->
         <f:metadata>
-            <f:viewAction action="#{videoController.unselect()}" rendered="#{facesContext.postback}" />
+            <f:viewAction action="#{recipeController.unselect()}" rendered="#{facesContext.postback}" />
         </f:metadata>
         <div align="center" style="text-align: center;">
-            <h:form id="VideoListForm">
+            <h:form id="RecipeListForm">
                 <p:panel header="Public List of Favorite YouTube Videos">
                     <p:dataTable id="datalist"
-                                 value="#{videoController.listOfVideos}"
-                                 var="aVideo"
+                                 value="#{recipeController.listOfVideos}"
+                                 var="aRecipe"
                                  widgetVar="publicVideoDataTable"
                                  selectionMode="single"
-                                 selection="#{videoController.selected}"
+                                 selection="#{recipeController.selected}"
                                  reflow="true"
                                  showGridlines="true"
                                  paginator="true"
-                                 rowKey="#{aVideo.id}"
+                                 rowKey="#{aRecipe.id}"
                                  rows="10"
                                  rowsPerPageTemplate="5,10,20,30,50,70,90"
                                  emptyMessage="No Video found for the search query entered!">
@@ -59,73 +59,47 @@
                                                  icon="fas fa-undo" onclick="PF('publicVideoDataTable').clearFilters()" />
                             </div>
                         </f:facet>
-                        <!--
-                        *********************
-                        *    Video Title    *
-                        *********************
-                        -->
-                        <p:column headerText="Title" sortBy="#{aVideo.title}"
-                                  filterBy="#{aVideo.title}" filterMatchMode="contains"
+
+
+                        <p:column headerText="Title" sortBy="#{aRecipe.title}"
+                                  filterBy="#{aRecipe.title}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aVideo.title}"/>
+                            <h:outputText value="#{aRecipe.title}"/>
                         </p:column>
 
-
-                        <!--
-                        *********************
-                        *    Video Thumbnail   *
-                        *********************
-                        -->
-                        <p:column headerText="Thumbnail" style="width: 80px; text-align: center; vertical-align: top">
-                            <h:graphicImage value="https://i1.ytimg.com/vi/#{aVideo.youtubeVideoId}/mqdefault.jpg" width="80px" />
-                        </p:column>
-
-                        <!--
-                       *********************
-                       *   Video Description   *
-                       *********************
-                       -->
-                        <p:column headerText="Description" sortBy="#{aVideo.description}"
-                                  filterBy="#{aVideo.description}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center" width="40%">
-                            <h:outputText value="#{aVideo.description}"/>
-                        </p:column>
-
-
-                        <!--
-                        *********************
-                        *   Video Duration   *
-                        *********************
-                        -->
-
-                        <p:column headerText="Duration" sortBy="#{aVideo.duration}"
+                        <p:column headerText="Calories" sortBy="#{aRecipe.calories}"
+                                  filterBy="#{aRecipe.calories}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aVideo.duration}"/>
+                            <h:outputText value="#{aRecipe.calories}"/>
                         </p:column>
 
-                        <!--
-                       *********************
-                       *   Video Date   *
-                       *********************
-                       -->
-                        <p:column headerText="Date" sortBy="#{aVideo.datePublished}"
-                                  filterBy="#{aVideo.datePublished}" filterMatchMode="contains"
+                        <p:column headerText="Diet Labels" sortBy="#{aRecipe.dietLabels}"
+                                  filterBy="#{aRecipe.dietLabels}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aVideo.datePublished}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
-                        <!--
-                       *********************
-                       *    Video Category   *
-                       *********************
-                       -->
-                        <p:column headerText="Category" sortBy="#{aVideo.category}"
-                                  filterBy="#{aVideo.category}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aVideo.category}"/>
+                            <h:outputText value="#{aRecipe.dietLabels}"/>
                         </p:column>
 
+                        <p:column headerText="Health Labels" sortBy="#{aRecipe.healthLabels}"
+                                  filterBy="#{aRecipe.healthLabels}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.healthLabels}"/>
+                        </p:column>
+
+                        <p:column headerText="Carbohydrate" sortBy="#{aRecipe.carbs}"
+                                  filterBy="#{aRecipe.carbs}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.carbs}"/>
+                        </p:column>
+                        <p:column headerText="Fat" sortBy="#{aRecipe.fat}"
+                                  filterBy="#{aRecipe.fat}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.fat}"/>
+                        </p:column>
+                        <p:column headerText="Protein" sortBy="#{aRecipe.protein}"
+                                  filterBy="#{aRecipe.protein}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.protein}"/>
+                        </p:column>
 
                         <!--
                         *************************
@@ -183,13 +157,13 @@
                 </p:panel>
             </h:form>
         </div>
-        <ui:include src="/publicVideo/Create.xhtml"/>
+<!--        <ui:include src="/publicVideo/Create.xhtml"/>-->
 
-        <ui:include src="/publicVideo/View.xhtml"/>
+<!--        <ui:include src="/publicVideo/View.xhtml"/>-->
 
-        <ui:include src="/publicVideo/Edit.xhtml"/>
+<!--        <ui:include src="/publicVideo/Edit.xhtml"/>-->
 
-        <ui:include src="/publicVideo/YouTubeVideoPlayer.xhtml"/>
+<!--        <ui:include src="/publicVideo/YouTubeVideoPlayer.xhtml"/>-->
 
     </ui:define>
 </ui:composition>
