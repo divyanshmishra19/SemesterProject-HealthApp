@@ -1,18 +1,29 @@
 package edu.vt.EntityBeans;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Recipe {
 
-
+    private int id;
+    private int name;
     private int calories;
     private float yield;
     private float totalWeight;
-    private String[] healthLabels;
-    private String[] dietLabels;
-    private String[] cautions;
+    private List<String> healthLabels;
+    private List<String> dietLabels;
+    private List<String> cautions;
     private HashMap<String, Nutrition> totalNutrients;
     private String uri;
+
+
+    public int getName() {
+        return name;
+    }
+
+    public void setName(int name) {
+        this.name = name;
+    }
 
     public int getCalories() {
         return calories;
@@ -38,27 +49,27 @@ public class Recipe {
         this.totalWeight = totalWeight;
     }
 
-    public String[] getHealthLabels() {
-        return healthLabels;
+    public String getHealthLabels() {
+        return healthLabels.toString();
     }
 
-    public void setHealthLabels(String[] healthLabels) {
+    public void setHealthLabels(List<String> healthLabels) {
         this.healthLabels = healthLabels;
     }
 
-    public String[] getDietLabels() {
-        return dietLabels;
+    public String getDietLabels() {
+        return dietLabels.toString();
     }
 
-    public void setDietLabels(String[] dietLabels) {
+    public void setDietLabels(List<String> dietLabels) {
         this.dietLabels = dietLabels;
     }
 
-    public String[] getCautions() {
+    public List<String> getCautions() {
         return cautions;
     }
 
-    public void setCautions(String[] cautions) {
+    public void setCautions(List<String> cautions) {
         this.cautions = cautions;
     }
 
@@ -76,6 +87,18 @@ public class Recipe {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    public float getFat() {
+        return totalNutrients.get("FAT").getQuantity();
+    }
+
+    public float getProtein() {
+        return totalNutrients.get("PROCNT").getQuantity();
+    }
+
+    public float getCarbs() {
+        return totalNutrients.get("CHOCDF").getQuantity();
     }
 
     class Nutrition{
