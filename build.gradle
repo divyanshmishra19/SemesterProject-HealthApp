@@ -11,7 +11,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.7.1'
+    junitVersion = '5.8.1'
 }
 
 sourceCompatibility = "11"
@@ -23,10 +23,18 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     compileOnly('javax:javaee-api:8.0.1')
+
+    // primefaces-11.0.0.RC2.jar is located in the flat filesystem directory defined above
+    // primefaces-11.0.0.RC2.jar provides UI components for JSF
+    compileOnly group: 'org.primefaces', name: 'primefaces', version: '11.0.0.RC2'
+
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    // MySQL JDBC Connector to Java is configured in WildFly
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.26'
 }
 
 test {
