@@ -27,7 +27,7 @@ public class SliderController {
         listOfSliderImageFilenames = new ArrayList<>();
 
         for (int i = 1; i <= 12; i++) {
-            listOfSliderImageFilenames.add("photo" + i + ".png");
+            listOfSliderImageFilenames.add("photo" + i + ".jpg");
         }
     }
 
@@ -56,7 +56,7 @@ public class SliderController {
             case "photo2.jpg":
                 imageDescription = "Shrimp and Pasta Primavera";
                 break;
-            case "photo3.jfif":
+            case "photo3.jpg":
                 imageDescription = "Vanilla Cake";
                 break;
             case "photo4.jpg":
@@ -77,13 +77,13 @@ public class SliderController {
             case "photo9.jpg":
                 imageDescription = "Parmesan Crusted Chicken";
                 break;
-            case "photo10.jpeg":
+            case "photo10.jpg":
                 imageDescription = "Mint Chocolate Ice Cream Sandwich";
                 break;
-            case "photo11.jfif":
+            case "photo11.jpg":
                 imageDescription = "Red Cabbage Salad with Roasted Cipollini Onions";
                 break;
-            case "photo12.jpeg":
+            case "photo12.jpg":
                 imageDescription = "Buffalo Chicken Drumsticks with Blue Cheese Dip";
                 break;
         }

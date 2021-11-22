@@ -19,7 +19,7 @@ public class RecipeController implements Serializable {
 
     public List<Recipe> getListOfVideos() {
         if (listOfRecipes == null) {
-            listOfRecipes = recipeFacade.findAll();
+            //listOfRecipes = recipeFacade.findAll();
         }
         return listOfRecipes;
     }

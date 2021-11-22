@@ -3,72 +3,81 @@
   - Created by Neel Gada on 2021.10.28
   - Copyright © 2021 Neel Gada. All rights reserved.
 -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <!--
-    *********************************************
-    * Header Component of Template siteTemplate *
-    *********************************************
-    This page's content is displayed on the top of each page created based on the siteTemplate.
-    Changes made in this file will show up automatically with all pages created based on the
-    siteTemplate for the entire site, achieving great maintainability.
-    -->
-    <ui:composition>
-        <h:form>
-            <table border="0" cellspacing="0" cellpadding="10" width="100%">
-                <tr>
-                    <!--
-                    *************************************
-                    Column 1 (Left): Recipes Logo Image
-                    *************************************
-                    -->
-                    <td align="left" valign="middle" style="width:131px">
-                        <!-- 
-                        Use EL to reference the image file since it will be accessed from all UI pages.
-                        Column width = Logo Image Width
-                        -->
-                        <h:link outcome="/index">
-                            <img src="#{resource['images:recipesLogo.png']}"
-                                 style="height:64px; width:auto; float:left; padding-left:10px; border:none;"
-                                 alt="Recipe Logo" />
-                        </h:link>
-                    </td>
-                    <!--
-                    ***************************
-                    Column 2 (Center): App Name
-                    ***************************
-                    -->
-                    <td align="center" valign="middle">
-                        <span class="headerTitle">Recipe</span>
-                    </td>
-                    <!--
-                    ***************************************
-                    Column 3 (Right): Hamburger Menu Button
-                    ***************************************
-                    -->
-                    <td align="right" valign="middle" style="width:100px;">
-                        <div style="padding-right:10px">
-                            <p:commandButton id="dynaButton" value="Menu" type="button" icon="pi pi-bars"/>
-                            <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom" style="white-space: nowrap;">
-                                <p:menuitem value="Home" outcome="/index" icon="fas fa-home"/>
-                                <p:menuitem value="Favorite Recipes" outcome="/health/List" icon="fas fa-list"/>
-                                <p:menuitem value="Search Recipes" onclick="PF('RecipeSearchDialog').show();return false;"
-                                            icon="fas fa-search"/>
-                            </p:menu>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-        </h:form>
+xmlns:f="http://xmlns.jcp.org/jsf/core">
+<!--
+*********************************************
+* Header Component of Template siteTemplate *
+*********************************************
+This page's content is displayed on the top of each page created based on the siteTemplate.
+Changes made in this file will show up automatically with all pages created based on the
+siteTemplate for the entire site, achieving great maintainability.
+-->
+<ui:composition>
+    <h:form>
+        <table border="0" cellspacing="0" cellpadding="10" width="100%">
+            <tr>
+                <td align="left" valign="middle" style="width:230px;">
+                    <!-- Use EL to reference the image file since it will be accessed from all UI pages -->
+                    <h:link outcome="/index">
+                        <img src="#{resource['images:HealthTech-logos.jpeg']}"
+                             style="height:64px; width:auto; float:left; padding-left:10px; border:none;"
+                             alt="Health Tech Logo"/>
+                    </h:link>
+                </td>
+                <!--
+                *******************************
+                Column 2 (Center): Welcome User
+                *******************************
+                -->
+                <td>
+                    <p:menubar>
+                        <p:menuitem value="Recipe List"></p:menuitem>
+                        <p:menuitem value="Workout List"></p:menuitem>
+                        <p:submenu label="Track Progress">
+                            <p:menuitem value="Add Meal"></p:menuitem>
+                            <p:menuitem value="Add Workout"></p:menuitem>
+                            <p:separator/>
+                            <p:menuitem value="Help"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="View Reports">
+                            <p:menuitem value="Daily Reports"></p:menuitem>
+                            <p:menuitem value="Weekly Reports"></p:menuitem>
+                        </p:submenu>
+                        <p:submenu label="Achievements">
+                            <p:menuitem value="See Your Achievements"></p:menuitem>
+                            <p:menuitem value="See Other's Achievements"></p:menuitem>
+                        </p:submenu>
+                    </p:menubar>
+                </td>
+                <!--
+                ***************************************
+                Column 3 (Right): Hamburger Menu Button
+                ***************************************
+                -->
+                <td align="right" valign="middle" style="width:100px;">
+                    <div style="padding-right:10px">
+                        <p:commandButton id="dynaButton" value="Menu" type="button" icon="pi pi-bars"/>
+                        <p:menu overlay="true" trigger="dynaButton" my="left top" at="left bottom"
+                                style="white-space: nowrap;">
+                            <p:menuitem value="Home" outcome="/index" icon="fas fa-home"/>
+                            <p:menuitem value="Log In" outcome="/index" icon="fas fa-home"/>
+                            <p:menuitem value="Stuff" icon="fas fa-list"/>
+                        </p:menu>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </h:form>
 
-        <!--
-        Selecting the 'API Search' menu option displays the included
-        RecipeSearch.xhtml file in a dialog box on top of the currently displayed page.
-        -->
-    </ui:composition>
+    <!--
+    Selecting the 'API Search' menu option displays the included
+    RecipeSearch.xhtml file in a dialog box on top of the currently displayed page.
+    -->
+</ui:composition>
 </html>
