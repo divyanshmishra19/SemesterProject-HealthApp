@@ -1,2 +1,4 @@
-package edu.vt.controllers;public class RecipeController {
+package edu.vt.controllers;
+
+public class RecipeController {
 }
