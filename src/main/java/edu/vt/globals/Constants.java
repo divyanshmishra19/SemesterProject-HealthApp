@@ -8,6 +8,10 @@ public class Constants {
     public static final String PHOTOS_ABSOLUTE_PATH = "C:/Users/hp/DocRoot/PhotoStorage/";
     public static final String API_APP_NAME = "API signup";
     public static final String CHART_API_URL = "https://image-charts.com/chart?cht=";
+    public static final String BAR_CHART = "bvg";
+    public static final String PIE_CHART = "p3";
+    public static final String DATA = "&chd=t:";
+    public static final String LABEL = "&chl=";
     public static final String[] QUESTIONS = {
             "In what city or town did your mother and father meet?",
             "In what city or town were you born?",
