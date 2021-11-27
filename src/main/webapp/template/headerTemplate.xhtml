@@ -28,8 +28,16 @@ siteTemplate for the entire site, achieving great maintainability.
             <p:menuitem value="Recipe List"></p:menuitem>
             <p:menuitem value="Workout List"></p:menuitem>
             <p:submenu label="Track Progress">
-                <p:menuitem value="Add Meal"></p:menuitem>
-                <p:menuitem value="Add Workout"></p:menuitem>
+                <!-- Menu Options IF a User is Signed In -->
+                <c:if test="#{userController.isLoggedIn() == true}">
+                    <p:menuitem value="Add Meal"></p:menuitem>
+                    <p:menuitem value="Add Workout"></p:menuitem>
+                </c:if>
+                <!-- Menu Options IF No User is Signed In -->
+                <c:if test="#{userController.isLoggedIn() == false}">
+                    <p:menuitem value="Sign In" icon="fas fa-sign-in-alt" />
+                    <p:menuitem value="Create Account" icon="fas fa-user-plus" />
+                </c:if>
                 <p:separator/>
                 <p:menuitem value="Help"></p:menuitem>
             </p:submenu>
