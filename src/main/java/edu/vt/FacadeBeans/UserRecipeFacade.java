@@ -1,6 +1,7 @@
 package edu.vt.FacadeBeans;
 
 import edu.vt.EntityBeans.Recipe;
+import edu.vt.EntityBeans.UserRecipe;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -8,13 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Stateless
-public class UserRecipeFacade extends AbstractFacade<Recipe>{
-    public UserRecipeFacade(Class<Recipe> entityClass) {
+public class UserRecipeFacade extends AbstractFacade<UserRecipe>{
+    public UserRecipeFacade(Class<UserRecipe> entityClass) {
         super(entityClass);
     }
 
     public UserRecipeFacade() {
-        super(Recipe.class);
+        super(UserRecipe.class);
     }
 
     public String getTotalDailyCalories(String toString) {
