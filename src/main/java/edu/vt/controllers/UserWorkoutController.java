@@ -18,15 +18,15 @@ import java.util.logging.Logger;
 
 public class UserWorkoutController implements Serializable {
 
-    private List<UserWorkout> listlOfWorkouts;
+    private List<UserWorkout> listOfWorkouts;
     private UserWorkoutFacade userWorkoutFacade;
     private UserWorkout selected;
 
     public List<UserWorkout> getListOfWorkouts() {
-        if (listlOfWorkouts == null) {
+        if (listOfWorkouts == null) {
             //listOfRecipes = recipeFacade.findAll();
         }
-        return listlOfWorkouts;
+        return listOfWorkouts;
     }
 
 
@@ -58,7 +58,7 @@ public class UserWorkoutController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The CREATE operation is successfully performed.
             selected = null;        // Remove selection
-            listlOfWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
+            listOfWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
         }
     }
 
@@ -70,7 +70,7 @@ public class UserWorkoutController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The UPDATE operation is successfully performed.
             selected = null;        // Remove selection
-            listlOfWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
+            listOfWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
         }
     }
 
@@ -82,7 +82,7 @@ public class UserWorkoutController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The DELETE operation is successfully performed.
             selected = null;        // Remove selection
-            listlOfWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
+            listOfWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
         }
     }
 
