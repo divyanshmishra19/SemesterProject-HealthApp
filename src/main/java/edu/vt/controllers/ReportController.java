@@ -47,7 +47,7 @@ public class ReportController implements Serializable {
         StringBuilder pieChartUrl = new StringBuilder();
         pieChartUrl.append(Constants.CHART_API_URL);
         pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=500x500");
+        pieChartUrl.append("&chs=350x350");
         pieChartUrl.append("&chco=FFC6A5|FFFF42");
         if (calories<expectedCalories)
         {
@@ -80,7 +80,7 @@ public class ReportController implements Serializable {
         StringBuilder pieChartUrl = new StringBuilder();
         pieChartUrl.append(Constants.CHART_API_URL);
         pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=500x500");
+        pieChartUrl.append("&chs=350x350");
         pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
         for(Double fat: fats)
@@ -105,7 +105,7 @@ public class ReportController implements Serializable {
         StringBuilder pieChartUrl = new StringBuilder();
         pieChartUrl.append(Constants.CHART_API_URL);
         pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=500x500");
+        pieChartUrl.append("&chs=350x350");
         pieChartUrl.append("&chco=FFC6A5|FFFF42");
         if (caloriesBurned<desiredCaloriesBurned)
         {
@@ -138,7 +138,7 @@ public class ReportController implements Serializable {
         StringBuilder barChartUrl = new StringBuilder();
         barChartUrl.append(Constants.CHART_API_URL);
         barChartUrl.append(Constants.BAR_CHART);
-        barChartUrl.append("&chs=500x500");
+        barChartUrl.append("&chs=600x600");
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6|DEBDDE|003AE1");
         String data = Constants.DATA;
         for(Double nutrient: nutrients)
@@ -163,7 +163,7 @@ public class ReportController implements Serializable {
         StringBuilder barChartUrl = new StringBuilder();
         barChartUrl.append(Constants.CHART_API_URL);
         barChartUrl.append(Constants.BAR_CHART);
-        barChartUrl.append("&chs=500x500");
+        barChartUrl.append("&chs=600x600");
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
         for(Double calories: workoutCategoryWiseCalories)

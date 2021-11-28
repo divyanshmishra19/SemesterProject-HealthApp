@@ -6,9 +6,32 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template/siteTemplate.xhtml">
+<ui:define name="title">
+    <!-- Set the page title -->
+    <h:outputText value="Daily Reports" />
+
+</ui:define>
+
+<ui:define name="editableContent">
+    <div class="card">
+        <p:graphicImage value="#{reportController.dailyCalorieChart}" title="Daily Calories Consumed" style="margin: 40px" stream="false"/>
+        <p:graphicImage value="#{reportController.dailyWorkout}" title="Daily Calories Burnt" style="margin: 40px" stream="false"/>
+        <p:graphicImage value="#{reportController.dailyFatsChart}" title="Daily Fat Distribution" stream="false"/>
+    </div>
+
+    <div class="card">
+        <p:graphicImage value="#{reportController.dailyMicronutrients}" title="Daily Micronutrients Consumption" style="margin: 40px" stream="false"/>
+        <p:graphicImage value="#{reportController.dailyCategoryWiseCalories}" title="Daily Workout Categories" style="margin: 40px" stream="false"/>
+    </div>
+
+</ui:define>
 
 <img src = "#{reportController.dailyCalorieChart}" alt="Image"/>
 <img src = "#{reportController.dailyFatsChart}" alt="Image"/>
 <img src = "#{reportController.dailyMicronutrients}" alt="Image"/>
+</ui:composition>
 </html>
