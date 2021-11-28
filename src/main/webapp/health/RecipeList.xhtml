@@ -12,7 +12,7 @@
 <ui:composition template="/template/siteTemplate.xhtml">
     <ui:define name="title">
         <!-- Set the page title -->
-            <h:outputText value="Public List" />
+            <h:outputText value="Recipe List" />
 
     </ui:define>
     <!-- Create the content for this page below -->
@@ -27,18 +27,18 @@
         </f:metadata>
         <div align="center" style="text-align: center;">
             <h:form id="RecipeListForm">
-                <p:panel header="Public List of Favorite YouTube Videos">
+                <p:panel header="Healthy Recipes">
                     <p:dataTable id="datalist"
-                                 value="#{recipeController.listOfVideos}"
+                                 value="#{recipeController.listOfRecipes}"
                                  var="aRecipe"
-                                 widgetVar="publicVideoDataTable"
+                                 widgetVar="recipeDataTable"
                                  selectionMode="single"
                                  selection="#{recipeController.selected}"
                                  reflow="true"
                                  showGridlines="true"
                                  paginator="true"
                                  rowKey="#{aRecipe.id}"
-                                 rows="10"
+                                 rows="5"
                                  rowsPerPageTemplate="5,10,20,30,50,70,90"
                                  emptyMessage="No Video found for the search query entered!">
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton playButton shareButton "/>
@@ -60,10 +60,10 @@
                         </f:facet>
 
 
-                        <p:column headerText="Title" sortBy="#{aRecipe.title}"
-                                  filterBy="#{aRecipe.title}" filterMatchMode="contains"
+                        <p:column headerText="Name" sortBy="#{aRecipe.name}"
+                                  filterBy="#{aRecipe.name}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.title}"/>
+                            <h:outputText value="#{aRecipe.name}"/>
                         </p:column>
 
                         <p:column headerText="Calories" sortBy="#{aRecipe.calories}"

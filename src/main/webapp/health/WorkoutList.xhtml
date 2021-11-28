@@ -12,35 +12,35 @@
 <ui:composition template="/template/siteTemplate.xhtml">
     <ui:define name="title">
         <!-- Set the page title -->
-            <h:outputText value="Recipe List" />
+        <h:outputText value="Workout List" />
 
     </ui:define>
     <!-- Create the content for this page below -->
     <ui:define name="editableContent">
-        <!-- In case of JSF validation error, set 'selected' to null in videoController -->
+        <!-- In case of JSF validation error, set 'selected' to null in workoutController -->
         <c:if test="#{facesContext.validationFailed}">
-            ${recipeController.unselect()}
+            ${workoutController.unselect()}
         </c:if>
-        <!-- Set 'selected' to null in videoController when the user refreshes / reloads this JSF page -->
+        <!-- Set 'selected' to null in workoutController when the user refreshes / reloads this JSF page -->
         <f:metadata>
-            <f:viewAction action="#{recipeController.unselect()}" rendered="#{facesContext.postback}" />
+            <f:viewAction action="#{workoutController.unselect()}" rendered="#{facesContext.postback}" />
         </f:metadata>
         <div align="center" style="text-align: center;">
             <h:form id="RecipeListForm">
                 <p:panel header="Healthy Recipes">
                     <p:dataTable id="datalist"
-                                 value="#{recipeController.listOfRecipes}"
-                                 var="aRecipe"
-                                 widgetVar="recipeDataTable"
+                                 value="#{workoutController.listOfWorkouts}"
+                                 var="aWorkout"
+                                 widgetVar="workoutDataTable"
                                  selectionMode="single"
-                                 selection="#{recipeController.selected}"
+                                 selection="#{workoutController.selected}"
                                  reflow="true"
                                  showGridlines="true"
                                  paginator="true"
-                                 rowKey="#{aRecipe.id}"
+                                 rowKey="#{aWorkout.id}"
                                  rows="5"
                                  rowsPerPageTemplate="5,10,20,30,50,70,90"
-                                 emptyMessage="No Video found for the search query entered!">
+                                 emptyMessage="No Workout found for the search query entered!">
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton playButton shareButton "/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton playButton shareButton "/>
                         <!--
@@ -60,45 +60,45 @@
                         </f:facet>
 
 
-                        <p:column headerText="Name" sortBy="#{aRecipe.name}"
-                                  filterBy="#{aRecipe.name}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.name}"/>
-                        </p:column>
+<!--                        <p:column headerText="Name" sortBy="#{aWorkout.name}"-->
+<!--                                  filterBy="#{aWorkout.name}" filterMatchMode="contains"-->
+<!--                                  style="vertical-align: top;text-align: center">-->
+<!--                            <h:outputText value="#{aWorkout.name}"/>-->
+<!--                        </p:column>-->
 
-                        <p:column headerText="Calories" sortBy="#{aRecipe.calories}"
-                                  filterBy="#{aRecipe.calories}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.calories}"/>
-                        </p:column>
+<!--                        <p:column headerText="Calories" sortBy="#{aWorkout.calories}"-->
+<!--                                  filterBy="#{aWorkout.calories}" filterMatchMode="contains"-->
+<!--                                  style="vertical-align: top;text-align: center">-->
+<!--                            <h:outputText value="#{aWorkout.calories}"/>-->
+<!--                        </p:column>-->
 
-                        <p:column headerText="Diet Labels" sortBy="#{aRecipe.dietLabels}"
-                                  filterBy="#{aRecipe.dietLabels}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.dietLabels}"/>
-                        </p:column>
+<!--                        <p:column headerText="Diet Labels" sortBy="#{aWorkout.dietLabels}"-->
+<!--                                  filterBy="#{aWorkout.dietLabels}" filterMatchMode="contains"-->
+<!--                                  style="vertical-align: top;text-align: center">-->
+<!--                            <h:outputText value="#{aWorkout.dietLabels}"/>-->
+<!--                        </p:column>-->
 
-                        <p:column headerText="Health Labels" sortBy="#{aRecipe.healthLabels}"
-                                  filterBy="#{aRecipe.healthLabels}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.healthLabels}"/>
-                        </p:column>
+<!--                        <p:column headerText="Health Labels" sortBy="#{aWorkout.healthLabels}"-->
+<!--                                  filterBy="#{aWorkout.healthLabels}" filterMatchMode="contains"-->
+<!--                                  style="vertical-align: top;text-align: center">-->
+<!--                            <h:outputText value="#{aWorkout.healthLabels}"/>-->
+<!--                        </p:column>-->
 
-                        <p:column headerText="Carbohydrate" sortBy="#{aRecipe.carbs}"
-                                  filterBy="#{aRecipe.carbs}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.carbs}"/>
-                        </p:column>
-                        <p:column headerText="Fat" sortBy="#{aRecipe.fat}"
-                                  filterBy="#{aRecipe.fat}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.fat}"/>
-                        </p:column>
-                        <p:column headerText="Protein" sortBy="#{aRecipe.protein}"
-                                  filterBy="#{aRecipe.protein}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.protein}"/>
-                        </p:column>
+<!--                        <p:column headerText="Carbohydrate" sortBy="#{aWorkout.carbs}"-->
+<!--                                  filterBy="#{aWorkout.carbs}" filterMatchMode="contains"-->
+<!--                                  style="vertical-align: top;text-align: center">-->
+<!--                            <h:outputText value="#{aWorkout.carbs}"/>-->
+<!--                        </p:column>-->
+<!--                        <p:column headerText="Fat" sortBy="#{aWorkout.fat}"-->
+<!--                                  filterBy="#{aWorkout.fat}" filterMatchMode="contains"-->
+<!--                                  style="vertical-align: top;text-align: center">-->
+<!--                            <h:outputText value="#{aWorkout.fat}"/>-->
+<!--                        </p:column>-->
+<!--                        <p:column headerText="Protein" sortBy="#{aWorkout.protein}"-->
+<!--                                  filterBy="#{aWorkout.protein}" filterMatchMode="contains"-->
+<!--                                  style="vertical-align: top;text-align: center">-->
+<!--                            <h:outputText value="#{aWorkout.protein}"/>-->
+<!--                        </p:column>-->
 
                         <!--
                         *************************
@@ -107,28 +107,28 @@
                         -->
                         <f:facet name="footer">
                             <div align="center">
-<!--                                &lt;!&ndash; CREATE button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
+                                <!--                                &lt;!&ndash; CREATE button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
                                 <p:commandButton id="createButton" value="Create" icon="fas fa-plus" styleClass="rounded-button"
-                                                 actionListener="#{videoController.prepareCreate()}"
+                                                 actionListener="#{workoutController.prepareCreate()}"
                                                  update=":VideoCreateForm" oncomplete="PF('VideoCreateDialog').show()"/>
                                 &nbsp;
-<!--                                &lt;!&ndash; VIEW button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
+                                <!--                                &lt;!&ndash; VIEW button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
                                 <p:commandButton id="viewButton" value="View" icon="fas fa-eye" styleClass="rounded-button"
                                                  update=":VideoViewDlg" oncomplete="PF('VideoViewDialog').show()"
-                                                 disabled="#{empty videoController.selected}"/>
+                                                 disabled="#{empty workoutController.selected}"/>
                                 <!--                                    &nbsp;-->&nbsp;&nbsp;
-<!--                                &lt;!&ndash;                                    &lt;!&ndash; EDIT button: id is used since it is referenced to be activated or deactivated &ndash;&gt;&ndash;&gt;-->
+                                <!--                                &lt;!&ndash;                                    &lt;!&ndash; EDIT button: id is used since it is referenced to be activated or deactivated &ndash;&gt;&ndash;&gt;-->
                                 <p:commandButton id="editButton" value="Edit" icon="fas fa-edit" styleClass="rounded-button"
                                                  update=":VideoEditDlg" oncomplete="PF('VideoEditDialog').show()"
-                                                 disabled="#{empty videoController.selected}"/>
+                                                 disabled="#{empty workoutController.selected}"/>
                                 &nbsp;&nbsp;
                                 <!-- DELETE button: id is used since it is referenced to be activated or deactivated -->
                                 <p:commandButton id="deleteButton" value="Delete" icon="fas fa-trash-alt"  styleClass="rounded-button"
-                                                 actionListener="#{videoController.destroy()}"
+                                                 actionListener="#{workoutController.destroy()}"
                                                  update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
-                                                 disabled="#{empty videoController.selected}">
+                                                 disabled="#{empty workoutController.selected}">
 
-                                    <p:confirm header="Deletion Confirmation" message="Are you sure you want to permanently delete the selected Video #{videoController.selected.title} from the database?"/>
+                                    <p:confirm header="Deletion Confirmation" message="Are you sure you want to permanently delete the selected Video #{workoutController.selected.title} from the database?"/>
                                 </p:commandButton>
                                 <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
                                     <div align="center">
@@ -139,16 +139,16 @@
                                 &nbsp;&nbsp;
 
                                 <p:commandButton id="playButton" value="Play" icon="fas fa-play" styleClass="rounded-button"
-                                                 actionListener="#{videoController.setIdOfVideoToPlay(videoController.selected.youtubeVideoId)}"
+                                                 actionListener="#{workoutController.setIdOfVideoToPlay(workoutController.selected.youtubeVideoId)}"
                                                  update=":VideoPlayForm" oncomplete="PF('VideoPlayDialog').show()"
-                                                 disabled="#{empty videoController.selected}" />
+                                                 disabled="#{empty workoutController.selected}" />
 
                                 &nbsp;
                                 &nbsp;
                                 <p:commandButton id="shareButton" value="Share" icon="fas fa-share" styleClass="rounded-button"
-                                                 actionListener="#{videoController.setIdOfVideoToPlay(videoController.selected.youtubeVideoId)}"
+                                                 actionListener="#{workoutController.setIdOfVideoToPlay(workoutController.selected.youtubeVideoId)}"
                                                  update=":VideoPlayForm" oncomplete="PF('VideoPlayDialog').show()"
-                                                 disabled="#{empty videoController.selected}" />
+                                                 disabled="#{empty workoutController.selected}" />
 
                             </div>
                         </f:facet>
@@ -156,13 +156,13 @@
                 </p:panel>
             </h:form>
         </div>
-<!--        <ui:include src="/publicVideo/Create.xhtml"/>-->
+        <!--        <ui:include src="/publicVideo/Create.xhtml"/>-->
 
-<!--        <ui:include src="/publicVideo/View.xhtml"/>-->
+        <!--        <ui:include src="/publicVideo/View.xhtml"/>-->
 
-<!--        <ui:include src="/publicVideo/Edit.xhtml"/>-->
+        <!--        <ui:include src="/publicVideo/Edit.xhtml"/>-->
 
-<!--        <ui:include src="/publicVideo/YouTubeVideoPlayer.xhtml"/>-->
+        <!--        <ui:include src="/publicVideo/YouTubeVideoPlayer.xhtml"/>-->
 
     </ui:define>
 </ui:composition>
