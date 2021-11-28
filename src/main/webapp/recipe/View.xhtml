@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Ayush Manish Shah on 2021.11.18
+  - Copyright © 2021 Ayush Manish Shah. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition>
+    <!--
+    *************************************************
+    Dialog pop-up window to VIEW a user video
+    *************************************************
+    -->
+    <p:dialog id="VideoViewDlg" header="View YouTube Video Data" widgetVar="VideoViewDialog"
+              modal="true" position="center" appendTo="@(body)"
+              showEffect="slide" hideEffect="fade" responsive="true" width="70%" height="400">
+
+        <h:form id="VideoViewForm" class="ui-datatable-data">
+            <div align="center">
+                <h:panelGroup id="display" >
+
+                    <!--
+                    *********************
+                    *  Video Thumbnail  *
+                    *********************
+                    -->
+                    <p:column headerText="" style="width: 80px; text-align: center; vertical-align: top">
+                        <h:graphicImage value="https://i1.ytimg.com/vi/#{publicVideoController.selected.youtubeVideoId}/mqdefault.jpg" class="scalableImage"/>
+                    </p:column>
+
+                    <br /><br />
+                    <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
+                                 rendered="#{publicVideoController.selected != null}">
+
+                        <!--
+                        *********************
+                        *    Video Title    *
+                        *********************
+                        -->
+                        <h:outputText value="Title:"/>
+                        <h:outputText value="#{publicVideoController.selected.title}" />
+
+                        <!--
+                        ***********************
+                        *   Video Description *
+                        ***********************
+                        -->
+                        <h:outputText value="Description:"/>
+                        <h:outputText value="#{publicVideoController.selected.description}" />
+
+                        <!--
+                        *********************
+                        *   Video YouTubeID *
+                        *********************
+                        -->
+                        <h:outputText value="YouTube Video ID:"/>
+                        <h:outputText value="#{publicVideoController.selected.youtubeVideoId}" />
+
+                        <!--
+                        *********************
+                        *   Video Duration  *
+                        *********************
+                        -->
+                        <h:outputText value="Duration (hh:mm:ss):"/>
+                        <h:outputText value="#{publicVideoController.selected.duration}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
+
+                        <!--
+                        ******************
+                        *   Video Date   *
+                        ******************
+                        -->
+                        <h:outputText value="Date Published:"/>
+                        <h:outputText value="#{publicVideoController.selected.datePublished}" >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <!--
+                        *********************
+                        *   Video Category  *
+                        *********************
+                        -->
+                        <h:outputText value="Category:"/>
+                        <h:outputText value="#{publicVideoController.selected.category}" />
+                    </p:panelGrid>
+                </h:panelGroup>
+                <br /><br />
+                <h:panelGroup>
+                    <!-- CLOSE button -->
+                    <p:commandButton value="Close" icon="fas fa-window-close" styleClass="ui-button-outlined"
+                                     onclick="PF('VideoViewDialog').hide()" />
+                </h:panelGroup>
+                <br /><br />
+            </div>
+        </h:form>
+    </p:dialog>
+</ui:composition>
+</html>

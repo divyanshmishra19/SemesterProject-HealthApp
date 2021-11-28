@@ -6,6 +6,13 @@ package edu.vt.globals;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URI;
+import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 /*
 This class is created to provide Convenience Class Methods (typed with the "static" keyword")
@@ -69,6 +76,32 @@ public final class Methods {
             default:
                 System.out.print("Message Type is Out of Range!");
         }
+    }
+
+    /**
+     * Return the content of a given URL as String
+     *
+     * @param apiURL: API URL to fetch the JSON data file from
+     * @return JSON data obtained from the given API URL as String
+     */
+    public static String readUrlContent(String apiURL, String jsonStr) throws Exception {
+        try {
+            // Create a URL object from the webServiceURL given
+
+            URI uri = new URI(apiURL);
+            HttpRequest request = HttpRequest.newBuilder(uri)
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(jsonStr))
+                    .build();
+
+            HttpResponse<String> response = HttpClient.newHttpClient()
+                    .send(request, HttpResponse.BodyHandlers.ofString());
+            return response.body();
+
+        }  catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "No response";
     }
 
 }

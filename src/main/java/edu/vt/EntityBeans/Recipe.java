@@ -1,28 +1,43 @@
 package edu.vt.EntityBeans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 public class Recipe implements Serializable {
 
     private int id;
-    private int name;
+    private String name;
     private int calories;
-    private float yield;
-    private float totalWeight;
-    private List<String> healthLabels;
-    private List<String> dietLabels;
-    private List<String> cautions;
-    private HashMap<String, Nutrition> totalNutrients;
-    private String uri;
+    private float fatTotal;
+    private float fatSat;
+    private float fatMono;
+    private float fatPoly;
+    private float carbs;
+    private float protein;
+
+    private int fatCal;
+    private int carbCal;
+    private int proteinCal;
+
+    private float sodium;
+    private float calcium;
+    private float magnesium;
+    private float potassium;
+    private float iron;
+    private float zinc;
+
+    private String dietLabels;
+    private String ingredients;
 
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -34,101 +49,137 @@ public class Recipe implements Serializable {
         this.calories = calories;
     }
 
-    public float getYield() {
-        return yield;
-    }
-
-    public void setYield(float yield) {
-        this.yield = yield;
-    }
-
-    public float getTotalWeight() {
-        return totalWeight;
-    }
-
-    public void setTotalWeight(float totalWeight) {
-        this.totalWeight = totalWeight;
-    }
-
-    public String getHealthLabels() {
-        return healthLabels.toString();
-    }
-
-    public void setHealthLabels(List<String> healthLabels) {
-        this.healthLabels = healthLabels;
-    }
-
     public String getDietLabels() {
         return dietLabels.toString();
     }
 
-    public void setDietLabels(List<String> dietLabels) {
+    public void setDietLabels(String dietLabels) {
         this.dietLabels = dietLabels;
     }
 
-    public List<String> getCautions() {
-        return cautions;
+
+    public String getIngredients() {
+        return ingredients.toString();
     }
 
-    public void setCautions(List<String> cautions) {
-        this.cautions = cautions;
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
     }
 
-    public HashMap<String, Nutrition> getTotalNutrients() {
-        return totalNutrients;
+    public float getFatTotal() {
+        return fatTotal;
     }
 
-    public void setTotalNutrients(HashMap<String, Nutrition> totalNutrients) {
-        this.totalNutrients = totalNutrients;
+    public void setFatTotal(float fatTotal) {
+        this.fatTotal = fatTotal;
     }
 
-    public String getUri() {
-        return uri;
+    public float getFatSat() {
+        return fatSat;
     }
 
-    public void setUri(String uri) {
-        this.uri = uri;
+    public void setFatSat(float fatSat) {
+        this.fatSat = fatSat;
     }
 
-    public float getFat() {
-        return totalNutrients.get("FAT").getQuantity();
+    public float getFatMono() {
+        return fatMono;
+    }
+
+    public void setFatMono(float fatMono) {
+        this.fatMono = fatMono;
+    }
+
+    public float getFatPoly() {
+        return fatPoly;
+    }
+
+    public void setFatPoly(float fatPoly) {
+        this.fatPoly = fatPoly;
+    }
+
+    public void setCarbs(float carbs) {
+        this.carbs = carbs;
     }
 
     public float getProtein() {
-        return totalNutrients.get("PROCNT").getQuantity();
+        return protein;
     }
 
-    public float getCarbs() {
-        return totalNutrients.get("CHOCDF").getQuantity();
+    public void setProtein(float protein) {
+        this.protein = protein;
     }
 
-    class Nutrition{
-        private String label;
-        private float quantity;
-        private String unit;
-
-        public String getLabel() {
-            return label;
-        }
-
-        public void setLabel(String label) {
-            this.label = label;
-        }
-
-        public float getQuantity() {
-            return quantity;
-        }
-
-        public void setQuantity(float quantity) {
-            this.quantity = quantity;
-        }
-
-        public String getUnit() {
-            return unit;
-        }
-
-        public void setUnit(String unit) {
-            this.unit = unit;
-        }
+    public int getFatCal() {
+        return fatCal;
     }
+
+    public void setFatCal(int fatCal) {
+        this.fatCal = fatCal;
+    }
+
+    public int getCarbCal() {
+        return carbCal;
+    }
+
+    public void setCarbCal(int carbCal) {
+        this.carbCal = carbCal;
+    }
+
+    public int getProteinCal() {
+        return proteinCal;
+    }
+
+    public void setProteinCal(int proteinCal) {
+        this.proteinCal = proteinCal;
+    }
+
+    public float getSodium() {
+        return sodium;
+    }
+
+    public void setSodium(float sodium) {
+        this.sodium = sodium;
+    }
+
+    public float getCalcium() {
+        return calcium;
+    }
+
+    public void setCalcium(float calcium) {
+        this.calcium = calcium;
+    }
+
+    public float getMagnesium() {
+        return magnesium;
+    }
+
+    public void setMagnesium(float magnesium) {
+        this.magnesium = magnesium;
+    }
+
+    public float getPotassium() {
+        return potassium;
+    }
+
+    public void setPotassium(float potassium) {
+        this.potassium = potassium;
+    }
+
+    public float getIron() {
+        return iron;
+    }
+
+    public void setIron(float iron) {
+        this.iron = iron;
+    }
+
+    public float getZinc() {
+        return zinc;
+    }
+
+    public void setZinc(float zinc) {
+        this.zinc = zinc;
+    }
+
 }
