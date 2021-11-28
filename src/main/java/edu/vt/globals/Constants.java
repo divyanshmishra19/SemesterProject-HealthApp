@@ -36,6 +36,8 @@ public class Constants {
 
     public static final String PHOTOS_URI = "http://localhost:8080/profilephotos/";
 
+    public static final Integer THUMBNAIL_SIZE = 200;
+
     public static final String SAMPLE_JSON = "{\n" +
             "   \"uri\":\"http://www.edamam.com/ontologies/edamam.owl#recipe_43ab2d767b17403c8d015f7788f1a8a0\",\n" +
             "   \"yield\":8.0,\n" +
