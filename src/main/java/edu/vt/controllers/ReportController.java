@@ -24,8 +24,8 @@ public class ReportController implements Serializable {
     @EJB
     private UserRecipeFacade userRecipeFacade;
 
-    //@EJB
-    //private UserWorkoutFacade userWorkoutFacade;
+    @EJB
+    private UserWorkoutFacade userWorkoutFacade;
 
     @EJB
     private UserFacade userFacade;
