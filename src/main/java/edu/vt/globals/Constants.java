@@ -24,6 +24,20 @@ public class Constants {
             "What is your mother's maiden name?",
             "What was your favorite place to visit as a child?"
     };
+
+    /*
+     United States postal state abbreviations (codes)
+     */
+    public static final String[] STATES = {"AK", "AL", "AR", "AZ", "CA", "CO", "CT",
+            "DC", "DE", "FL", "GA", "GU", "HI", "IA", "ID", "IL", "IN", "KS", "KY", "LA", "MA",
+            "MD", "ME", "MH", "MI", "MN", "MO", "MS", "MT", "NC", "ND", "NE", "NH", "NJ", "NM",
+            "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT",
+            "VA", "VI", "VT", "WA", "WI", "WV", "WY"};
+
+    public static final String PHOTOS_URI = "http://localhost:8080/profilephotos/";
+
+    public static final Integer THUMBNAIL_SIZE = 200;
+
     public static final String SAMPLE_JSON = "{\n" +
             "   \"uri\":\"http://www.edamam.com/ontologies/edamam.owl#recipe_43ab2d767b17403c8d015f7788f1a8a0\",\n" +
             "   \"yield\":8.0,\n" +
