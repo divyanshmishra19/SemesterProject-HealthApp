@@ -10,6 +10,7 @@ import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -34,14 +35,21 @@ public class WorkoutController implements Serializable {
 
     public List<Workout> getListOfWorkouts() {
         if (listOfWorkouts == null) {
-            listOfWorkouts = workoutFacade.findAll();
+            List<Workout> wlist = new ArrayList<>();
+            wlist.add(new Workout(5F,"Pull Ups", "Strength"));
+            wlist.add(new Workout(0.5F,"Walking", "Aerobic"));
+            wlist.add(new Workout(2F,"Jogging", "Aerobic"));
+            return wlist;
         }
         return listOfWorkouts;
     }
 
+    public String getUrlOfVideoToPlay () {
+        return getUrlOfVideoToPlay();
+    }
 
-    public void unselect() {
-        selected = null;
+    public void setUrlOfVideoToPlay(String urlOfVideoToPlay) {
+        selected.setUrlOfWorkoutToPlay(urlOfVideoToPlay);
     }
 
     public String cancel() {

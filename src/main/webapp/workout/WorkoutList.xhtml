@@ -26,10 +26,10 @@
             <f:viewAction action="#{workoutController.unselect()}" rendered="#{facesContext.postback}" />
         </f:metadata>
         <div align="center" style="text-align: center;">
-            <h:form id="RecipeListForm">
-                <p:panel header="Healthy Recipes">
+            <h:form id="WorkoutListForm">
+                <p:panel header="Public Workouts">
                     <p:dataTable id="datalist"
-                                 value="#{workoutController.listOfWorkouts}"
+                                 value="#{workoutController.getListOfWorkouts()}"
                                  var="aWorkout"
                                  widgetVar="workoutDataTable"
                                  selectionMode="single"
@@ -50,76 +50,79 @@
                         -->
                         <f:facet name="header">
                             <div align="center">
-                                <p:inputText id="globalFilter" onkeyup="PF('publicVideoDataTable').filter()" filterMatchMode="contains"
+                                <p:inputText id="globalFilter" onkeyup="PF('publicWorkoutDataTable').filter()" filterMatchMode="contains"
                                              style="width: 250px"
                                              placeholder="Enter Global Search Query" />
                                 &nbsp;
                                 <p:commandButton type="button" value="Clear All Filters" styleClass="ui-button-outlined"
-                                                 icon="fas fa-undo" onclick="PF('publicVideoDataTable').clearFilters()" />
+                                                 icon="fas fa-undo" onclick="PF('publicWorkoutDataTable').clearFilters()" />
                             </div>
                         </f:facet>
 
 
-<!--                        <p:column headerText="Name" sortBy="#{aWorkout.name}"-->
-<!--                                  filterBy="#{aWorkout.name}" filterMatchMode="contains"-->
-<!--                                  style="vertical-align: top;text-align: center">-->
-<!--                            <h:outputText value="#{aWorkout.name}"/>-->
-<!--                        </p:column>-->
-
-<!--                        <p:column headerText="Calories" sortBy="#{aWorkout.calories}"-->
-<!--                                  filterBy="#{aWorkout.calories}" filterMatchMode="contains"-->
-<!--                                  style="vertical-align: top;text-align: center">-->
-<!--                            <h:outputText value="#{aWorkout.calories}"/>-->
-<!--                        </p:column>-->
-
-<!--                        <p:column headerText="Diet Labels" sortBy="#{aWorkout.dietLabels}"-->
-<!--                                  filterBy="#{aWorkout.dietLabels}" filterMatchMode="contains"-->
-<!--                                  style="vertical-align: top;text-align: center">-->
-<!--                            <h:outputText value="#{aWorkout.dietLabels}"/>-->
-<!--                        </p:column>-->
-
-<!--                        <p:column headerText="Health Labels" sortBy="#{aWorkout.healthLabels}"-->
-<!--                                  filterBy="#{aWorkout.healthLabels}" filterMatchMode="contains"-->
-<!--                                  style="vertical-align: top;text-align: center">-->
-<!--                            <h:outputText value="#{aWorkout.healthLabels}"/>-->
-<!--                        </p:column>-->
-
-<!--                        <p:column headerText="Carbohydrate" sortBy="#{aWorkout.carbs}"-->
-<!--                                  filterBy="#{aWorkout.carbs}" filterMatchMode="contains"-->
-<!--                                  style="vertical-align: top;text-align: center">-->
-<!--                            <h:outputText value="#{aWorkout.carbs}"/>-->
-<!--                        </p:column>-->
-<!--                        <p:column headerText="Fat" sortBy="#{aWorkout.fat}"-->
-<!--                                  filterBy="#{aWorkout.fat}" filterMatchMode="contains"-->
-<!--                                  style="vertical-align: top;text-align: center">-->
-<!--                            <h:outputText value="#{aWorkout.fat}"/>-->
-<!--                        </p:column>-->
-<!--                        <p:column headerText="Protein" sortBy="#{aWorkout.protein}"-->
-<!--                                  filterBy="#{aWorkout.protein}" filterMatchMode="contains"-->
-<!--                                  style="vertical-align: top;text-align: center">-->
-<!--                            <h:outputText value="#{aWorkout.protein}"/>-->
-<!--                        </p:column>-->
+                        <!--
+                        ********************
+                        *   Workout Name   *
+                        ********************
+                        -->
+                        <p:column headerText="Name" sortBy="#{aWorkout.name}"
+                                  filterBy="#{aWorkout.name}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aWorkout.name}"/>
+                        </p:column>
 
                         <!--
+                        *******************************
+                        *   YouTube Thumbnail Image   *
+                        *******************************
+                        -->
+                        <p:column headerText="Thumbnail" style="width: 80px; text-align: center; vertical-align: top">
+                            <!--<h:graphicImage value="https://i1.ytimg.com/vi/#{aWorkout.youtubeVideoId}/mqdefault.jpg"
+                                            class="scalableImage" />-->
+                        </p:column>
+
+                        <!--
+                        ************************
+                        *   Workout BurnRate   *
+                        ************************
+                        -->
+
+                        <p:column headerText="BurnRate" sortBy="#{aWorkout.burnRate}"
+                                  filterBy="#{aWorkout.burnRate}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aWorkout.burnRate}"/>
+                        </p:column>
+
+                        <!--
+                        ************************
+                        *   Workout Category   *
+                        ************************
+                        -->
+                        <p:column headerText="Category" sortBy="#{aWorkout.category}"
+                                  filterBy="#{aWorkout.category}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aWorkout.category}"/>
+                        </p:column>
+
+
                         *************************
                         *   Data Table Footer   *
                         *************************
-                        -->
                         <f:facet name="footer">
                             <div align="center">
                                 <!--                                &lt;!&ndash; CREATE button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
                                 <p:commandButton id="createButton" value="Create" icon="fas fa-plus" styleClass="rounded-button"
                                                  actionListener="#{workoutController.prepareCreate()}"
-                                                 update=":VideoCreateForm" oncomplete="PF('VideoCreateDialog').show()"/>
+                                                 update=":WorkoutCreateForm" oncomplete="PF('WorkoutCreateDialog').show()"/>
                                 &nbsp;
                                 <!--                                &lt;!&ndash; VIEW button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
                                 <p:commandButton id="viewButton" value="View" icon="fas fa-eye" styleClass="rounded-button"
-                                                 update=":VideoViewDlg" oncomplete="PF('VideoViewDialog').show()"
+                                                 update=":WorkoutViewDlg" oncomplete="PF('WorkoutViewDialog').show()"
                                                  disabled="#{empty workoutController.selected}"/>
                                 <!--                                    &nbsp;-->&nbsp;&nbsp;
                                 <!--                                &lt;!&ndash;                                    &lt;!&ndash; EDIT button: id is used since it is referenced to be activated or deactivated &ndash;&gt;&ndash;&gt;-->
                                 <p:commandButton id="editButton" value="Edit" icon="fas fa-edit" styleClass="rounded-button"
-                                                 update=":VideoEditDlg" oncomplete="PF('VideoEditDialog').show()"
+                                                 update=":WorkoutEditDlg" oncomplete="PF('WorkoutEditDialog').show()"
                                                  disabled="#{empty workoutController.selected}"/>
                                 &nbsp;&nbsp;
                                 <!-- DELETE button: id is used since it is referenced to be activated or deactivated -->
@@ -140,7 +143,7 @@
 
                                 <p:commandButton id="playButton" value="Play" icon="fas fa-play" styleClass="rounded-button"
                                                  actionListener="#{workoutController.setIdOfVideoToPlay(workoutController.selected.youtubeVideoId)}"
-                                                 update=":VideoPlayForm" oncomplete="PF('VideoPlayDialog').show()"
+                                                 update=":WorkoutPlayForm" oncomplete="PF('WorkoutPlayDialog').show()"
                                                  disabled="#{empty workoutController.selected}" />
 
                                 &nbsp;
@@ -156,13 +159,13 @@
                 </p:panel>
             </h:form>
         </div>
-        <!--        <ui:include src="/publicVideo/Create.xhtml"/>-->
+                <ui:include src="/workout/Create.xhtml"/>
 
-        <!--        <ui:include src="/publicVideo/View.xhtml"/>-->
+                <ui:include src="/workout/View.xhtml"/>
 
-        <!--        <ui:include src="/publicVideo/Edit.xhtml"/>-->
+                <ui:include src="/workout/Edit.xhtml"/>
 
-        <!--        <ui:include src="/publicVideo/YouTubeVideoPlayer.xhtml"/>-->
+                <ui:include src="/workout/YouTubeVideoPlayer.xhtml"/>
 
     </ui:define>
 </ui:composition>

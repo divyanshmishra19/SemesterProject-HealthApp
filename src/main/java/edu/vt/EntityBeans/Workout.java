@@ -9,6 +9,7 @@ public class Workout implements Serializable {
     private Float burnRate;
     private String name;
     private String category;
+    private String urlOfWorkoutToPlay;
 
     public Workout(){
 
@@ -45,6 +46,10 @@ public class Workout implements Serializable {
     public void setCategory(String category) {
         this.category = category;
     }
+
+    public String getUrlOfWorkoutToPlay() { return urlOfWorkoutToPlay; };
+
+    public void setUrlOfWorkoutToPlay(String urlOfWorkoutToPlay) { this.urlOfWorkoutToPlay = urlOfWorkoutToPlay; };
 
     public Workout(Float burnRate, String name, String category) {
         this.burnRate = burnRate;
