@@ -1,6 +1,5 @@
 package edu.vt.FacadeBeans;
 
-import edu.vt.EntityBeans.Recipe;
 import edu.vt.EntityBeans.UserRecipe;
 
 import javax.ejb.Stateless;
@@ -8,6 +7,7 @@ import javax.persistence.EntityManager;
 import java.util.ArrayList;
 import java.util.List;
 
+// @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
 public class UserRecipeFacade extends AbstractFacade<UserRecipe>{
     public UserRecipeFacade(Class<UserRecipe> entityClass) {
@@ -18,11 +18,11 @@ public class UserRecipeFacade extends AbstractFacade<UserRecipe>{
         super(UserRecipe.class);
     }
 
-    public String getTotalDailyCalories(String toString) {
+    public String getTotalDailyCalories(String toString, int userId) {
         return "1405";
     }
 
-    public List<Double> getFats(String toString) {
+    public List<Double> getFats(String toString, int userId) {
         List<Double> fatList = new ArrayList<>();
         fatList.add(23.45);
         fatList.add(42.15);
@@ -32,7 +32,7 @@ public class UserRecipeFacade extends AbstractFacade<UserRecipe>{
         return fatList;
     }
 
-    public List<Double> getMicronutrients(String toString) {
+    public List<Double> getMicronutrients(String toString, int userId) {
         List<Double> micronutrientsList = new ArrayList<>();
         micronutrientsList.add(23.45);
         micronutrientsList.add(42.15);
