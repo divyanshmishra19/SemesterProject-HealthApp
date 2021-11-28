@@ -235,6 +235,30 @@
                         <p:password id="confirmPassword" value="#{userController.confirmPassword}" style="width: 290px"
                                     required="true" requiredMessage="Confirm Password is required!" />
 
+                        <!--
+                        ********************************
+                        *     Daily Calorie Intake     *
+                        ********************************
+                        -->
+                        <p:outputLabel value="Daily Calorie Intake:" for="calorieIntake" />
+                        <p:inputNumber id="calorieIntake" value="#{userController.dailyCalorieIntake}"
+                                     style="width: 290px" required="true" thousandSeparator=","
+                                     requiredMessage="Daily Calorie Intake is required!">
+                            <f:validateLength minimum="2" />
+                        </p:inputNumber>
+
+                        <!--
+                       ********************************
+                       *     Daily Calorie Burn       *
+                       ********************************
+                       -->
+                        <p:outputLabel value="Daily Calorie Burn:" for="calorieBurn" />
+                        <p:inputNumber id="calorieBurn" value="#{userController.dailyCalorieBurnt}"
+                                       style="width: 290px" required="true" thousandSeparator=","
+                                       requiredMessage="Desired Daily Calorie Burn is required!">
+                            <f:validateLength minimum="2" />
+                        </p:inputNumber>
+
                     </p:panelGrid>
                     <br /><br />
 
