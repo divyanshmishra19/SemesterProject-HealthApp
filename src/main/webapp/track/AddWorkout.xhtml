@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  - Created by Osman Balci on 2021.6.21
+  - Copyright © 2021 Osman Balci. All rights reserved.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition>
+    <!--
+    ============================================================
+    |  Clicking the CREATE button displays this Dialog window  |
+    |  for the user to enter the data to create a new video.   |
+    ============================================================
+    -->
+    <p:dialog id="VideoCreateDlg" header="Add new Meal" widgetVar="VideoCreateDialog"
+              modal="true" position="center" appendTo="@(body)"
+              showEffect="slide" hideEffect="fade" responsive="true" >
+
+        <h:form id="VideoCreateForm" class="ui-datatable-data">
+            <h:panelGroup id="display">
+                <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
+                             rendered="#{userWorkoutController.selected != null}">
+
+                    <p:outputLabel value="Name:" for="name" />
+                    <p:inputText id="title" value="#{userWorkoutController.selected.name}" style="width:400px"
+                                 required="true" requiredMessage="Workout name is required!"/>
+
+                    <p:outputLabel value="Calories Burned:" for="caloriesBurned" />
+                    <p:inputText id="caloriesBurned" value="#{userWorkoutController.selected.caloriesBurned}" style="width:400px"
+                                 required="true" requiredMessage="Calories Burned Amount is required!"/>
+
+                </p:panelGrid>
+            </h:panelGroup>
+
+            <h:panelGroup>
+                <br /><br />
+                <div align="center">
+                    <!-- SAVE button -->
+                    <p:commandButton value="Save" icon="fas fa-save" styleClass="rounded-button"
+                                     ajax="false" actionListener="#{userWorkoutController.create()}"
+                                     update="display,:VideoListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
+                                     oncomplete="handleSubmit(args,'VideoCreateDialog');" />
+                    &nbsp;
+                    <!--
+                    CANCEL button: Call the cancel() method immediately without first rendering this JSF page.
+                    The cancel() method will make the selected country object null and show the List page.
+                    -->
+                    <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
+                                     action="#{userWorkoutController.cancel()}" ajax="false" immediate="true"
+                                     onclick="PF('VideoCreateDialog').hide()" />
+                </div>
+            </h:panelGroup>
+        </h:form>
+    </p:dialog>
+</ui:composition>
+</html>
