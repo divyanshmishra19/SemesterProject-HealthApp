@@ -38,7 +38,7 @@ siteTemplate for the entire site, achieving great maintainability.
             <p:divider layout="vertical"/>
             <f:facet name="options">
                 <c:if test="#{userController.isLoggedIn() == true}">
-                    <p:button value="My Account" styleClass="ui-button-info"/>
+                    <p:button value="My Account" styleClass="ui-button-info" outcome="/userAccount/Profile"/>
                 </c:if>
                 <c:if test="#{userController.isLoggedIn() == false}">
                     <p:button value="Login" icon="pi pi-fw pi-sign-in" outcome="/SignIn.xhtml" styleClass="ui-button-info"/>
