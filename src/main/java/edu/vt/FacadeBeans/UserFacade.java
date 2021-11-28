@@ -66,10 +66,10 @@ public class UserFacade extends AbstractFacade<User> {
 
     // Deletes the User entity object whose primary key is id
     public void deleteUser(int id) {
-        
+
         // The find method is inherited from the parent AbstractFacade class
         User user = entityManager.find(User.class, id);
-        
+
         // The remove method is inherited from the parent AbstractFacade class
         entityManager.remove(user);
     }
