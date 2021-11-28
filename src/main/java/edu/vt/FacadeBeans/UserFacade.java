@@ -74,7 +74,11 @@ public class UserFacade extends AbstractFacade<User> {
         entityManager.remove(user);
     }
 
-    public String getUserCalorieIntake() {
+    public String getUserCalorieIntake(int userId) {
         return "2200";
+    }
+
+    public Double getUserWorkoutCalories(Integer id) {
+        return 1500.0;
     }
 }
