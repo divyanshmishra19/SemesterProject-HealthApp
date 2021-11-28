@@ -60,6 +60,9 @@ public class UserController implements Serializable {
 
     private User selected;
 
+    private double dailyCalorieIntake;
+    private double dailyCalorieBurnt;
+
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
     UserFacade bean into the instance variable 'userFacade' after it is instantiated at runtime.
@@ -198,31 +201,47 @@ public class UserController implements Serializable {
         this.email = email;
     }
 
+    public double getDailyCalorieIntake() {
+        return dailyCalorieIntake;
+    }
+
+    public void setDailyCalorieIntake(double dailyCalorieIntake) {
+        this.dailyCalorieIntake = dailyCalorieIntake;
+    }
+
+    public double getDailyCalorieBurnt() {
+        return dailyCalorieBurnt;
+    }
+
+    public void setDailyCalorieBurnt(double dailyCalorieBurnt) {
+        this.dailyCalorieBurnt = dailyCalorieBurnt;
+    }
+
     /*
-    --------------------------------------------------------------------------------
-    private Map<String, Object> security_questions;
-        String      int
-        ---------   ---
-        question1,  0
-        question2,  1
-        question3,  2
-            :
-    When the user selects a security question, its number (int) is stored;
-    not its String value. Later, given the number (int), the security question
-    String is obtained from the constant array QUESTIONS given in Constants.java.
+        --------------------------------------------------------------------------------
+        private Map<String, Object> security_questions;
+            String      int
+            ---------   ---
+            question1,  0
+            question2,  1
+            question3,  2
+                :
+        When the user selects a security question, its number (int) is stored;
+        not its String value. Later, given the number (int), the security question
+        String is obtained from the constant array QUESTIONS given in Constants.java.
 
-    DESIGN STRATEGY:
-        Typically, software quality characteristics Performance and Maintainability
-        conflict with each other. Here, we choose to improve Performance at the
-        expense of degrading Maintainability.
+        DESIGN STRATEGY:
+            Typically, software quality characteristics Performance and Maintainability
+            conflict with each other. Here, we choose to improve Performance at the
+            expense of degrading Maintainability.
 
-        Storage and retrieval of an integer number into/from database is much faster
-        than doing it for the security question as a String. However, this degrades
-        maintainability. In the future, changing the order, deleting or adding
-        security questions will invalidate the number representation. Therefore,
-        we can only add new security questions, but not delete or change order.
-    --------------------------------------------------------------------------------
-     */
+            Storage and retrieval of an integer number into/from database is much faster
+            than doing it for the security question as a String. However, this degrades
+            maintainability. In the future, changing the order, deleting or adding
+            security questions will invalidate the number representation. Therefore,
+            we can only add new security questions, but not delete or change order.
+        --------------------------------------------------------------------------------
+         */
     public Map<String, Object> getSecurity_questions() {
 
         if (security_questions == null) {
@@ -408,6 +427,8 @@ public class UserController implements Serializable {
             newUser.setSecurityAnswer(answerToSecurityQuestion);
             newUser.setEmail(email);
             newUser.setUsername(username);
+            newUser.setDailyCalorieBurn(dailyCalorieBurnt);
+            newUser.setDailyCalorieIntake(dailyCalorieIntake);
 
             /*
             Invoke class Password's createHash() method to convert the user-entered String
@@ -471,6 +492,8 @@ public class UserController implements Serializable {
             editUser.setState(this.selected.getState());
             editUser.setZipcode(this.selected.getZipcode());
             editUser.setEmail(this.selected.getEmail());
+            editUser.setDailyCalorieIntake(this.selected.getDailyCalorieIntake());
+            editUser.setDailyCalorieBurn(this.selected.getDailyCalorieBurn());
 
             // Store the changes in the database
             userFacade.edit(editUser);
@@ -547,6 +570,8 @@ public class UserController implements Serializable {
         securityQuestionNumber = 0;
         answerToSecurityQuestion = email = "";
         selected = null;
+        dailyCalorieIntake=0;
+        dailyCalorieBurnt=0;
 
         // Since we will redirect to show the home page, invoke preserveMessages()
         Methods.preserveMessages();

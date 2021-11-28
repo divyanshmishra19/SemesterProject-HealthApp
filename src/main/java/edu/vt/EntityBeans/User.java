@@ -19,21 +19,21 @@ representing the User table in the CloudDriveDB database.
 @Table(name = "User")
 
 @NamedQueries({
-    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
-    , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
-    , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
-    , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
-    , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
-    , @NamedQuery(name = "User.findByMiddleName", query = "SELECT u FROM User u WHERE u.middleName = :middleName")
-    , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")
-    , @NamedQuery(name = "User.findByAddress1", query = "SELECT u FROM User u WHERE u.address1 = :address1")
-    , @NamedQuery(name = "User.findByAddress2", query = "SELECT u FROM User u WHERE u.address2 = :address2")
-    , @NamedQuery(name = "User.findByCity", query = "SELECT u FROM User u WHERE u.city = :city")
-    , @NamedQuery(name = "User.findByState", query = "SELECT u FROM User u WHERE u.state = :state")
-    , @NamedQuery(name = "User.findByZipcode", query = "SELECT u FROM User u WHERE u.zipcode = :zipcode")
-    , @NamedQuery(name = "User.findBySecurityQuestionNumber", query = "SELECT u FROM User u WHERE u.securityQuestionNumber = :securityQuestionNumber")
-    , @NamedQuery(name = "User.findBySecurityAnswer", query = "SELECT u FROM User u WHERE u.securityAnswer = :securityAnswer")
-    , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")})
+        @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")
+        , @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id")
+        , @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username")
+        , @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")
+        , @NamedQuery(name = "User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName = :firstName")
+        , @NamedQuery(name = "User.findByMiddleName", query = "SELECT u FROM User u WHERE u.middleName = :middleName")
+        , @NamedQuery(name = "User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName = :lastName")
+        , @NamedQuery(name = "User.findByAddress1", query = "SELECT u FROM User u WHERE u.address1 = :address1")
+        , @NamedQuery(name = "User.findByAddress2", query = "SELECT u FROM User u WHERE u.address2 = :address2")
+        , @NamedQuery(name = "User.findByCity", query = "SELECT u FROM User u WHERE u.city = :city")
+        , @NamedQuery(name = "User.findByState", query = "SELECT u FROM User u WHERE u.state = :state")
+        , @NamedQuery(name = "User.findByZipcode", query = "SELECT u FROM User u WHERE u.zipcode = :zipcode")
+        , @NamedQuery(name = "User.findBySecurityQuestionNumber", query = "SELECT u FROM User u WHERE u.securityQuestionNumber = :securityQuestionNumber")
+        , @NamedQuery(name = "User.findBySecurityAnswer", query = "SELECT u FROM User u WHERE u.securityAnswer = :securityAnswer")
+        , @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")})
 
 public class User implements Serializable {
     /*
@@ -163,6 +163,16 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "daily_calorie_intake")
+    private double dailyCalorieIntake;
+
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "daily_calorie_burn")
+    private double dailyCalorieBurn;
+
     /*
     ===============================================================
     Class constructors for instantiating a User entity object to
@@ -179,10 +189,10 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    // Not used but kept for potential future use
     public User(Integer id, String username, String password, String firstName, String middleName,
-                String lastName, String address1, String address2, String city, String state,
-                String zipcode, int securityQuestionNumber, String securityAnswer, String email) {
+                String lastName, String address1, String address2, String city, String state, String zipcode,
+                int securityQuestionNumber, String securityAnswer, String email, double dailyCalorieIntake,
+                double dailyCalorieBurn) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -197,14 +207,16 @@ public class User implements Serializable {
         this.securityQuestionNumber = securityQuestionNumber;
         this.securityAnswer = securityAnswer;
         this.email = email;
+        this.dailyCalorieIntake = dailyCalorieIntake;
+        this.dailyCalorieBurn = dailyCalorieBurn;
     }
 
     /*
-    ======================================================
-    Getter and Setter methods for the attributes (columns)
-    of the User table in the CloudDriveDB database.
-    ======================================================
-     */
+        ======================================================
+        Getter and Setter methods for the attributes (columns)
+        of the User table in the CloudDriveDB database.
+        ======================================================
+         */
     public Integer getId() {
         return id;
     }
@@ -317,6 +329,21 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public double getDailyCalorieIntake() {
+        return dailyCalorieIntake;
+    }
+
+    public void setDailyCalorieIntake(double dailyCalorieIntake) {
+        this.dailyCalorieIntake = dailyCalorieIntake;
+    }
+
+    public double getDailyCalorieBurn() {
+        return dailyCalorieBurn;
+    }
+
+    public void setDailyCalorieBurn(double dailyCalorieBurn) {
+        this.dailyCalorieBurn = dailyCalorieBurn;
+    }
     /*
     ================================
     Instance Methods Used Internally
