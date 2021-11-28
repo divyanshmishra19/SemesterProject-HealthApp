@@ -23,7 +23,15 @@ public class RecipeController implements Serializable {
     private RecipeFacade recipeFacade;
     private Recipe selected;
 
-    public List<Recipe> getListOfVideos() {
+    public Recipe getSelected() {
+        return selected;
+    }
+
+    public void setSelected(Recipe selected) {
+        this.selected = selected;
+    }
+
+    public List<Recipe> getListOfRecipes() {
         if (listOfRecipes == null) {
             //listOfRecipes = recipeFacade.findAll();
         }
