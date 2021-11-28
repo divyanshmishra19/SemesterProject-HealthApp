@@ -25,8 +25,8 @@ siteTemplate for the entire site, achieving great maintainability.
         <p:menubar>
             <p:menuitem>HealthTech</p:menuitem>
             <p:divider layout="vertical"/>
-            <p:menuitem value="Recipe List"></p:menuitem>
-            <p:menuitem value="Workout List"></p:menuitem>
+            <p:menuitem value="Recipe List" outcome="recipe/RecipeList.xhtml"></p:menuitem>
+            <p:menuitem value="Workout List" outcome="workout/WorkoutList.xhtml"></p:menuitem>
             <p:submenu label="View Reports">
                 <p:menuitem value="Daily Reports" outcome="/reports/dailyReports.xhtml"></p:menuitem>
                 <p:menuitem value="Weekly Reports" outcome="/reports/weeklyReports.xhtml"></p:menuitem>
@@ -35,13 +35,16 @@ siteTemplate for the entire site, achieving great maintainability.
                 <p:menuitem value="See Your Achievements"></p:menuitem>
                 <p:menuitem value="See Other's Achievements"></p:menuitem>
             </p:submenu>
+            <c:if test="#{userController.isLoggedIn() == true}">
+                <p:menuitem value="My Account" outcome="userAccount/Profile.xhtml"></p:menuitem>
+            </c:if>
             <p:divider layout="vertical"/>
             <f:facet name="options">
-                <c:if test="#{userController.isLoggedIn() == true}">
-                    <p:button value="My Account" styleClass="ui-button-info" outcome="/userAccount/Profile"/>
-                </c:if>
                 <c:if test="#{userController.isLoggedIn() == false}">
                     <p:button value="Login" icon="pi pi-fw pi-sign-in" outcome="/SignIn.xhtml" styleClass="ui-button-info"/>
+                </c:if>
+                <c:if test="#{userController.isLoggedIn() == true}">
+                    <p:button value="Logout" icon="pi pi-fw pi-sign-out" outcome="/Index.xhtml" action="#{userController.logout()}" styleClass="ui-button-info"/>
                 </c:if>
             </f:facet>
         </p:menubar>
