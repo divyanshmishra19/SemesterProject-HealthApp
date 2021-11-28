@@ -6,7 +6,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
-<h1>TEST</h1>
+<ui:composition template="/template/siteTemplate.xhtml">
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="Weekly Reports" />
+
+    </ui:define>
+
+    <ui:define name="editableContent">
+        <div class="card">
+            <p:graphicImage value="#{reportController.weeklyCalorieChart}" title="Daily Calories Consumed" style="margin: 40px" stream="false"/>
+            <p:graphicImage value="#{reportController.weeklyWorkout}" title="Daily Calories Burnt" style="margin: 40px" stream="false"/>
+            <p:graphicImage value="#{reportController.weeklyFatsChart}" title="Daily Fat Distribution" stream="false"/>
+        </div>
+
+        <div class="card">
+            <p:graphicImage value="#{reportController.weeklyMicronutrients}" title="Daily Micronutrients Consumption" style="margin: 40px" stream="false"/>
+            <p:graphicImage value="#{reportController.weeklyCategoryWiseCalories}" title="Daily Workout Categories" style="margin: 40px" stream="false"/>
+        </div>
+
+    </ui:define>
+</ui:composition>
 </html>

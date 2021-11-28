@@ -139,6 +139,7 @@ public class ReportController implements Serializable {
         barChartUrl.append(Constants.CHART_API_URL);
         barChartUrl.append(Constants.BAR_CHART);
         barChartUrl.append("&chs=600x600");
+        barChartUrl.append("&chxt=y,x");
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6|DEBDDE|003AE1");
         String data = Constants.DATA;
         for(Double nutrient: nutrients)
@@ -164,6 +165,7 @@ public class ReportController implements Serializable {
         barChartUrl.append(Constants.CHART_API_URL);
         barChartUrl.append(Constants.BAR_CHART);
         barChartUrl.append("&chs=600x600");
+        barChartUrl.append("&chxt=y,x");
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
         for(Double calories: workoutCategoryWiseCalories)
@@ -211,7 +213,8 @@ public class ReportController implements Serializable {
     public String getWeeklyFatsChart()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
+        User signedInUser = new User();//(User) sessionMap.get("user");
+        signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
         List<Double> fats = userRecipeFacade.getFats(todaysDate.toString(), signedInUser.getId());
@@ -235,7 +238,8 @@ public class ReportController implements Serializable {
     public String getWeeklyWorkout()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
+        User signedInUser = new User();//(User) sessionMap.get("user");
+        signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
         Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate.toString(), signedInUser.getId());
@@ -267,7 +271,8 @@ public class ReportController implements Serializable {
     public String getWeeklyMicronutrients()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
+        User signedInUser = new User();//(User) sessionMap.get("user");
+        signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
         List<Double> nutrients = userRecipeFacade.getMicronutrients(todaysDate.toString(), signedInUser.getId());
@@ -291,7 +296,8 @@ public class ReportController implements Serializable {
     public String getWeeklyCategoryWiseCalories()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
+        User signedInUser = new User();//(User) sessionMap.get("user");
+        signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
         List<Double> workoutCategoryWiseCalories = userWorkoutFacade.getCategoryWiseCalories(todaysDate.toString(), signedInUser.getId());
