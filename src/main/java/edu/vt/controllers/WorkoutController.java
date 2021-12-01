@@ -83,6 +83,10 @@ public class WorkoutController implements Serializable {
         this.userWorkoutFacade = userWorkoutFacade;
     }
 
+    public String getUrlOfVideoToPlay(){
+        return youtubeTutorialVideoId;
+    }
+
     public String cancel() {
         // Unselect previously selected movie object if any
         selected = null;

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+
+<!-- This page is constructed based on the siteTemplate -->
+<ui:composition template="/template/siteTemplate.xhtml">
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="Recipe List" />
+
+    </ui:define>
+    <!-- Create the content for this page below -->
+    <ui:define name="editableContent">
+        <!-- In case of JSF validation error, set 'selected' to null in userRecipeController -->
+        <c:if test="#{facesContext.validationFailed}">
+            ${userRecipeController.unselect()}
+        </c:if>
+        <!-- Set 'selected' to null in userRecipeController when the user refreshes / reloads this JSF page -->
+        <f:metadata>
+            <f:viewAction action="#{userRecipeController.unselect()}" rendered="#{facesContext.postback}" />
+        </f:metadata>
+        <div align="center" style="text-align: center;">
+            <h:form id="RecipeListForm">
+                <p:panel header="Healthy Recipes">
+                    <p:dataTable id="datalist"
+                                 value="#{userRecipeController.listOfRecipes}"
+                                 var="aRecipe"
+                                 widgetVar="recipeDataTable"
+                                 selectionMode="single"
+                                 selection="#{userRecipeController.selected}"
+                                 reflow="true"
+                                 showGridlines="true"
+                                 paginator="true"
+                                 rowKey="#{aRecipe.id}"
+                                 rows="5"
+                                 rowsPerPageTemplate="5,10,20,30,50,70,90"
+                                 emptyMessage="No Recipe found for the search query entered!">
+                        <p:ajax event="rowSelect"   update="createButton viewButton addButton "/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton addButton "/>
+                        <!--
+                        *************************
+                        *   Data Table Header   *
+                        *************************
+                        -->
+                        <f:facet name="header">
+                            <div align="center">
+                                <p:inputText id="globalFilter" onkeyup="PF('publicRecipeDataTable').filter()" filterMatchMode="contains"
+                                             style="width: 250px"
+                                             placeholder="Enter Global Search Query" />
+                                &nbsp;
+                                <p:commandButton type="button" value="Clear All Filters" styleClass="ui-button-outlined"
+                                                 icon="fas fa-undo" onclick="PF('publicRecipeDataTable').clearFilters()" />
+                            </div>
+                        </f:facet>
+
+
+                        <p:column headerText="Name" sortBy="#{aRecipe.name}"
+                                  filterBy="#{aRecipe.name}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.name}"/>
+                        </p:column>
+
+                        <p:column headerText="Calories" sortBy="#{aRecipe.calories}"
+                                  filterBy="#{aRecipe.calories}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.calories}"/>
+                        </p:column>
+
+                        <p:column headerText="Carbohydrate" sortBy="#{aRecipe.carbs}"
+                                  filterBy="#{aRecipe.carbs}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.carbs}"/>
+                        </p:column>
+                        <p:column headerText="Fat" sortBy="#{aRecipe.fatTotal}"
+                                  filterBy="#{aRecipe.fatTotal}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.fatTotal}"/>
+                        </p:column>
+                        <p:column headerText="Protein" sortBy="#{aRecipe.protein}"
+                                  filterBy="#{aRecipe.protein}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.protein}"/>
+                        </p:column>
+
+                        <p:column headerText="Diet Labels" sortBy="#{aRecipe.dietLabels}"
+                                  filterBy="#{aRecipe.dietLabels}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.dietLabels}"/>
+                        </p:column>
+
+
+                        <p:column headerText="Ingredients" sortBy="#{aRecipe.ingredients}"
+                                  filterBy="#{aRecipe.ingredients}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aRecipe.ingredients}"/>
+                        </p:column>
+
+                        <!--
+                        *************************
+                        *   Data Table Footer   *
+                        *************************
+                        -->
+                        <f:facet name="footer">
+                            <div align="center">
+                                <!-- CREATE button: id is used since it is referenced to be activated or deactivated -->
+                                <p:commandButton id="createButton" value="Create" icon="fas fa-plus" styleClass="rounded-button"
+                                                 actionListener="#{userRecipeController.prepareCreate()}"
+                                                 update=":RecipeCreateForm" oncomplete="PF('RecipeCreateDialog').show()"/>
+                                &nbsp;&nbsp;
+                                <!-- VIEW button: id is used since it is referenced to be activated or deactivated -->
+                                <p:commandButton id="viewButton" value="View" icon="fas fa-eye" styleClass="rounded-button"
+                                                 update=":RecipeViewDlg" oncomplete="PF('RecipeViewDialog').show()"
+                                                 disabled="#{empty userRecipeController.selected}"/>
+
+                                &nbsp;&nbsp;
+                                <!-- ADD button -->
+                                <p:commandButton id="addButton" value="Share" icon="fas fa-share" styleClass="rounded-button"
+                                                 actionListener="#{userRecipeController.addToProgress()}"
+                                                 update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
+                                                 disabled="#{empty userRecipeController.selected}" >
+                                    <p:confirm header="Share Confirmation" message="Are you sure you want to add the selected video to the Signed-In User's List of Favorite YouTube Videos?"/>
+                                </p:commandButton>
+
+                                <p:confirmDialog id="shareDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                    <div align="center">
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fas fa-window-close" />
+                                        <p:commandButton value="Yes" type="button" class="ui-confirmdialog-yes ui-button-danger" icon="fas fa-check-square" />
+                                    </div>
+                                </p:confirmDialog>
+                            </div>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </div>
+        <ui:include src="/recipe/Create.xhtml"/>
+
+        <ui:include src="/recipe/View.xhtml"/>
+
+    </ui:define>
+</ui:composition>
+</html>
