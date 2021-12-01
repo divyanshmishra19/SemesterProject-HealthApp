@@ -30,14 +30,20 @@
                 <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
                              rendered="#{workoutController.selected != null}">
 
+                    <!--
+                    *********************
+                    *  Video Thumbnail  *
+                    *********************
+                    -->
+                    <p:column headerText="" style="width: 200px; text-align: center; vertical-align: top">
+                        <h:graphicImage value="https://i1.ytimg.com/vi/#{workoutController.selected.youtubeTutorialVideoId}/mqdefault.jpg" class="scalableImage"/>
+                    </p:column>
+
                     <h:outputText value="Name:"/>
                     <h:outputText value="#{workoutController.selected.name}"/>
 
                     <h:outputText value="BurnRate:"/>
                     <h:outputText value="#{workoutController.selected.burnRate}"/>
-
-                    <!--<h:outputLabel value="YouTube Workout ID:" />
-                    <h:outputText value="#{videoController.selected.youtubeWorkoutId}"/>-->
 
                     <h:outputText value="Category"/>
                     <h:outputText value="#{workoutController.selected.category}"/>
