@@ -41,7 +41,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double calories = Double.parseDouble(userRecipeFacade.getTotalDailyCalories(todaysDate.toString(), signedInUser.getId()));
+        Double calories = userRecipeFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -99,7 +99,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate.toString(), signedInUser.getId());
+        Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -184,7 +184,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double calories = Double.parseDouble(userRecipeFacade.getTotalDailyCalories(todaysDate.toString(), signedInUser.getId()));
+        Double calories = userRecipeFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -242,7 +242,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate.toString(), signedInUser.getId());
+        Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();

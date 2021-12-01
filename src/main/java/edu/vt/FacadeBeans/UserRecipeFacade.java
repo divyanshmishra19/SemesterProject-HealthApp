@@ -4,6 +4,7 @@ import edu.vt.EntityBeans.UserRecipe;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class UserRecipeFacade extends AbstractFacade<UserRecipe>{
         super(UserRecipe.class);
     }
 
-    public String getTotalDailyCalories(String toString, int userId) {
-        return "1405";
+    public Double getTotalDailyCalories(Date date, int userId) {
+        return 1405.0;
     }
 
     public List<Double> getFats(String toString, int userId) {

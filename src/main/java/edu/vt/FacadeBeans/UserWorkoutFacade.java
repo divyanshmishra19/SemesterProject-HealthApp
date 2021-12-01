@@ -4,6 +4,7 @@ import edu.vt.EntityBeans.UserWorkout;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class UserWorkoutFacade extends AbstractFacade<UserWorkout>{
         return categoryWiseCalories;
     }
 
-    public Double getDailyWorkoutCalories(String toString, Integer id) {
+    public Double getDailyWorkoutCalories(Date date, Integer id) {
         return 1000.0;
     }
 
