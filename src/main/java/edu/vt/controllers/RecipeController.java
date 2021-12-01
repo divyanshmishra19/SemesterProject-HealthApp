@@ -13,11 +13,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import edu.vt.globals.Constants;
-import edu.vt.payloads.RecipePayload;
-import org.primefaces.shaded.json.JSONArray;
-import org.primefaces.shaded.json.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Named("recipeController")
 @RequestScoped
@@ -109,90 +104,5 @@ public class RecipeController implements Serializable {
         Methods.preserveMessages();
         userRecipeFacade.edit(userRecipe);
         Methods.showMessage("Information", "Shared!", "Public recipe was successfully shared.");
-    }
-
-    public void parseJSONResponse(){
-
-        String apiURL = Constants.API_URL + "?app_id=" + Constants.API_ID + "&app_key=" + Constants.API_KEY;
-
-
-        RecipePayload recipePayload = new RecipePayload(this.selected.getName(), this.selected.getIngredients());
-        ObjectMapper Obj = new ObjectMapper();
-        String finalResponse = "No response";
-
-        try {
-            String jsonStr = Obj.writeValueAsString(recipePayload);
-            System.out.println(jsonStr);
-            finalResponse = Methods.readUrlContent(apiURL, jsonStr);
-            JSONObject searchResultsJsonObject = new JSONObject(finalResponse);
-
-
-            this.selected.setCalories(searchResultsJsonObject.optInt("calories"));
-
-            JSONObject totalNutrients = searchResultsJsonObject.getJSONObject("totalNutrients");
-
-            JSONObject proteinJSON = totalNutrients.getJSONObject("PROCNT");
-            this.selected.setProtein(proteinJSON.optFloat("quantity"));
-
-            JSONObject carbJSON = totalNutrients.getJSONObject("CHOCDF");
-            this.selected.setCarbs(carbJSON.optFloat("quantity"));
-
-            JSONObject fatJSON = totalNutrients.getJSONObject("FAT");
-            this.selected.setFatTotal(fatJSON.optFloat("quantity"));
-            fatJSON = totalNutrients.getJSONObject("FASAT");
-            this.selected.setFatSat(fatJSON.optFloat("quantity"));
-            fatJSON = totalNutrients.getJSONObject("FAMS");
-            this.selected.setFatMono(fatJSON.optFloat("quantity"));
-            fatJSON = totalNutrients.getJSONObject("FAPU");
-            this.selected.setFatPoly(fatJSON.optFloat("quantity"));
-
-
-
-            JSONObject sodiumJSON = totalNutrients.getJSONObject("NA");
-            this.selected.setSodium(sodiumJSON.optFloat("quantity"));
-            JSONObject calciumJSON = totalNutrients.getJSONObject("CA");
-            this.selected.setCalcium(calciumJSON.optFloat("quantity"));
-            JSONObject magnesiumJSON = totalNutrients.getJSONObject("MG");
-            this.selected.setMagnesium(magnesiumJSON.optFloat("quantity"));
-            JSONObject potassiumJSON = totalNutrients.getJSONObject("K");
-            this.selected.setPotassium(potassiumJSON.optFloat("quantity"));
-            JSONObject ironJSON = totalNutrients.getJSONObject("FE");
-            this.selected.setIron(ironJSON.optFloat("quantity"));
-            JSONObject zincJSON = totalNutrients.getJSONObject("ZN");
-            this.selected.setZinc(zincJSON.optFloat("quantity"));
-
-
-            JSONObject totalNutrientsKCal = searchResultsJsonObject.getJSONObject("totalNutrientsKCal");
-
-            JSONObject proteinCalJSON = totalNutrientsKCal.getJSONObject("PROCNT_KCAL");
-            this.selected.setProteinCal(proteinCalJSON.optInt("quantity"));
-
-            JSONObject carbCalJSON = totalNutrientsKCal.getJSONObject("CHOCDF_KCAL");
-            this.selected.setCarbCal(carbCalJSON.optInt("quantity"));
-
-            JSONObject fatCalJSON = totalNutrientsKCal.getJSONObject("FAT_KCAL");
-            this.selected.setFatCal(fatCalJSON.optInt("quantity"));
-             /*
-             ==================
-             Recipe Diet Labels
-             ==================
-             */
-            JSONArray dietLabelsAsArray = searchResultsJsonObject.getJSONArray("dietLabels");
-
-            String dietLabels = "";
-            int dietLabelsArrayLength = dietLabelsAsArray.length();
-
-            if (dietLabelsArrayLength > 0) {
-                for (int j = 0; j < dietLabelsArrayLength; j++) {
-                    String aDietLabel = dietLabelsAsArray.optString(j, "");
-                    if (j < dietLabelsArrayLength - 1) {
-                        aDietLabel = aDietLabel + ", ";
-                    }
-                    dietLabels = dietLabels + aDietLabel;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
