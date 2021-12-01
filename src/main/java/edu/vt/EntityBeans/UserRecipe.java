@@ -44,6 +44,11 @@ public class UserRecipe {
 
     @Basic(optional = false)
     @NotNull
+    @Column(name = "fat_trans")
+    private double fatTrans;
+
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fat_poly")
     private double fatPoly;
 
@@ -126,7 +131,7 @@ public class UserRecipe {
         this.id = id;
     }
 
-    public UserRecipe(Integer id, String name, double calories, double fatTotal, double fatSat, double fatMono, double fatPoly,
+    public UserRecipe(Integer id, String name, double calories, double fatTotal, double fatSat, double fatMono, double fatPoly, double fatTrans,
                       double carbs, double protein, double fatCal, double carbCal, double proteinCal, double sodium, double calcium,
                       double magnesium, double potassium, double iron, double zinc, String dietLabels, String ingredients, User userId) {
         this.id = id;
@@ -136,6 +141,7 @@ public class UserRecipe {
         this.fatSat = fatSat;
         this.fatMono = fatMono;
         this.fatPoly = fatPoly;
+        this.fatTrans = fatTrans;
         this.carbs = carbs;
         this.protein = protein;
         this.fatCal = fatCal;
@@ -318,6 +324,14 @@ public class UserRecipe {
 
     public void setUserId(User userId) {
         this.userId = userId;
+    }
+
+    public double getFatTrans() {
+        return fatTrans;
+    }
+
+    public void setFatTrans(double fatTrans) {
+        this.fatTrans = fatTrans;
     }
 
     // Generate and return a hash code value for the object with database primary key id

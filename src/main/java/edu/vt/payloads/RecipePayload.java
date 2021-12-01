@@ -1,4 +1,4 @@
-package edu.vt.payload;
+package edu.vt.payloads;
 
 import java.util.ArrayList;
 import java.util.Arrays;

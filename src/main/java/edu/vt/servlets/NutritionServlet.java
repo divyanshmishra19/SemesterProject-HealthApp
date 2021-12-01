@@ -2,7 +2,7 @@ package edu.vt.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.vt.globals.Constants;
-import edu.vt.payload.RecipePayload;
+import edu.vt.payloads.RecipePayload;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

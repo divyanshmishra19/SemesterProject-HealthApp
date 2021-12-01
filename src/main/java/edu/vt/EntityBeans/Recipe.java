@@ -41,6 +41,11 @@ public class Recipe implements Serializable {
 
     @Basic(optional = false)
     @NotNull
+    @Column(name = "fat_trans")
+    private double fatTrans;
+
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "fat_mono")
     private double fatMono;
 
@@ -123,7 +128,7 @@ public class Recipe implements Serializable {
         this.id = id;
     }
 
-    public Recipe(Integer id, String name, double calories, double fatTotal, double fatSat, double fatMono,
+    public Recipe(Integer id, String name, double calories, double fatTotal, double fatSat, double fatMono, double fatTrans,
                   double fatPoly, double carbs, double protein, double fatCal, double carbCal, double proteinCal,
                   double sodium, double calcium, double magnesium, double potassium, double iron, double zinc,
                   String dietLabels, String ingredients) {
@@ -133,6 +138,7 @@ public class Recipe implements Serializable {
         this.fatTotal = fatTotal;
         this.fatSat = fatSat;
         this.fatMono = fatMono;
+        this.fatTrans = fatTrans;
         this.fatPoly = fatPoly;
         this.carbs = carbs;
         this.protein = protein;
@@ -307,6 +313,14 @@ public class Recipe implements Serializable {
 
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public double getFatTrans() {
+        return fatTrans;
+    }
+
+    public void setFatTrans(double fatTrans) {
+        this.fatTrans = fatTrans;
     }
 
     // Generate and return a hash code value for the object with database primary key id
