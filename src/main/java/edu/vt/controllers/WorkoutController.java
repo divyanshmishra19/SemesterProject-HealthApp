@@ -36,9 +36,12 @@ public class WorkoutController implements Serializable {
     public List<Workout> getListOfWorkouts() {
         if (listOfWorkouts == null) {
             List<Workout> wlist = new ArrayList<>();
-            wlist.add(new Workout(5F,"Pull Ups", "Strength"));
-            wlist.add(new Workout(0.5F,"Walking", "Aerobic"));
-            wlist.add(new Workout(2F,"Jogging", "Aerobic"));
+            /*
+            wlist.add(new Workout(5.0,"Pull Ups", "Strength"));
+            wlist.add(new Workout(0.5,"Walking", "Aerobic"));
+            wlist.add(new Workout(2,"Jogging", "Aerobic"));
+
+             */
             return wlist;
         }
         return listOfWorkouts;
@@ -49,7 +52,7 @@ public class WorkoutController implements Serializable {
     }
 
     public void setUrlOfVideoToPlay(String urlOfVideoToPlay) {
-        selected.setUrlOfWorkoutToPlay(urlOfVideoToPlay);
+        selected.setYoutubeTutorialVideoId(urlOfVideoToPlay);
     }
 
     public String cancel() {

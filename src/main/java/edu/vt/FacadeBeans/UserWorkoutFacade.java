@@ -4,13 +4,20 @@ import edu.vt.EntityBeans.UserWorkout;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import java.sql.Date;
-import java.util.ArrayList;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 // @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
 public class UserWorkoutFacade extends AbstractFacade<UserWorkout>{
+    @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
+    private EntityManager entityManager;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return entityManager;
+    }
+
     public UserWorkoutFacade(Class<UserWorkout> entityClass) {
         super(entityClass);
     }
@@ -19,24 +26,16 @@ public class UserWorkoutFacade extends AbstractFacade<UserWorkout>{
         super(UserWorkout.class);
     }
 
+    /*
+    ================
+    Instance Methods
+    ================
+    */
 
-    public List<Double> getCategoryWiseCalories(String toString, Integer id) {
-        List<Double> categoryWiseCalories = new ArrayList<>();
-
-        categoryWiseCalories.add(232.0);
-        categoryWiseCalories.add(146.7);
-        categoryWiseCalories.add(69.4);
-        categoryWiseCalories.add(762.2);
-
-        return categoryWiseCalories;
-    }
-
-    public Double getDailyWorkoutCalories(Date date, Integer id) {
-        return 1000.0;
-    }
-
-    @Override
-    protected EntityManager getEntityManager() {
-        return null;
+    public List<UserWorkout> findWorkoutsByUserId(int id) {
+        return (List<UserWorkout>) getEntityManager().createQuery(
+                        "Select c From UserWorkout c Where c.userId.id = :userId")
+                .setParameter("userId", id)
+                .getResultList();
     }
 }

@@ -1,9 +1,7 @@
 package edu.vt.controllers;
 
 import edu.vt.EntityBeans.User;
-import edu.vt.FacadeBeans.UserFacade;
-import edu.vt.FacadeBeans.UserRecipeFacade;
-import edu.vt.FacadeBeans.UserWorkoutFacade;
+import edu.vt.FacadeBeans.*;
 import edu.vt.globals.Constants;
 
 import javax.ejb.EJB;
@@ -25,10 +23,10 @@ public class ReportController implements Serializable {
     after it is instantiated at runtime.
      */
     @EJB
-    private UserRecipeFacade userRecipeFacade;
+    private UserRecipeConsumedFacade userRecipeConsumedFacade;
 
     @EJB
-    private UserWorkoutFacade userWorkoutFacade;
+    private UserWorkoutDoneFacade userWorkoutDoneFacade;
 
     @EJB
     private UserFacade userFacade;
@@ -41,7 +39,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double calories = userRecipeFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
+        Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -74,7 +72,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> fats = userRecipeFacade.getFats(todaysDate.toString(), signedInUser.getId());
+        List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate.toString(), signedInUser.getId());
         String fatLabels = "Saturated|Trans|Monounsaturated|Polyunsaturated";
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -99,7 +97,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+        Double caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -132,7 +130,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> nutrients = userRecipeFacade.getMicronutrients(todaysDate.toString(), signedInUser.getId());
+        List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate.toString(), signedInUser.getId());
         String nutrientsLabels = "Sodium|Calcium|Magnesium|Potassium|Iron|Zinc";
 
         StringBuilder barChartUrl = new StringBuilder();
@@ -158,7 +156,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> workoutCategoryWiseCalories = userWorkoutFacade.getCategoryWiseCalories(todaysDate.toString(), signedInUser.getId());
+        List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate.toString(), signedInUser.getId());
         String categoryLabels = "Calisthenics|Cardio|Strength|HIIT";
 
         StringBuilder barChartUrl = new StringBuilder();
@@ -184,7 +182,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double calories = userRecipeFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
+        Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -217,7 +215,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> fats = userRecipeFacade.getFats(todaysDate.toString(), signedInUser.getId());
+        List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate.toString(), signedInUser.getId());
         String fatLabels = "Saturated|Trans|Monounsaturated|Polyunsaturated";
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -242,7 +240,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+        Double caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -275,7 +273,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> nutrients = userRecipeFacade.getMicronutrients(todaysDate.toString(), signedInUser.getId());
+        List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate.toString(), signedInUser.getId());
         String nutrientsLabels = "Sodium|Calcium|Magnesium|Potassium|Iron|Zinc";
 
         StringBuilder barChartUrl = new StringBuilder();
@@ -300,7 +298,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> workoutCategoryWiseCalories = userWorkoutFacade.getCategoryWiseCalories(todaysDate.toString(), signedInUser.getId());
+        List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate.toString(), signedInUser.getId());
         String categoryLabels = "Calisthenics|Cardio|Strength|HIIT";
 
         StringBuilder barChartUrl = new StringBuilder();

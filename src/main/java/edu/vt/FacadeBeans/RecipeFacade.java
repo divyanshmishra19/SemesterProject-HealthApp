@@ -2,10 +2,14 @@ package edu.vt.FacadeBeans;
 
 import edu.vt.EntityBeans.Recipe;
 
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
+@Stateless
 public class RecipeFacade extends AbstractFacade<Recipe> {
 
+    @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
     private EntityManager entityManager;
 
     @Override

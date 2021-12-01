@@ -3,6 +3,7 @@ package edu.vt.FacadeBeans;
 import edu.vt.EntityBeans.Workout;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 public class WorkoutFacade extends AbstractFacade<Workout> {
 
@@ -14,7 +15,7 @@ public class WorkoutFacade extends AbstractFacade<Workout> {
     the entityManager instance with the persistence unitName identified below.
     ---------------------------------------------------------------------------------------------
      */
-    // @PersistenceContext(unitName = "Movies-ShahAyushPU")
+    @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
     private EntityManager entityManager;
 
     // Obtain the object reference of the EntityManager instance in charge of
