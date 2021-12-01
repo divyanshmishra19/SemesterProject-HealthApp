@@ -2,7 +2,7 @@ package edu.vt.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.vt.globals.Constants;
-import edu.vt.payload.Dish;
+import edu.vt.payload.RecipePayload;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +29,7 @@ public class NutritionServlet extends HttpServlet {
         String dishName = request.getParameter("dishName");
         String ingredients = request.getParameter("ingredients");
 
-        Dish dish = new Dish(dishName, ingredients);
+        RecipePayload dish = new RecipePayload(dishName, ingredients);
         ObjectMapper Obj = new ObjectMapper();
         String finalResponse = "No response";
 

@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Dish {
+public class RecipePayload {
     private String title;
     private List<String> ingr;
 
-    public Dish(String dishName, String ingredients) {
+    public RecipePayload(String dishName, String ingredients) {
         this.title = dishName;
         this.ingr = new ArrayList<>(Arrays.asList(ingredients.split(",")));
     }
