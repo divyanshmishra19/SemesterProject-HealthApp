@@ -57,6 +57,8 @@ public class User implements Serializable {
         security_question_number INT NOT NULL,
         security_answer VARCHAR(128) NOT NULL,
         email VARCHAR(128) NOT NULL,
+        daily_calorie_intake DECIMAL(8,4) NOT NULL,
+        daily_calorie_burn DECIMAL(8,4) NOT NULL,
         PRIMARY KEY (id)
     );
     ========================================================
