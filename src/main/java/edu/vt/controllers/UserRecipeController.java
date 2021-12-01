@@ -1,6 +1,8 @@
 package edu.vt.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.vt.EntityBeans.Recipe;
+import edu.vt.EntityBeans.User;
 import edu.vt.EntityBeans.UserRecipe;
 import edu.vt.EntityBeans.UserRecipeConsumed;
 import edu.vt.FacadeBeans.UserRecipeConsumedFacade;
@@ -13,6 +15,7 @@ import edu.vt.payloads.RecipePayload;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
@@ -46,10 +49,10 @@ public class UserRecipeController implements Serializable {
     UserRecipeConsumedFacade userRecipeConsumedFacade;
 
     public List<UserRecipe> getListOfUserRecipes() {
-        if (listOfUserRecipes == null) {
-            listOfUserRecipes = userRecipeFacade.findAll();
-        }
-        return listOfUserRecipes;
+
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+        return userRecipeFacade.findRecipesByUserId(signedInUser.getId());
     }
 
     public void setListOfUserRecipes(List<UserRecipe> listOfUserRecipes) {

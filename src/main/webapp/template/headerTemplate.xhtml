@@ -25,18 +25,22 @@ siteTemplate for the entire site, achieving great maintainability.
         <p:menubar>
             <p:menuitem>HealthTech</p:menuitem>
             <p:divider layout="vertical"/>
-            <p:menuitem value="Recipe List" outcome="/recipe/List.xhtml"></p:menuitem>
-            <p:menuitem value="Workout List" outcome="/workout/List.xhtml"></p:menuitem>
+            <p:submenu label="Recipes">
+                <p:menuitem value="Public Recipe List" outcome="/recipe/List.xhtml"/>
+                <p:menuitem value="User Recipe List" outcome="/userRecipe/List.xhtml"/>
+            </p:submenu>
+
+            <p:menuitem value="Workout List" outcome="/workout/List.xhtml"/>
             <p:submenu label="View Reports">
-                <p:menuitem value="Daily Reports" outcome="/reports/dailyReports.xhtml"></p:menuitem>
-                <p:menuitem value="Weekly Reports" outcome="/reports/weeklyReports.xhtml"></p:menuitem>
+                <p:menuitem value="Daily Reports" outcome="/reports/dailyReports.xhtml"/>
+                <p:menuitem value="Weekly Reports" outcome="/reports/weeklyReports.xhtml"/>
             </p:submenu>
             <p:submenu label="Achievements">
-                <p:menuitem value="See Your Achievements"></p:menuitem>
-                <p:menuitem value="See Other's Achievements"></p:menuitem>
+                <p:menuitem value="See Your Achievements"/>
+                <p:menuitem value="See Other's Achievements"/>
             </p:submenu>
             <c:if test="#{userController.isLoggedIn() == true}">
-                <p:menuitem value="My Account" outcome="/userAccount/Profile.xhtml"></p:menuitem>
+                <p:menuitem value="My Account" outcome="/userAccount/Profile.xhtml"/>
             </c:if>
             <p:divider layout="vertical"/>
             <f:facet name="options">
