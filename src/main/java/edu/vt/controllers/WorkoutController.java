@@ -38,11 +38,10 @@ public class WorkoutController implements Serializable {
     }
 
     public List<Workout> getListOfWorkouts() {
-        return new ArrayList<Workout>();
-        /*if (listOfWorkouts == null) {
+        if (listOfWorkouts == null) {
             listOfWorkouts = workoutFacade.findAll();
         }
-        return listOfWorkouts;*/
+        return listOfWorkouts;
     }
 
     public void unselect() {

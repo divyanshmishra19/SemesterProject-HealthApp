@@ -44,11 +44,10 @@ public class RecipeController implements Serializable {
     }
 
     public List<Recipe> getListOfRecipes() {
-        return new ArrayList<Recipe>();
-        /*if (listOfRecipes == null) {
+        if (listOfRecipes == null) {
             listOfRecipes = recipeFacade.findAll();
         }
-        return listOfRecipes;*/
+        return listOfRecipes;
     }
 
     public void setListOfRecipes(List<Recipe> listOfRecipes) {
