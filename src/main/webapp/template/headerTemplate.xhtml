@@ -36,7 +36,7 @@ siteTemplate for the entire site, achieving great maintainability.
                 <p:menuitem value="See Other's Achievements"></p:menuitem>
             </p:submenu>
             <c:if test="#{userController.isLoggedIn() == true}">
-                <p:menuitem value="My Account" outcome="userAccount/Profile.xhtml"></p:menuitem>
+                <p:menuitem value="My Account" outcome="/userAccount/Profile.xhtml"></p:menuitem>
             </c:if>
             <p:divider layout="vertical"/>
             <f:facet name="options">
@@ -44,7 +44,7 @@ siteTemplate for the entire site, achieving great maintainability.
                     <p:button value="Login" icon="pi pi-fw pi-sign-in" outcome="/SignIn.xhtml" styleClass="ui-button-info"/>
                 </c:if>
                 <c:if test="#{userController.isLoggedIn() == true}">
-                    <p:button value="Logout" icon="pi pi-fw pi-sign-out" outcome="/Index.xhtml" action="#{userController.logout()}" styleClass="ui-button-info"/>
+                    <p:button value="Logout" icon="pi pi-fw pi-sign-out" outcome="/index.xhtml" action="#{userController.logout()}" styleClass="ui-button-info"/>
                 </c:if>
             </f:facet>
         </p:menubar>
