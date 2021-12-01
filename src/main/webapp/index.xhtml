@@ -72,10 +72,10 @@ I am hereby writing my name as my signature to declare that the above statements
             -->
             <p:galleria value="#{sliderController.listOfSliderImageFilenames}" var="imageFilename"
                         circular="true" autoPlay="true" transitionInterval="4000"
-                        showThumbnails="false" showIndicators="true" style="width: 100%; height: 100%">>
+                        showThumbnails="false" showIndicators="true" style="width: 100%; height: auto">>
 
                 <p:graphicImage value="/resources/images/slider/#{imageFilename}"
-                                alt="#{sliderController.description(imageFilename)}" title="#{imageFilename}" style="width: 100%; height: 100%; display: block;"/>
+                                alt="#{sliderController.description(imageFilename)}" title="#{imageFilename}" style="width: 100%; height: auto; display: block;"/>
             </p:galleria>
         </div>
     </ui:define>

@@ -1,8 +1,7 @@
 package edu.vt.FacadeBeans;
 
-import edu.vt.EntityBeans.UserRecipe;
+
 import edu.vt.EntityBeans.UserRecipeConsumed;
-import edu.vt.EntityBeans.UserWorkout;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

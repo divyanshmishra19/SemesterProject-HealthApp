@@ -10,6 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named("workoutController")
@@ -37,12 +38,16 @@ public class WorkoutController implements Serializable {
     }
 
     public List<Workout> getListOfWorkouts() {
-        if (listOfWorkouts == null) {
+        return new ArrayList<Workout>();
+        /*if (listOfWorkouts == null) {
             listOfWorkouts = workoutFacade.findAll();
         }
-        return listOfWorkouts;
+        return listOfWorkouts;*/
     }
 
+    public void unselect() {
+        selected = null;
+    }
     public void setListOfWorkouts(List<Workout> listOfWorkouts) {
         this.listOfWorkouts = listOfWorkouts;
     }
