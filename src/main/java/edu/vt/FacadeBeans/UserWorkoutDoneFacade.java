@@ -29,13 +29,46 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
         super(UserWorkoutDone.class);
     }
 
-    public List<Double> getCategoryWiseCalories(String toString, Integer id) {
+    public List<Double> getCategoryWiseCalories(Date date, Integer userId) {
+        String category[] = {"Calisthenics", "Cardio", "Strength", "HIIT"};
+        Double calis = (Double) getEntityManager().createQuery(
+                        "SELECT SUM(c.calories) FROM UserWorkoutDone c JOIN UserWorkout d " +
+                                "Where d.userId = :userId AND c.date = :date AND d.category LIKE :category")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .setParameter("category", category[0])
+                .getSingleResult();
+
+        Double cardio = (Double) getEntityManager().createQuery(
+                        "SELECT SUM(c.calories) FROM UserWorkoutDone c JOIN UserWorkout d " +
+                                "Where d.userId = :userId AND c.date = :date AND d.category LIKE :category")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .setParameter("category", category[1])
+                .getSingleResult();
+
+        Double strength = (Double) getEntityManager().createQuery(
+                        "SELECT SUM(c.calories) FROM UserWorkoutDone c JOIN UserWorkout d " +
+                                "Where d.userId = :userId AND c.date = :date AND d.category LIKE :category")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .setParameter("category", category[2])
+                .getSingleResult();
+
+        Double hiit = (Double) getEntityManager().createQuery(
+                        "SELECT SUM(c.calories) FROM UserWorkoutDone c JOIN UserWorkout d " +
+                                "Where d.userId = :userId AND c.date = :date AND d.category LIKE :category")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .setParameter("category", category[3])
+                .getSingleResult();
+
         List<Double> categoryWiseCalories = new ArrayList<>();
 
-        categoryWiseCalories.add(232.0);
-        categoryWiseCalories.add(146.7);
-        categoryWiseCalories.add(69.4);
-        categoryWiseCalories.add(762.2);
+        categoryWiseCalories.add(calis);
+        categoryWiseCalories.add(cardio);
+        categoryWiseCalories.add(strength);
+        categoryWiseCalories.add(hiit);
 
         return categoryWiseCalories;
     }

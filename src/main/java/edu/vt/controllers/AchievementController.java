@@ -1,9 +1,7 @@
 package edu.vt.controllers;
 
 import edu.vt.EntityBeans.User;
-import edu.vt.FacadeBeans.UserFacade;
-import edu.vt.FacadeBeans.UserRecipeFacade;
-import edu.vt.FacadeBeans.UserWorkoutFacade;
+import edu.vt.FacadeBeans.*;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -24,10 +22,10 @@ public class AchievementController implements Serializable {
     after it is instantiated at runtime.
      */
     @EJB
-    private UserRecipeFacade userRecipeFacade;
+    private UserRecipeConsumedFacade userRecipeConsumedFacade;
 
     @EJB
-    private UserWorkoutFacade userWorkoutFacade;
+    private UserWorkoutDoneFacade userWorkoutDoneFacade;
 
     @EJB
     private UserFacade userFacade;
@@ -39,7 +37,7 @@ public class AchievementController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double calories = userRecipeFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
+        Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
         if(calories>expectedCalories)
@@ -55,7 +53,7 @@ public class AchievementController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+        Double caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         if(caloriesBurned>desiredCaloriesBurned)
@@ -80,7 +78,7 @@ public class AchievementController implements Serializable {
         Double caloriesBurned = 0.0;
         while(caloriesBurned!=null)
         {
-            caloriesBurned = userWorkoutFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+            caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
             cal.add(Calendar.DATE, daysToDecrement);
             todaysDate = (Date) cal.getTime(); // again get back your date object
             if(caloriesBurned>desiredCaloriesBurned)
@@ -108,7 +106,7 @@ public class AchievementController implements Serializable {
         Double caloriesConsumed = 0.0;
         while(caloriesConsumed!=null)
         {
-            caloriesConsumed = userRecipeFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
+            caloriesConsumed = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
             cal.add(Calendar.DATE, daysToDecrement);
             todaysDate = (Date) cal.getTime(); // again get back your date object
             if(caloriesConsumed>desiredCaloriesIntake)

@@ -155,7 +155,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate.toString(), signedInUser.getId());
+        List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate, signedInUser.getId());
         String categoryLabels = "Calisthenics|Cardio|Strength|HIIT";
 
         StringBuilder barChartUrl = new StringBuilder();
@@ -297,7 +297,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate.toString(), signedInUser.getId());
+        List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate, signedInUser.getId());
         String categoryLabels = "Calisthenics|Cardio|Strength|HIIT";
 
         StringBuilder barChartUrl = new StringBuilder();
