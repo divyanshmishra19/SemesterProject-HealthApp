@@ -25,7 +25,7 @@ public class UserWorkout implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 32)
+    @Size(min = 1, max = 256)
     @Column(name = "name")
     private String name;
 

@@ -20,7 +20,7 @@ public class Recipe implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 32)
+    @Size(min = 1, max = 256)
     @Column(name = "name")
     private String name;
 
@@ -111,7 +111,7 @@ public class Recipe implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 128)
+    @Size(min = 1, max = 256)
     @Column(name = "diet_labels")
     private String dietLabels;
 
