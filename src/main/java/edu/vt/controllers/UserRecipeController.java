@@ -137,7 +137,7 @@ public class UserRecipeController implements Serializable {
         Methods.preserveMessages();
         recipePayload = new RecipePayload(recipeName, ingredients);
         ObjectMapper Obj = new ObjectMapper();
-        try{
+        try {
             String jsonStr = Obj.writeValueAsString(recipePayload);
 
             String TARGET = "https://api.edamam.com/api/nutrition-details?app_id=" + Constants.API_ID + "&app_key=" + Constants.API_KEY;
@@ -162,59 +162,46 @@ public class UserRecipeController implements Serializable {
             selected.setIngredients(ingredients);
 
             //most important field - Calories
-            selected.setCalories((Double)totalNutrients.get("ENERC_KCAL").get("quantity"));
+            selected.setCalories((Double) totalNutrients.get("ENERC_KCAL").get("quantity"));
 
             //fat and fat distribution
-            selected.setFatTotal((Double)totalNutrients.get("FAT").get("quantity"));
-            selected.setFatSat((Double)totalNutrients.get("FASAT").get("quantity"));
-            selected.setFatMono((Double)totalNutrients.get("FAMS").get("quantity"));
-            selected.setFatTrans((Double)totalNutrients.get("FATRN").get("quantity"));
-            selected.setFatPoly((Double)totalNutrients.get("FAPU").get("quantity"));
+            selected.setFatTotal((Double) totalNutrients.get("FAT").get("quantity"));
+            selected.setFatSat((Double) totalNutrients.get("FASAT").get("quantity"));
+            selected.setFatMono((Double) totalNutrients.get("FAMS").get("quantity"));
+            selected.setFatTrans((Double) totalNutrients.get("FATRN").get("quantity"));
+            selected.setFatPoly((Double) totalNutrients.get("FAPU").get("quantity"));
 
             //Macronutrients - Carbs, Proteins...
-            selected.setCarbs((Double)totalNutrients.get("CHOCDF").get("quantity"));
-            selected.setProtein((Double)totalNutrients.get("PROCNT").get("quantity"));
+            selected.setCarbs((Double) totalNutrients.get("CHOCDF").get("quantity"));
+            selected.setProtein((Double) totalNutrients.get("PROCNT").get("quantity"));
 
             //Contribution of macronutrients to daily requirement...
-            selected.setProteinCal((Double)totalNutrientsKCal.get("PROCNT_KCAL").get("quantity"));
-            selected.setCarbCal((Double)totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity"));
-            selected.setFatCal((Double)totalNutrientsKCal.get("FAT_KCAL").get("quantity"));
+            selected.setProteinCal((Double) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity"));
+            selected.setCarbCal((Double) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity"));
+            selected.setFatCal((Double) totalNutrientsKCal.get("FAT_KCAL").get("quantity"));
 
             //Micronutrients - Minerals
-            selected.setSodium((Double)totalNutrients.get("NA").get("quantity"));
-            selected.setPotassium((Double)totalNutrients.get("K").get("quantity"));
-            selected.setCalcium((Double)totalNutrients.get("CA").get("quantity"));
-            selected.setMagnesium((Double)totalNutrients.get("MG").get("quantity"));
-            selected.setIron((Double)totalNutrients.get("FE").get("quantity"));
-            selected.setZinc((Double)totalNutrients.get("ZN").get("quantity"));
+            selected.setSodium((Double) totalNutrients.get("NA").get("quantity"));
+            selected.setPotassium((Double) totalNutrients.get("K").get("quantity"));
+            selected.setCalcium((Double) totalNutrients.get("CA").get("quantity"));
+            selected.setMagnesium((Double) totalNutrients.get("MG").get("quantity"));
+            selected.setIron((Double) totalNutrients.get("FE").get("quantity"));
+            selected.setZinc((Double) totalNutrients.get("ZN").get("quantity"));
 
             //Diet Labels
             StringBuilder dietLabel = new StringBuilder();
-            if(dietLabels!=null)
-            {
-                for(String labels: dietLabels)
-                    dietLabel.append(labels+",");
-            }
-            else
+            if (dietLabels != null) {
+                for (String labels : dietLabels)
+                    dietLabel.append(labels + ",");
+            } else
                 dietLabel.append("NA");
             selected.setDietLabels(dietLabel.toString());
 
-            persist(JsfUtil.PersistAction.CREATE, "User Recipe was successfully created.");
-
-            if (!JsfUtil.isValidationFailed()) {
-                // No JSF validation error. The CREATE operation is successfully performed.
-                selected = null;        // Remove selection
-                listOfUserRecipes = null;    // Invalidate listOfMovies to trigger re-query.
-            }
-
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             Methods.showMessage("Fatal", "Application Failed!",
                     "An unrecognised error has occurred!.");
         }
-
-
 
         persist(JsfUtil.PersistAction.CREATE, "Public Video was successfully created.");
 
