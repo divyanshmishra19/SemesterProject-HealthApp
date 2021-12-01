@@ -200,7 +200,6 @@ public class UserWorkoutController implements Serializable {
         workoutDone = new UserWorkoutDone();
 
         workoutDone.setWorkoutId(selected);
-        workoutDone.setUserId(selected.getUserId());
         workoutDone.setDate(todaysDate);
 
         Double burnRate = selected.getBurnRate();

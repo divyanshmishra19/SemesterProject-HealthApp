@@ -2,6 +2,7 @@ package edu.vt.FacadeBeans;
 
 import edu.vt.EntityBeans.UserRecipe;
 import edu.vt.EntityBeans.UserRecipeConsumed;
+import edu.vt.EntityBeans.UserWorkout;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -30,27 +31,102 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
     }
 
     public Double getTotalDailyCalories(Date date, int userId) {
-        return 1405.0;
+        return (Double) getEntityManager().createQuery(
+                        "SELECT SUM(d.calories) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
     }
 
-    public List<Double> getFats(String toString, int userId) {
+    public List<Double> getFats(Date date, int userId) {
+        Double mono = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.fatMono) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double poly = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.fatPoly) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double trans = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.fatTrans) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double sats = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.fatSat) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
         List<Double> fatList = new ArrayList<>();
-        fatList.add(23.45);
-        fatList.add(42.15);
-        fatList.add(18.58);
-        fatList.add(33.17);
+        fatList.add(sats);
+        fatList.add(trans);
+        fatList.add(mono);
+        fatList.add(poly);
 
         return fatList;
     }
 
-    public List<Double> getMicronutrients(String toString, int userId) {
+    public List<Double> getMicronutrients(Date date, int userId) {
+        Double na = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.sodium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double ca = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.calcium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double mg = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.magnesium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double k = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.potassium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double fe = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.iron) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double zn = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.zinc) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
         List<Double> micronutrientsList = new ArrayList<>();
-        micronutrientsList.add(23.45);
-        micronutrientsList.add(42.15);
-        micronutrientsList.add(18.58);
-        micronutrientsList.add(33.17);
-        micronutrientsList.add(16.39);
-        micronutrientsList.add(53.12);
+        micronutrientsList.add(na);
+        micronutrientsList.add(ca);
+        micronutrientsList.add(mg);
+        micronutrientsList.add(k);
+        micronutrientsList.add(fe);
+        micronutrientsList.add(zn);
 
         return micronutrientsList;
     }

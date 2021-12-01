@@ -1,18 +1,15 @@
 package edu.vt.FacadeBeans;
 
 import edu.vt.EntityBeans.UserRecipe;
-import edu.vt.EntityBeans.UserWorkout;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 // @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
-public class UserRecipeFacade extends AbstractFacade<UserRecipe>{
+public class UserRecipeFacade extends AbstractFacade<UserRecipe> {
 
     @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
     private EntityManager entityManager;

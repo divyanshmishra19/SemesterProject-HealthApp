@@ -9,7 +9,7 @@ import java.util.List;
 
 // @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
-public class UserWorkoutFacade extends AbstractFacade<UserWorkout>{
+public class UserWorkoutFacade extends AbstractFacade<UserWorkout> {
     @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
     private EntityManager entityManager;
 

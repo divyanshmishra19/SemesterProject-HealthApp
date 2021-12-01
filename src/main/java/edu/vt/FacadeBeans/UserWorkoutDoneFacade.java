@@ -40,7 +40,12 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
         return categoryWiseCalories;
     }
 
-    public Double getDailyWorkoutCalories(Date date, Integer id) {
-        return 1000.0;
+    public Double getDailyWorkoutCalories(Date date, Integer userId) {
+        return (Double) getEntityManager().createQuery(
+                        "SELECT SUM(c.calories) FROM UserWorkoutDone c JOIN UserWorkout d " +
+                                "Where d.userId = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
     }
 }

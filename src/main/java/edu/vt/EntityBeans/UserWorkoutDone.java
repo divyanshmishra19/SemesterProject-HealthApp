@@ -16,11 +16,6 @@ public class UserWorkoutDone {
     @Column(name = "id")
     private Integer id;
 
-    //User-ID -> Foreign Key
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne
-    private User userId;
-
     //UserWorkout-ID -> Foreign Key
     @JoinColumn(name = "user_workout_id", referencedColumnName = "id")
     @ManyToOne
@@ -48,10 +43,9 @@ public class UserWorkoutDone {
         this.id = id;
     }
 
-    public UserWorkoutDone(Integer id, User userId, UserWorkout workoutId, Integer duration,
+    public UserWorkoutDone(Integer id, UserWorkout workoutId, Integer duration,
                            Integer calories, Date date) {
         this.id = id;
-        this.userId = userId;
         this.workoutId = workoutId;
         this.duration = duration;
         this.calories = calories;
@@ -64,14 +58,6 @@ public class UserWorkoutDone {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
     }
 
     public UserWorkout getWorkoutId() {

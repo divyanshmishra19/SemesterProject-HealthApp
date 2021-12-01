@@ -29,7 +29,6 @@ import java.util.logging.Logger;
 
 @Named("userRecipeController")
 @RequestScoped
-
 public class UserRecipeController implements Serializable {
 
     private List<UserRecipe> listOfUserRecipes;
@@ -285,7 +284,6 @@ public class UserRecipeController implements Serializable {
         recipeConsumed = new UserRecipeConsumed();
 
         recipeConsumed.setRecipeId(selected);
-        recipeConsumed.setUserId(selected.getUserId());
         recipeConsumed.setDate(todaysDate);
 
         Methods.preserveMessages();

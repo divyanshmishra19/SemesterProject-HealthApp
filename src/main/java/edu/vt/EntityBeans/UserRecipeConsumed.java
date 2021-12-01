@@ -17,11 +17,6 @@ public class UserRecipeConsumed {
     @Column(name = "id")
     private Integer id;
 
-    //User-ID -> Foreign Key
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne
-    private User userId;
-
     //UserRecipe-ID -> Foreign Key
     @JoinColumn(name = "user_recipe_id", referencedColumnName = "id")
     @ManyToOne
@@ -39,9 +34,8 @@ public class UserRecipeConsumed {
         this.id = id;
     }
 
-    public UserRecipeConsumed(Integer id, User userId, UserRecipe recipeId, Date date) {
+    public UserRecipeConsumed(Integer id, UserRecipe recipeId, Date date) {
         this.id = id;
-        this.userId = userId;
         this.recipeId = recipeId;
         this.date = date;
     }
@@ -52,14 +46,6 @@ public class UserRecipeConsumed {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
     }
 
     public UserRecipe getRecipeId() {

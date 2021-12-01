@@ -35,8 +35,7 @@ public class ReportController implements Serializable {
     public String getDailyCalorieChart()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = new User();//(User) sessionMap.get("user");
-        signedInUser.setId(1);
+        User signedInUser = (User) sessionMap.get("user");
 
         Date todaysDate = new Date(System.currentTimeMillis());
         Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
@@ -59,7 +58,7 @@ public class ReportController implements Serializable {
             expectedCalories = (expectedCalories/calories)*100;
             Double caloriesOver = 100-expectedCalories;
             pieChartUrl.append(Constants.DATA+expectedCalories+","+caloriesOver);
-            pieChartUrl.append(Constants.LABEL+"Expected Calories|Calories Over");
+            pieChartUrl.append(Constants.LABEL+"Expected Calories|Calories Extra");
         }
         return pieChartUrl.toString();
     }
@@ -72,7 +71,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate.toString(), signedInUser.getId());
+        List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate, signedInUser.getId());
         String fatLabels = "Saturated|Trans|Monounsaturated|Polyunsaturated";
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -130,7 +129,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate.toString(), signedInUser.getId());
+        List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate, signedInUser.getId());
         String nutrientsLabels = "Sodium|Calcium|Magnesium|Potassium|Iron|Zinc";
 
         StringBuilder barChartUrl = new StringBuilder();
@@ -211,11 +210,11 @@ public class ReportController implements Serializable {
     public String getWeeklyFatsChart()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = new User();//(User) sessionMap.get("user");
+        User signedInUser = (User) sessionMap.get("user");
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate.toString(), signedInUser.getId());
+        List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate, signedInUser.getId());
         String fatLabels = "Saturated|Trans|Monounsaturated|Polyunsaturated";
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -236,7 +235,7 @@ public class ReportController implements Serializable {
     public String getWeeklyWorkout()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = new User();//(User) sessionMap.get("user");
+        User signedInUser = (User) sessionMap.get("user");
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
@@ -273,7 +272,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate.toString(), signedInUser.getId());
+        List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate, signedInUser.getId());
         String nutrientsLabels = "Sodium|Calcium|Magnesium|Potassium|Iron|Zinc";
 
         StringBuilder barChartUrl = new StringBuilder();
