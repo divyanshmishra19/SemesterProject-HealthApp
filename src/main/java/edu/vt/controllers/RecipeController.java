@@ -89,7 +89,6 @@ public class RecipeController implements Serializable {
     }
 
     public void share() {
-        System.out.println("AAA");
         userRecipe = new UserRecipe();
         User signedIn = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         if(signedIn==null)
@@ -98,13 +97,40 @@ public class RecipeController implements Serializable {
             return;
         }
 
-        userRecipe.setCalcium(selected.getCalcium());
+        //setting name of the dish
+        userRecipe.setName(selected.getName());
+
+        //setting total calories of the dish
         userRecipe.setCalories(selected.getCalories());
-        userRecipe.setCarbCal(selected.getCarbCal());
+
+        //setting fat split-up
+        userRecipe.setFatTotal(selected.getFatTotal());
+        userRecipe.setFatTrans(selected.getFatTrans());
+        userRecipe.setFatPoly(selected.getFatPoly());
+        userRecipe.setFatMono(selected.getFatMono());
+        userRecipe.setFatSat(selected.getFatSat());
+
+        //setting macronutrients
         userRecipe.setCarbs(selected.getCarbs());
-        userRecipe.setDietLabels(selected.getDietLabels());
+        userRecipe.setProtein(selected.getProtein());
+
+        //setting macronutrients calorie contribution
+        userRecipe.setCarbCal(selected.getCarbCal());
+        userRecipe.setProteinCal(selected.getProteinCal());
         userRecipe.setFatCal(selected.getFatCal());
-        //and all the rest of the fields..........
+
+        //setting micronutrients and minerals
+        userRecipe.setSodium(selected.getSodium());
+        userRecipe.setCalcium(selected.getCalcium());
+        userRecipe.setPotassium(selected.getPotassium());
+        userRecipe.setMagnesium(selected.getMagnesium());
+        userRecipe.setIron(selected.getIron());
+        userRecipe.setZinc(selected.getZinc());
+
+        //setting ingredients and diet labels
+        userRecipe.setDietLabels(selected.getDietLabels());
+        userRecipe.setIngredients(selected.getIngredients());
+
         userRecipe.setUserId(signedIn);
 
         Methods.preserveMessages();
