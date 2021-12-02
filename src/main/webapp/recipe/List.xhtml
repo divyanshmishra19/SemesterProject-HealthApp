@@ -114,17 +114,19 @@
                                                  disabled="#{empty recipeController.selected}"/>
 
                                 &nbsp;&nbsp;
-                                <!-- SHARE button -->
                                 <p:commandButton id="shareButton" value="Share" icon="fas fa-share" styleClass="rounded-button"
-                                                 actionListener="#{recipeController.shareRecipeToUserRecipe()}"
+                                                 actionListener="#{recipeController.share()}"
                                                  update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
-                                                 disabled="#{empty recipeController.selected}" >
-                                    <p:confirm header="Share Confirmation" message="Are you sure you want to add the selected video to the Signed-In User's List of Favorite YouTube Videos?"/>
+                                                 disabled="#{empty recipeController.selected}">
+
+                                    <p:confirm header="Share Confirmation"
+                                               message="Are you sure you want to permanently delete the selected video #{recipeController.selected.name} from the database?" />
                                 </p:commandButton>
 
-                                <p:confirmDialog id="shareDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                <p:confirmDialog id="shareconfirmDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
                                     <div align="center">
                                         <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fas fa-window-close" />
+                                        &nbsp;
                                         <p:commandButton value="Yes" type="button" class="ui-confirmdialog-yes ui-button-danger" icon="fas fa-check-square" />
                                     </div>
                                 </p:confirmDialog>

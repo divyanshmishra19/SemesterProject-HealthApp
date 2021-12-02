@@ -29,7 +29,7 @@
             <h:form id="RecipeListForm">
                 <p:panel header="Healthy Recipes">
                     <p:dataTable id="datalist"
-                                 value="#{userRecipeController.listOfRecipes}"
+                                 value="#{userRecipeController.listOfUserRecipes}"
                                  var="aRecipe"
                                  widgetVar="recipeDataTable"
                                  selectionMode="single"
@@ -139,9 +139,9 @@
                 </p:panel>
             </h:form>
         </div>
-        <ui:include src="/recipe/Create.xhtml"/>
+        <ui:include src="/userRecipe/Create.xhtml"/>
 
-        <ui:include src="/recipe/View.xhtml"/>
+        <ui:include src="/userRecipe/View.xhtml"/>
 
     </ui:define>
 </ui:composition>
