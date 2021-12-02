@@ -30,11 +30,11 @@ siteTemplate for the entire site, achieving great maintainability.
                 <c:if test="#{userController.isLoggedIn() == true}">
                     <p:menuitem value="User Recipe List" outcome="/userRecipe/List.xhtml"/>
                 </c:if>
-                <!--<c:if test="#{userController.isLoggedIn() == false}">
+                <c:if test="#{userController.isLoggedIn() == false}">
                     <p:menuitem value="User Recipe List"
-                                update=":LogInForm"
+                                update=":LogInDlg"
                                 oncomplete="PF('LogInDialog').show()"/>
-                </c:if>-->
+                </c:if>
             </p:submenu>
 
             <p:menuitem value="Workout List" outcome="/workout/List.xhtml"/>
@@ -60,6 +60,6 @@ siteTemplate for the entire site, achieving great maintainability.
             </f:facet>
         </p:menubar>
     </h:form>
-
+    <ui:include src="/template/LogInDialog.xhtml"/>
 </ui:composition>
 </html>
