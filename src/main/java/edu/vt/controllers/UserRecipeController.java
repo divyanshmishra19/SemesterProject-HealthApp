@@ -14,7 +14,7 @@ import edu.vt.payloads.RecipePayload;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.IOException;
@@ -31,7 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Named("userRecipeController")
-@RequestScoped
+@SessionScoped
 public class UserRecipeController implements Serializable {
 
     private List<UserRecipe> listOfUserRecipes;

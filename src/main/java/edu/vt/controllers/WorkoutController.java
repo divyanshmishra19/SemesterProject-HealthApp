@@ -8,7 +8,7 @@ import edu.vt.globals.Methods;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Named("workoutController")
-@RequestScoped
+@SessionScoped
 
 public class WorkoutController implements Serializable {
 

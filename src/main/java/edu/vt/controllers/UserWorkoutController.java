@@ -9,7 +9,7 @@ import edu.vt.globals.Methods;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.Date;
@@ -18,7 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Named("userWorkoutController")
-@RequestScoped
+@SessionScoped
 
 public class UserWorkoutController implements Serializable {
 

@@ -10,7 +10,7 @@ import edu.vt.globals.Methods;
 
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -20,7 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Named("recipeController")
-@RequestScoped
+@SessionScoped
 
 public class RecipeController implements Serializable {
 
@@ -89,6 +89,7 @@ public class RecipeController implements Serializable {
     }
 
     public void share() {
+        System.out.println("AAA");
         userRecipe = new UserRecipe();
         User signedIn = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
         if(signedIn==null)
