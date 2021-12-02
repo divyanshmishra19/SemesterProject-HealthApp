@@ -36,8 +36,17 @@ siteTemplate for the entire site, achieving great maintainability.
                                 oncomplete="PF('LogInDialog').show()"/>
                 </c:if>
             </p:submenu>
-
-            <p:menuitem value="Workout List" outcome="/workout/List.xhtml"/>
+            <p:submenu label="Workout ">
+                <p:menuitem value="Public Workout List" outcome="/workout/List.xhtml"/>
+                <c:if test="#{userController.isLoggedIn() == true}">
+                    <p:menuitem value="User Workout List" outcome="/userWorkout/List.xhtml"/>
+                </c:if>
+                <c:if test="#{userController.isLoggedIn() == false}">
+                    <p:menuitem value="User Workout List"
+                                update=":LogInDlg"
+                                oncomplete="PF('LogInDialog').show()"/>
+                </c:if>
+            </p:submenu>
             <p:submenu label="View Reports">
                 <p:menuitem value="Daily Reports" outcome="/reports/dailyReports.xhtml"/>
                 <p:menuitem value="Weekly Reports" outcome="/reports/weeklyReports.xhtml"/>

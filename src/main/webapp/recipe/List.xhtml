@@ -50,12 +50,12 @@
                         -->
                         <f:facet name="header">
                             <div align="center">
-                                <p:inputText id="globalFilter" onkeyup="PF('publicRecipeDataTable').filter()" filterMatchMode="contains"
+                                <p:inputText id="globalFilter" onkeyup="PF('recipeDataTable').filter()" filterMatchMode="contains"
                                              style="width: 250px"
                                              placeholder="Enter Global Search Query" />
                                 &nbsp;
                                 <p:commandButton type="button" value="Clear All Filters" styleClass="ui-button-outlined"
-                                                 icon="fas fa-undo" onclick="PF('publicRecipeDataTable').clearFilters()" />
+                                                 icon="fas fa-undo" onclick="PF('recipeDataTable').clearFilters()" />
                             </div>
                         </f:facet>
 
