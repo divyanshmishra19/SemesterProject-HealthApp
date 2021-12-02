@@ -27,7 +27,14 @@ siteTemplate for the entire site, achieving great maintainability.
             <p:divider layout="vertical"/>
             <p:submenu label="Recipes">
                 <p:menuitem value="Public Recipe List" outcome="/recipe/List.xhtml"/>
-                <p:menuitem value="User Recipe List" outcome="/userRecipe/List.xhtml"/>
+                <c:if test="#{userController.isLoggedIn() == true}">
+                    <p:menuitem value="User Recipe List" outcome="/userRecipe/List.xhtml"/>
+                </c:if>
+                <!--<c:if test="#{userController.isLoggedIn() == false}">
+                    <p:menuitem value="User Recipe List"
+                                update=":LogInForm"
+                                oncomplete="PF('LogInDialog').show()"/>
+                </c:if>-->
             </p:submenu>
 
             <p:menuitem value="Workout List" outcome="/workout/List.xhtml"/>
