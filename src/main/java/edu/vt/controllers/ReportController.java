@@ -10,8 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Named("reportController")
 @SessionScoped
@@ -33,17 +32,13 @@ public class ReportController implements Serializable {
 
     //Daily Calories Pie Chart
     public String getDailyCalorieChart() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
         Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
-        pieChartUrl.append(Constants.CHART_API_URL);
-        pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=350x350");
+        pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42");
         if (calories < expectedCalories) {
             calories = (calories / expectedCalories) * 100;
@@ -61,17 +56,13 @@ public class ReportController implements Serializable {
 
     //Daily Fats Chart
     public String getDailyFatsChart() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
         List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate, signedInUser.getId());
         String fatLabels = "Saturated|Trans|Monounsaturated|Polyunsaturated";
 
         StringBuilder pieChartUrl = new StringBuilder();
-        pieChartUrl.append(Constants.CHART_API_URL);
-        pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=350x350");
+        pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
         for (Double fat : fats) {
@@ -87,17 +78,13 @@ public class ReportController implements Serializable {
 
     //Macronutrients Calorie Contribution
     public String getDailyCalorieSplit() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
         List<Double> calorieSplit = userRecipeConsumedFacade.getDailyCalorieSplit(todaysDate, signedInUser.getId());
         String fatLabels = "Carbs|Fats|Proteins";
 
         StringBuilder pieChartUrl = new StringBuilder();
-        pieChartUrl.append(Constants.CHART_API_URL);
-        pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=350x350");
+        pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD");
         String data = Constants.DATA;
         for (Double macro : calorieSplit) {
@@ -112,17 +99,13 @@ public class ReportController implements Serializable {
 
     //User Workout
     public String getDailyWorkout() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
         Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
-        pieChartUrl.append(Constants.CHART_API_URL);
-        pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=350x350");
+        pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42");
         if (caloriesBurned < desiredCaloriesBurned) {
             Double calories = (caloriesBurned / desiredCaloriesBurned) * 100;
@@ -140,18 +123,13 @@ public class ReportController implements Serializable {
 
     //Micronutrients Bar Chart
     public String getDailyMicronutrients() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
         List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate, signedInUser.getId());
         String nutrientsLabels = "Sodium|Calcium|Magnesium|Potassium|Iron|Zinc";
 
         StringBuilder barChartUrl = new StringBuilder();
-        barChartUrl.append(Constants.CHART_API_URL);
-        barChartUrl.append(Constants.BAR_CHART);
-        barChartUrl.append("&chs=600x600");
-        barChartUrl.append("&chxt=y,x");
+        barChartUrl.append(getFixedBarChartUrl());
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6|DEBDDE|003AE1");
         String data = Constants.DATA;
         for (Double nutrient : nutrients) {
@@ -167,18 +145,13 @@ public class ReportController implements Serializable {
 
     //Workout Category wise calories burnt
     public String getDailyCategoryWiseCalories() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
         List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate, signedInUser.getId());
         String categoryLabels = "Calisthenics|Cardio|Strength|HIIT";
 
         StringBuilder barChartUrl = new StringBuilder();
-        barChartUrl.append(Constants.CHART_API_URL);
-        barChartUrl.append(Constants.BAR_CHART);
-        barChartUrl.append("&chs=600x600");
-        barChartUrl.append("&chxt=y,x");
+        barChartUrl.append(getFixedBarChartUrl());
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
         for (Double calories : workoutCategoryWiseCalories) {
@@ -194,17 +167,19 @@ public class ReportController implements Serializable {
 
     //Daily Calories Pie Chart
     public String getWeeklyCalorieChart() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
-        Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
+
+        Double calories = 0.0;
+        Double expectedCalories = 0.0;
+        for (int i = 0; i < 7; i++) {
+            calories += userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
+            expectedCalories += userFacade.getUserCalorieIntake(signedInUser.getId());
+            todaysDate = getPreviousDate(todaysDate);
+        }
 
         StringBuilder pieChartUrl = new StringBuilder();
-        pieChartUrl.append(Constants.CHART_API_URL);
-        pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=500x500");
+        pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42");
         if (calories < expectedCalories) {
             calories = (calories / expectedCalories) * 100;
@@ -222,17 +197,23 @@ public class ReportController implements Serializable {
 
     //Daily Fats Chart
     public String getWeeklyFatsChart() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> fats = userRecipeConsumedFacade.getFats(todaysDate, signedInUser.getId());
+
+        List<Double> fats = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0, 0.0));
         String fatLabels = "Saturated|Trans|Monounsaturated|Polyunsaturated";
+        for (int i = 0; i < 7; i++) {
+            List<Double> dailyFats = userRecipeConsumedFacade.getFats(todaysDate, signedInUser.getId());
+            todaysDate = getPreviousDate(todaysDate);
+
+            fats.add(0, fats.get(0) + dailyFats.get(0));
+            fats.add(1, fats.get(1) + dailyFats.get(1));
+            fats.add(2, fats.get(2) + dailyFats.get(2));
+            fats.add(3, fats.get(3) + dailyFats.get(3));
+        }
 
         StringBuilder pieChartUrl = new StringBuilder();
-        pieChartUrl.append(Constants.CHART_API_URL);
-        pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=500x500");
+        pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
         for (Double fat : fats)
@@ -245,17 +226,20 @@ public class ReportController implements Serializable {
 
     //User Workout
     public String getWeeklyWorkout() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
-        Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
-        Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
+
+        Integer caloriesBurned = 0;
+        Double desiredCaloriesBurned = 0.0;
+
+        for (int i = 0; i < 7; i++) {
+            caloriesBurned += userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+            desiredCaloriesBurned += userFacade.getUserWorkoutCalories(signedInUser.getId());
+            todaysDate = getPreviousDate(todaysDate);
+        }
 
         StringBuilder pieChartUrl = new StringBuilder();
-        pieChartUrl.append(Constants.CHART_API_URL);
-        pieChartUrl.append(Constants.PIE_CHART);
-        pieChartUrl.append("&chs=500x500");
+        pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42");
         if (caloriesBurned < desiredCaloriesBurned) {
             Double calories = (caloriesBurned / desiredCaloriesBurned) * 100;
@@ -271,19 +255,58 @@ public class ReportController implements Serializable {
         return pieChartUrl.toString();
     }
 
+    //Macronutrients Calorie Contribution
+    public String getWeeklyCalorieSplit() {
+        User signedInUser = getLoggedInUser();
+        Date todaysDate = new Date(System.currentTimeMillis());
+
+        String fatLabels = "Carbs|Fats|Proteins";
+        List<Double> calorieSplit = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0));
+        for (int i = 0; i < 7; i++) {
+            List<Double> dailyalorieSplit = userRecipeConsumedFacade.getDailyCalorieSplit(todaysDate, signedInUser.getId());
+            todaysDate = getPreviousDate(todaysDate);
+
+            calorieSplit.add(0, calorieSplit.get(0) + dailyalorieSplit.get(0));
+            calorieSplit.add(1, calorieSplit.get(1) + dailyalorieSplit.get(1));
+            calorieSplit.add(2, calorieSplit.get(2) + dailyalorieSplit.get(2));
+        }
+
+
+        StringBuilder pieChartUrl = new StringBuilder();
+        pieChartUrl.append(getFixedPieChartUrl());
+        pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD");
+        String data = Constants.DATA;
+        for (Double macro : calorieSplit) {
+            if (macro == null)
+                macro = 0.0;
+            data += macro + ",";
+        }
+        pieChartUrl.append(data, 0, data.length() - 1);
+        pieChartUrl.append(Constants.LABEL + fatLabels);
+        return pieChartUrl.toString();
+    }
+
     //Micronutrients Bar Chart
     public String getWeeklyMicronutrients() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> nutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate, signedInUser.getId());
+
+        List<Double> nutrients = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
         String nutrientsLabels = "Sodium|Calcium|Magnesium|Potassium|Iron|Zinc";
+        for (int i = 0; i < 7; i++) {
+            List<Double> dailyNutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate, signedInUser.getId());
+            todaysDate = getPreviousDate(todaysDate);
+
+            nutrients.add(0, nutrients.get(0) + dailyNutrients.get(0));
+            nutrients.add(1, nutrients.get(1) + dailyNutrients.get(1));
+            nutrients.add(2, nutrients.get(2) + dailyNutrients.get(2));
+            nutrients.add(3, nutrients.get(3) + dailyNutrients.get(3));
+            nutrients.add(4, nutrients.get(4) + dailyNutrients.get(4));
+            nutrients.add(5, nutrients.get(5) + dailyNutrients.get(5));
+        }
 
         StringBuilder barChartUrl = new StringBuilder();
-        barChartUrl.append(Constants.CHART_API_URL);
-        barChartUrl.append(Constants.BAR_CHART);
-        barChartUrl.append("&chs=500x500");
+        barChartUrl.append(getFixedBarChartUrl());
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6|DEBDDE|003AE1");
         String data = Constants.DATA;
         for (Double nutrient : nutrients)
@@ -296,17 +319,23 @@ public class ReportController implements Serializable {
 
     //Workout Category wise calories burnt
     public String getWeeklyCategoryWiseCalories() {
-        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = (User) sessionMap.get("user");
-
+        User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
-        List<Double> workoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate, signedInUser.getId());
+
+        List<Double> workoutCategoryWiseCalories = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0, 0.0));
         String categoryLabels = "Calisthenics|Cardio|Strength|HIIT";
+        for (int i = 0; i < 7; i++) {
+            List<Double> dailyWorkoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate, signedInUser.getId());
+            todaysDate = getPreviousDate(todaysDate);
+
+            workoutCategoryWiseCalories.add(0, workoutCategoryWiseCalories.get(0) + dailyWorkoutCategoryWiseCalories.get(0));
+            workoutCategoryWiseCalories.add(1, workoutCategoryWiseCalories.get(1) + dailyWorkoutCategoryWiseCalories.get(1));
+            workoutCategoryWiseCalories.add(2, workoutCategoryWiseCalories.get(2) + dailyWorkoutCategoryWiseCalories.get(2));
+            workoutCategoryWiseCalories.add(3, workoutCategoryWiseCalories.get(3) + dailyWorkoutCategoryWiseCalories.get(3));
+        }
 
         StringBuilder barChartUrl = new StringBuilder();
-        barChartUrl.append(Constants.CHART_API_URL);
-        barChartUrl.append(Constants.BAR_CHART);
-        barChartUrl.append("&chs=500x500");
+        barChartUrl.append(getFixedBarChartUrl());
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
         for (Double calories : workoutCategoryWiseCalories)
@@ -315,5 +344,41 @@ public class ReportController implements Serializable {
         barChartUrl.append(data, 0, data.length() - 1);
         barChartUrl.append(Constants.LABEL + categoryLabels);
         return barChartUrl.toString();
+    }
+
+
+    public User getLoggedInUser() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+        return signedInUser;
+    }
+
+    public String getFixedPieChartUrl() {
+        StringBuilder pieChartUrl = new StringBuilder();
+        pieChartUrl.append(Constants.CHART_API_URL);
+        pieChartUrl.append(Constants.PIE_CHART);
+        pieChartUrl.append("&chs=350x350");
+
+        return pieChartUrl.toString();
+    }
+
+    public String getFixedBarChartUrl() {
+        StringBuilder barChartUrl = new StringBuilder();
+        barChartUrl.append(Constants.CHART_API_URL);
+        barChartUrl.append(Constants.BAR_CHART);
+        barChartUrl.append("&chs=500x500");
+        barChartUrl.append("&chxt=y,x");
+
+        return barChartUrl.toString();
+    }
+
+    public Date getPreviousDate(Date currentDate) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(currentDate); // convert your date to Calendar object
+        int daysToDecrement = -1;
+        cal.add(Calendar.DATE, daysToDecrement);
+        currentDate = (Date) cal.getTime();
+
+        return currentDate;
     }
 }
