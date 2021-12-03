@@ -37,6 +37,8 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
                 .setParameter("userId", userId)
                 .setParameter("date", date).getSingleResult();
 
+        if(ans==null)
+            return 0.0;
         return ans;
     }
 
@@ -74,10 +76,10 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
                 .getSingleResult();
 
         List<Double> fatList = new ArrayList<>();
-        fatList.add(sats);
-        fatList.add(trans);
-        fatList.add(mono);
-        fatList.add(poly);
+        fatList.add(sats!=null?sats:0.0);
+        fatList.add(trans!=null?trans:0.0);
+        fatList.add(mono!=null?mono:0.0);
+        fatList.add(poly!=null?poly:0.0);
 
         return fatList;
     }
@@ -132,12 +134,12 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
                 .getSingleResult();
 
         List<Double> micronutrientsList = new ArrayList<>();
-        micronutrientsList.add(na);
-        micronutrientsList.add(ca);
-        micronutrientsList.add(mg);
-        micronutrientsList.add(k);
-        micronutrientsList.add(fe);
-        micronutrientsList.add(zn);
+        micronutrientsList.add(na!=null?na:0.0);
+        micronutrientsList.add(ca!=null?ca:0.0);
+        micronutrientsList.add(mg!=null?mg:0.0);
+        micronutrientsList.add(k!=null?k:0.0);
+        micronutrientsList.add(fe!=null?fe:0.0);
+        micronutrientsList.add(zn!=null?zn:0.0);
 
         return micronutrientsList;
     }
@@ -168,9 +170,9 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
                 .getSingleResult();
 
         List<Double> calList = new ArrayList<>();
-        calList.add(carbsCal);
-        calList.add(fatsCal);
-        calList.add(proteinCal);
+        calList.add(carbsCal!=null?carbsCal:0.0);
+        calList.add(fatsCal!=null?fatsCal:0.0);
+        calList.add(proteinCal!=null?proteinCal:0.0);
 
         return calList;
     }

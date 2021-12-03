@@ -1,6 +1,5 @@
 package edu.vt.FacadeBeans;
 
-import edu.vt.EntityBeans.UserRecipeConsumed;
 import edu.vt.EntityBeans.UserWorkoutDone;
 
 import javax.ejb.Stateless;
@@ -69,10 +68,10 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
 
         List<Double> categoryWiseCalories = new ArrayList<>();
 
-        categoryWiseCalories.add(calis);
-        categoryWiseCalories.add(cardio);
-        categoryWiseCalories.add(strength);
-        categoryWiseCalories.add(hiit);
+        categoryWiseCalories.add(calis!=null?calis:0.0);
+        categoryWiseCalories.add(cardio!=null?cardio:0.0);
+        categoryWiseCalories.add(strength!=null?strength:0.0);
+        categoryWiseCalories.add(hiit!=null?hiit:0.0);
 
         return categoryWiseCalories;
     }
@@ -85,6 +84,8 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
+        if(ans==null)
+            return 0;
         return ans.intValue();
     }
 

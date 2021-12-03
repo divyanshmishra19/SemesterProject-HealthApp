@@ -16,6 +16,7 @@ import java.util.*;
 @SessionScoped
 public class ReportController implements Serializable {
 
+    private static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
     UserRecipeFacade and UserWorkoutFacade bean into the instance variables 'userRecipeFacade' and 'userWorkoutFacade'
@@ -65,11 +66,8 @@ public class ReportController implements Serializable {
         pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
-        for (Double fat : fats) {
-            if (fat == null)
-                fat = 0.0;
+        for (Double fat : fats)
             data += fat + ",";
-        }
 
         pieChartUrl.append(data, 0, data.length() - 1);
         pieChartUrl.append(Constants.LABEL + fatLabels);
@@ -87,11 +85,9 @@ public class ReportController implements Serializable {
         pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD");
         String data = Constants.DATA;
-        for (Double macro : calorieSplit) {
-            if (macro == null)
-                macro = 0.0;
+        for (Double macro : calorieSplit)
             data += macro + ",";
-        }
+
         pieChartUrl.append(data, 0, data.length() - 1);
         pieChartUrl.append(Constants.LABEL + fatLabels);
         return pieChartUrl.toString();
@@ -132,11 +128,8 @@ public class ReportController implements Serializable {
         barChartUrl.append(getFixedBarChartUrl());
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6|DEBDDE|003AE1");
         String data = Constants.DATA;
-        for (Double nutrient : nutrients) {
-            if (nutrient == null)
-                nutrient = 0.0;
+        for (Double nutrient : nutrients)
             data += nutrient + ",";
-        }
 
         barChartUrl.append(data, 0, data.length() - 1);
         barChartUrl.append(Constants.LABEL + nutrientsLabels);
@@ -154,11 +147,8 @@ public class ReportController implements Serializable {
         barChartUrl.append(getFixedBarChartUrl());
         barChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD|00A5C6");
         String data = Constants.DATA;
-        for (Double calories : workoutCategoryWiseCalories) {
-            if (calories == null)
-                calories = 0.0;
+        for (Double calories : workoutCategoryWiseCalories)
             data += calories + ",";
-        }
 
         barChartUrl.append(data, 0, data.length() - 1);
         barChartUrl.append(Constants.LABEL + categoryLabels);
@@ -276,11 +266,9 @@ public class ReportController implements Serializable {
         pieChartUrl.append(getFixedPieChartUrl());
         pieChartUrl.append("&chco=FFC6A5|FFFF42|DEF3BD");
         String data = Constants.DATA;
-        for (Double macro : calorieSplit) {
-            if (macro == null)
-                macro = 0.0;
+        for (Double macro : calorieSplit)
             data += macro + ",";
-        }
+
         pieChartUrl.append(data, 0, data.length() - 1);
         pieChartUrl.append(Constants.LABEL + fatLabels);
         return pieChartUrl.toString();
@@ -373,12 +361,7 @@ public class ReportController implements Serializable {
     }
 
     public Date getPreviousDate(Date currentDate) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(currentDate); // convert your date to Calendar object
-        int daysToDecrement = -1;
-        cal.add(Calendar.DATE, daysToDecrement);
-        currentDate = (Date) cal.getTime();
-
+        currentDate = new Date(currentDate.getTime() - MILLIS_IN_A_DAY);
         return currentDate;
     }
 }
