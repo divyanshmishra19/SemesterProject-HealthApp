@@ -96,7 +96,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+        Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();
@@ -239,7 +239,7 @@ public class ReportController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+        Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         StringBuilder pieChartUrl = new StringBuilder();

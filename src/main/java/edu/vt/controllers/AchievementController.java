@@ -53,7 +53,7 @@ public class AchievementController implements Serializable {
         signedInUser.setId(1);
 
         Date todaysDate = new Date(System.currentTimeMillis());
-        Double caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
+        Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         if(caloriesBurned>desiredCaloriesBurned)
@@ -75,7 +75,7 @@ public class AchievementController implements Serializable {
 
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
         int streak=0, maxStreak=0;
-        Double caloriesBurned = 0.0;
+        Integer caloriesBurned = 0;
         while(caloriesBurned!=null)
         {
             caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());

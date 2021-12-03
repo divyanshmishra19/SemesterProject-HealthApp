@@ -31,7 +31,8 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
 
     public Double getTotalDailyCalories(Date date, int userId) {
         Double ans = (Double) getEntityManager().createQuery(
-                        "SELECT SUM(d.calories) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.calories) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date).getSingleResult();
@@ -41,28 +42,32 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
 
     public List<Double> getFats(Date date, int userId) {
         Double mono = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.fatMono) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.fatMono) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double poly = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.fatPoly) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.fatPoly) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double trans = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.fatTrans) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.fatTrans) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double sats = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.fatSat) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.fatSat) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
@@ -79,42 +84,48 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
 
     public List<Double> getMicronutrients(Date date, int userId) {
         Double na = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.sodium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.sodium) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double ca = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.calcium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.calcium) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double mg = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.magnesium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.magnesium) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double k = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.potassium) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.potassium) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double fe = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.iron) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.iron) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
 
         Double zn = (Double)getEntityManager().createQuery(
-                        "SELECT SUM(d.zinc) FROM UserRecipeConsumed c JOIN UserRecipe d " +
+                        "SELECT SUM(d.zinc) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date")
                 .setParameter("userId", userId)
                 .setParameter("date", date)
