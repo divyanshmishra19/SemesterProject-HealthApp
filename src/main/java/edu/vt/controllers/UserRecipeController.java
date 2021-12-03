@@ -138,6 +138,10 @@ public class UserRecipeController implements Serializable {
     public void create() throws IOException {
         Methods.preserveMessages();
         recipePayload = new RecipePayload(recipeName, ingredients);
+
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+
         ObjectMapper Obj = new ObjectMapper();
         try {
             String jsonStr = Obj.writeValueAsString(recipePayload);
@@ -178,12 +182,12 @@ public class UserRecipeController implements Serializable {
             selected.setProtein((Double) totalNutrients.get("PROCNT").get("quantity"));
 
             //Contribution of macronutrients to daily requirement...
-            selected.setProteinCal((Double) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity"));
-            selected.setCarbCal((Double) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity"));
-            selected.setFatCal((Double) totalNutrientsKCal.get("FAT_KCAL").get("quantity"));
+            selected.setProteinCal(((Integer) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity"))*1.0);
+            selected.setCarbCal(((Integer) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity"))*1.0);
+            selected.setFatCal(((Integer) totalNutrientsKCal.get("FAT_KCAL").get("quantity"))*1.0);
 
             //Micronutrients - Minerals
-            selected.setSodium((Double) totalNutrients.get("NA").get("quantity"));
+            selected.setSodium((Double)totalNutrients.get("NA").get("quantity"));
             selected.setPotassium((Double) totalNutrients.get("K").get("quantity"));
             selected.setCalcium((Double) totalNutrients.get("CA").get("quantity"));
             selected.setMagnesium((Double) totalNutrients.get("MG").get("quantity"));
@@ -198,6 +202,9 @@ public class UserRecipeController implements Serializable {
             } else
                 dietLabel.append("NA");
             selected.setDietLabels(dietLabel.toString());
+
+            //finally setting userId
+            selected.setUserId(signedInUser);
 
         } catch (Exception e) {
             e.printStackTrace();
