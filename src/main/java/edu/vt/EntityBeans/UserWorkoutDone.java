@@ -2,7 +2,7 @@ package edu.vt.EntityBeans;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 // Name of the database table represented
