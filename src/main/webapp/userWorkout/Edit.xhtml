@@ -24,22 +24,22 @@
         <h:form id="WorkoutEditForm" class="ui-datatable-data">
             <h:panelGroup id="display">
                 <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
-                             rendered="#{workoutController.selected != null}">
+                             rendered="#{userWorkoutController.selected != null}">
 
                     <p:outputLabel value="Name:" for="name" />
-                    <p:inputText id="name" value="#{workoutController.selected.name}" style="width:400px"
+                    <p:inputText id="name" value="#{userWorkoutController.selected.name}" style="width:400px"
                                  required="true" requiredMessage="Workout name is required!"/>
 
                     <p:outputLabel value="Calorie BurnRate:" for="burnRate" />
-                    <p:inputText id="burnRate" value="#{workoutController.selected.burnRate}" style="width:400px"
+                    <p:inputText id="burnRate" value="#{userWorkoutController.selected.burnRate}" style="width:400px"
                                  required="true" requiredMessage="Calorie burnrate is required!"/>
 
-                    <!--<p:outputLabel value="YouTube Workout ID:" for="youTubeID" />
-                    <p:inputText id="youTubeID" value="#{workoutController.selected.youtubeWorkoutId}"
-                                 required="true" requiredMessage="YouTube Workout ID is required!"/>-->
+                    <p:outputLabel value="YouTube Tutorial Video ID:" for="youTubeID" />
+                    <p:inputText id="youTubeID" value="#{userWorkoutController.selected.youtubeTutorialVideoId}"
+                                 required="true" requiredMessage="YouTube Tutorial Video ID is required!"/>
 
                     <p:outputLabel value="Category:" for="category" />
-                    <p:inputText id="category" value="#{workoutController.selected.category}" style="width:400px"
+                    <p:inputText id="category" value="#{userWorkoutController.selected.category}" style="width:400px"
                                  required="true" requiredMessage="Workout Category is required!"/>
 
                 </p:panelGrid>
@@ -50,7 +50,7 @@
                 <div align="center">
                     <!-- SAVE button -->
                     <p:commandButton value="Save" icon="fas fa-save" styleClass="rounded-button"
-                                     ajax="false" actionListener="#{workoutController.update}"
+                                     ajax="false" actionListener="#{userWorkoutController.update}"
                                      update="display,:WorkoutListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
                                      oncomplete="handleSubmit(args, 'WorkoutEditDialog');"/>
                     &nbsp;

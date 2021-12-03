@@ -29,18 +29,18 @@
             <h:form id="WorkoutListForm">
                 <p:panel header="Public Workouts">
                     <p:dataTable id="datalist"
-                                 value="#{workoutController.getListOfWorkouts()}"
+                                 value="#{userWorkoutController.getListOfUserWorkouts()}"
                                  var="aWorkout"
-                                 widgetVar="workoutDataTable"
+                                 widgetVar="userWorkoutDataTable"
                                  selectionMode="single"
-                                 selection="#{workoutController.selected}"
+                                 selection="#{userWorkoutController.selected}"
                                  reflow="true"
                                  showGridlines="true"
                                  paginator="true"
                                  rowKey="#{aWorkout.id}"
                                  rows="5"
                                  rowsPerPageTemplate="5,10,20,30,50,70,90"
-                                 emptyMessage="No Workout found for the search query entered!">
+                                 emptyMessage="No User Workouts added">
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton playButton shareButton "/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton playButton shareButton "/>
                         <!--
@@ -50,12 +50,12 @@
                         -->
                         <f:facet name="header">
                             <div align="center">
-                                <p:inputText id="globalFilter" onkeyup="PF('workoutDataTable').filter()" filterMatchMode="contains"
+                                <p:inputText id="globalFilter" onkeyup="PF('userWorkoutDataTable').filter()" filterMatchMode="contains"
                                              style="width: 250px"
                                              placeholder="Enter Global Search Query" />
                                 &nbsp;
                                 <p:commandButton type="button" value="Clear All Filters" styleClass="ui-button-outlined"
-                                                 icon="fas fa-undo" onclick="PF('workoutDataTable').clearFilters()" />
+                                                 icon="fas fa-undo" onclick="PF('userWorkoutDataTable').clearFilters()" />
                             </div>
                         </f:facet>
 
@@ -112,26 +112,26 @@
                             <div align="center">
                                 <!--                                &lt;!&ndash; CREATE button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
                                 <p:commandButton id="createButton" value="Create" icon="fas fa-plus" styleClass="rounded-button"
-                                                 actionListener="#{workoutController.prepareCreate()}"
+                                                 actionListener="#{userWorkoutController.prepareCreate()}"
                                                  update=":WorkoutCreateForm" oncomplete="PF('WorkoutCreateDialog').show()"/>
                                 &nbsp;
                                 <!--                                &lt;!&ndash; VIEW button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
                                 <p:commandButton id="viewButton" value="View" icon="fas fa-eye" styleClass="rounded-button"
                                                  update=":WorkoutViewDlg" oncomplete="PF('WorkoutViewDialog').show()"
-                                                 disabled="#{empty workoutController.selected}"/>
+                                                 disabled="#{empty userWorkoutController.selected}"/>
                                 <!--                                    &nbsp;-->&nbsp;&nbsp;
                                 <!--                                &lt;!&ndash;                                    &lt;!&ndash; EDIT button: id is used since it is referenced to be activated or deactivated &ndash;&gt;&ndash;&gt;-->
                                 <p:commandButton id="editButton" value="Edit" icon="fas fa-edit" styleClass="rounded-button"
                                                  update=":WorkoutEditDlg" oncomplete="PF('WorkoutEditDialog').show()"
-                                                 disabled="#{empty workoutController.selected}"/>
+                                                 disabled="#{empty userWorkoutController.selected}"/>
                                 &nbsp;&nbsp;
                                 <!-- DELETE button: id is used since it is referenced to be activated or deactivated -->
                                 <p:commandButton id="deleteButton" value="Delete" icon="fas fa-trash-alt"  styleClass="rounded-button"
-                                                 actionListener="#{workoutController.destroy()}"
+                                                 actionListener="#{userWorkoutController.destroy()}"
                                                  update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
-                                                 disabled="#{empty workoutController.selected}">
+                                                 disabled="#{empty userWorkoutController.selected}">
 
-                                    <p:confirm header="Deletion Confirmation" message="Are you sure you want to permanently delete the selected Video #{workoutController.selected.title} from the database?"/>
+                                    <p:confirm header="Deletion Confirmation" message="Are you sure you want to permanently delete the selected Workout #{userWorkoutController.selected.name} from the database?"/>
                                 </p:commandButton>
                                 <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
                                     <div align="center">
@@ -142,17 +142,17 @@
                                 &nbsp;&nbsp;
 
                                 <p:commandButton id="playButton" value="Play" icon="fas fa-play" styleClass="rounded-button"
-                                                 actionListener="#{workoutController.setIdOfVideoToPlay(workoutController.selected.youtubeVideoId)}"
+                                                 actionListener="#{userWorkoutController.setYoutubeTutorialVideoId(userWorkoutController.selected.youtubeTutorialVideoId)}"
                                                  update=":WorkoutPlayForm" oncomplete="PF('WorkoutPlayDialog').show()"
-                                                 disabled="#{empty workoutController.selected}" />
+                                                 disabled="#{empty userWorkoutController.selected}" />
 
                                 &nbsp;
                                 &nbsp;
                                 <p:commandButton id="shareButton" value="Share" icon="fas fa-share" styleClass="rounded-button"
-                                                 actionListener="#{workoutController.share()}"
+                                                 actionListener="#{userWorkoutController.share()}"
                                                  update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
-                                                 disabled="#{empty workoutController.selected}">
-                                    <p:confirm header="Share Confirmation" message="Are you sure you want to add the selected video to the Signed-In User's List of Favorite YouTube Videos?"/>
+                                                 disabled="#{empty userWorkoutController.selected}">
+                                    <p:confirm header="Share Confirmation" message="Are you sure you want to add the selected video to the Public List of Workouts?"/>
                                 </p:commandButton>
 
                                 <p:confirmDialog id="shareDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
@@ -168,13 +168,13 @@
                 </p:panel>
             </h:form>
         </div>
-                <ui:include src="/workout/Create.xhtml"/>
+                <ui:include src="/userWorkout/Create.xhtml"/>
 
-                <ui:include src="/workout/View.xhtml"/>
+                <ui:include src="/userWorkout/View.xhtml"/>
 
-                <ui:include src="/workout/Edit.xhtml"/>
+                <ui:include src="/userWorkout/Edit.xhtml"/>
 
-                <ui:include src="/workout/YouTubeVideoPlayer.xhtml"/>
+                <ui:include src="/userWorkout/YouTubeVideoPlayer.xhtml"/>
 
     </ui:define>
 </ui:composition>

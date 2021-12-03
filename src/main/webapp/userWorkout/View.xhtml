@@ -23,21 +23,24 @@
 
         <h:form id="WorkoutViewForm" class="ui-datatable-data">
             <div align="center">
-                <h:graphicImage value="https://i1.ytimg.com/vi/#{workoutController.selected.youtubeTutorialVideoId}/mqdefault.jpg" class="scalableImage"/>
+                <h:graphicImage value="https://i1.ytimg.com/vi/#{userWorkoutController.selected.youtubeTutorialVideoId}/mqdefault.jpg" class="scalableImage"/>
             </div>
             <br />
             <h:panelGroup id="display">
                 <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
-                             rendered="#{workoutController.selected != null}" width="100%">
+                             rendered="#{userWorkoutController.selected != null}" width="100%">
 
                     <h:outputText value="Name:"/>
-                    <h:outputText value="#{workoutController.selected.name}"/>
+                    <h:outputText value="#{userWorkoutController.selected.name}"/>
 
                     <h:outputText value="BurnRate:"/>
-                    <h:outputText value="#{workoutController.selected.burnRate}"/>
+                    <h:outputText value="#{userWorkoutController.selected.burnRate}"/>
+
+                    <h:outputText value="Youtube Tutorial Video Link:"/>
+                    <h:outputText value="https://www.youtube.com/embed/#{userWorkoutController.selected.youtubeTutorialVideoId}"/>
 
                     <h:outputText value="Category"/>
-                    <h:outputText value="#{workoutController.selected.category}"/>
+                    <h:outputText value="#{userWorkoutController.selected.category}"/>
 
 
                 </p:panelGrid>

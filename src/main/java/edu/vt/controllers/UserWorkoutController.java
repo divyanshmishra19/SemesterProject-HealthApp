@@ -1,5 +1,6 @@
 package edu.vt.controllers;
 
+import edu.vt.EntityBeans.User;
 import edu.vt.EntityBeans.UserWorkout;
 import edu.vt.EntityBeans.UserWorkoutDone;
 import edu.vt.FacadeBeans.UserWorkoutDoneFacade;
@@ -10,10 +11,12 @@ import edu.vt.globals.Methods;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,6 +29,7 @@ public class UserWorkoutController implements Serializable {
     private UserWorkout selected;
     private UserWorkoutDone workoutDone;
     private Integer duration;
+    private String youtubeTutorialVideoId;
 
     @EJB
     private UserWorkoutFacade userWorkoutFacade;
@@ -34,10 +38,9 @@ public class UserWorkoutController implements Serializable {
     private UserWorkoutDoneFacade workoutDoneFacade;
 
     public List<UserWorkout> getListOfUserWorkouts() {
-        if (listOfUserWorkouts == null) {
-            listOfUserWorkouts = userWorkoutFacade.findAll();
-        }
-        return listOfUserWorkouts;
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+        return userWorkoutFacade.findWorkoutsByUserId(signedInUser.getId());
     }
 
     public void setListOfUserWorkouts(List<UserWorkout> listOfUserWorkouts) {
@@ -82,6 +85,14 @@ public class UserWorkoutController implements Serializable {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+
+    public String getYoutubeTutorialVideoId() {
+        return youtubeTutorialVideoId;
+    }
+
+    public void setYoutubeTutorialVideoId(String youtubeTutorialVideoId) {
+        selected.setYoutubeTutorialVideoId(youtubeTutorialVideoId);
     }
 
     public void unselect() {

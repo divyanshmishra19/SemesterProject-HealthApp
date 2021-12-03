@@ -17,30 +17,30 @@
     |  for the user to enter the data to create a new video.   |
     ============================================================
     -->
-    <p:dialog id="WorkoutCreateDlg" header="Create New Workout" widgetVar="WorkoutCreateDialog"
+    <p:dialog id="WorkoutCreateDlg" header="Create New User Workout" widgetVar="WorkoutCreateDialog"
               modal="true" position="center" appendTo="@(body)"
               showEffect="slide" hideEffect="fade" responsive="true" height="500px">
 
         <h:form id="WorkoutCreateForm" class="ui-datatable-data">
             <h:panelGroup id="display">
                 <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
-                             rendered="#{workoutController.selected != null}">
+                             rendered="#{userWorkoutController.selected != null}">
 
                     <p:outputLabel value="Name:" for="name" />
-                    <p:inputText id="title" value="#{workoutController.selected.name}" style="width:400px"
+                    <p:inputText id="name" value="#{userWorkoutController.selected.name}" style="width:400px"
                                  required="true" requiredMessage="Name is required!"/>
 
                     <p:outputLabel value="BurnRate:" for="burnRate" />
-                    <p:inputText id="burnRate" value="#{workoutController.selected.burnRate}" style="width:400px"
+                    <p:inputText id="burnRate" value="#{userWorkoutController.selected.burnRate}" style="width:400px"
                                  required="true" requiredMessage="Workout burnrate is required!"/>
 
-                    <!--<p:outputLabel value="YouTube Workout ID:" for="youTubeID" />
-                    <p:inputText id="youTubeID" value="#{workoutController.selected.youtubeWorkoutId}"
-                                 required="true" requiredMessage="YouTube Workout ID is required!"/>-->
+                    <p:outputLabel value="YouTube Tutorial Video ID:" for="youTubeID" />
+                    <p:inputText id="youTubeID" value="#{userWorkoutController.selected.youtubeTutorialVideoId}"
+                                 required="true" requiredMessage="YouTube Tutorial Video ID is required!"/>
 
 
                     <p:outputLabel value="Category:" for="category" />
-                    <p:inputText id="category" value="#{workoutController.selected.category}" style="width:400px"
+                    <p:inputText id="category" value="#{userWorkoutController.selected.category}" style="width:400px"
                                  required="true" requiredMessage="Workout Category is required!"/>
 
 
@@ -52,7 +52,7 @@
                 <div align="center">
                     <!-- SAVE button -->
                     <p:commandButton value="Save" icon="fas fa-save" styleClass="rounded-button"
-                                     ajax="false" actionListener="#{workoutController.create()}"
+                                     ajax="false" actionListener="#{userWorkoutController.create()}"
                                      update="display,:WorkoutListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
                                      oncomplete="handleSubmit(args,'WorkoutCreateDialog');" />
                     &nbsp;
@@ -61,7 +61,7 @@
                     The cancel() method will make the selected country object null and show the List page.
                     -->
                     <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
-                                     action="#{workoutController.cancel()}" ajax="false" immediate="true"
+                                     action="#{userWorkoutController.cancel()}" ajax="false" immediate="true"
                                      onclick="PF('WorkoutCreateDialog').hide()" />
                 </div>
             </h:panelGroup>
