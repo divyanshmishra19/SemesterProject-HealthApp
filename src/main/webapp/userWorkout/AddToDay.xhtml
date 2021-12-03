@@ -27,7 +27,8 @@
 
                     <p:outputLabel value="How long (minutes) did you work out for?:" for="duration" />
                     <p:inputNumber id="duration" value="#{userWorkoutController.duration}" style="width:400px"
-                                 required="true" requiredMessage="Duration is required!"/>
+                                   decimalSeparator="." thousandSeparator=","
+                                   required="true" requiredMessage="Duration is required!"/>
 
                 </p:panelGrid>
             </h:panelGroup>

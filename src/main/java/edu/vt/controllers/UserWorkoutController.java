@@ -28,7 +28,7 @@ public class UserWorkoutController implements Serializable {
     private List<UserWorkout> listOfUserWorkouts;
     private UserWorkout selected;
     private UserWorkoutDone workoutDone;
-    private Integer duration;
+    private Double duration;
     private String youtubeTutorialVideoId;
 
     @EJB
@@ -79,11 +79,11 @@ public class UserWorkoutController implements Serializable {
         this.workoutDoneFacade = workoutDoneFacade;
     }
 
-    public Integer getDuration() {
+        public Double getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Double duration) {
         this.duration = duration;
     }
 
@@ -214,8 +214,9 @@ public class UserWorkoutController implements Serializable {
         workoutDone.setDate(todaysDate);
 
         Double burnRate = selected.getBurnRate();
-        workoutDone.setDuration(duration);
-        workoutDone.setCalories((int)(duration * burnRate));
+        int durationInt = duration.intValue();
+        workoutDone.setDuration(durationInt);
+        workoutDone.setCalories((int)(durationInt * burnRate));
 
         Methods.preserveMessages();
         workoutDoneFacade.edit(workoutDone);
