@@ -141,4 +141,37 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
 
         return micronutrientsList;
     }
+
+    public List<Double> getDailyCalorieSplit(Date date, Integer userId) {
+        Double carbsCal = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.carbCal) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
+                                "Where d.userId.id = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double fatsCal = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.fatCal) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
+                                "Where d.userId.id = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        Double proteinCal = (Double)getEntityManager().createQuery(
+                        "SELECT SUM(d.proteinCal) FROM UserRecipeConsumed c " +
+                                "JOIN UserRecipe d on c.recipeId = d " +
+                                "Where d.userId.id = :userId AND c.date = :date")
+                .setParameter("userId", userId)
+                .setParameter("date", date)
+                .getSingleResult();
+
+        List<Double> calList = new ArrayList<>();
+        calList.add(carbsCal);
+        calList.add(fatsCal);
+        calList.add(proteinCal);
+
+        return calList;
+    }
 }

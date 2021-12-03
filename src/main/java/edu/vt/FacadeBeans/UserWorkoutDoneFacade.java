@@ -87,4 +87,5 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
                 .getSingleResult();
         return ans.intValue();
     }
+
 }
