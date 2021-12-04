@@ -71,6 +71,13 @@
                                      update="display,:RecipeListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
                                      oncomplete="handleSubmit(args,'RecipeCreateDialog');" />
                     &nbsp;
+
+                    <!-- Directly add to day button -->
+                    <p:commandButton value="Add To Day" icon="fas fa-add" styleClass="rounded-button"
+                                     ajax="false" actionListener="#{userRecipeController.createAndAddToProgress()}"
+                                     update="display,:RecipeListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
+                                     oncomplete="handleSubmit(args,'RecipeCreateDialog');" />
+                    &nbsp;
                     <!-- CANCEL button -->
                     <p:commandButton value="Cancel" icon="fas fa-ban" styleClass="ui-button-outlined"
                                      action="#{userRecipeController.cancel()}" ajax="false" immediate="true"

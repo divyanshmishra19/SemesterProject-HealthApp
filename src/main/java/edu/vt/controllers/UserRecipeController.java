@@ -134,9 +134,14 @@ public class UserRecipeController implements Serializable {
         selected = new UserRecipe();
     }
 
-
-    public void create() throws IOException {
+    public void createAndAddToProgress() throws IOException {
         Methods.preserveMessages();
+        setApiResponse();
+        //userRecipeFacade.edit(selected);
+        addToProgress();
+    }
+
+    public void setApiResponse() {
         recipePayload = new RecipePayload(recipeName, ingredients);
 
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
@@ -182,12 +187,12 @@ public class UserRecipeController implements Serializable {
             selected.setProtein((Double) totalNutrients.get("PROCNT").get("quantity"));
 
             //Contribution of macronutrients to daily requirement...
-            selected.setProteinCal(((Integer) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity"))*1.0);
-            selected.setCarbCal(((Integer) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity"))*1.0);
-            selected.setFatCal(((Integer) totalNutrientsKCal.get("FAT_KCAL").get("quantity"))*1.0);
+            selected.setProteinCal(((Integer) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity")) * 1.0);
+            selected.setCarbCal(((Integer) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity")) * 1.0);
+            selected.setFatCal(((Integer) totalNutrientsKCal.get("FAT_KCAL").get("quantity")) * 1.0);
 
             //Micronutrients - Minerals
-            selected.setSodium((Double)totalNutrients.get("NA").get("quantity"));
+            selected.setSodium((Double) totalNutrients.get("NA").get("quantity"));
             selected.setPotassium((Double) totalNutrients.get("K").get("quantity"));
             selected.setCalcium((Double) totalNutrients.get("CA").get("quantity"));
             selected.setMagnesium((Double) totalNutrients.get("MG").get("quantity"));
@@ -205,13 +210,16 @@ public class UserRecipeController implements Serializable {
 
             //finally setting userId
             selected.setUserId(signedInUser);
-
         } catch (Exception e) {
             e.printStackTrace();
             Methods.showMessage("Fatal", "Application Failed!",
                     "An unrecognised error has occurred!.");
         }
+    }
 
+    public void create() throws IOException {
+        Methods.preserveMessages();
+        setApiResponse();
         persist(JsfUtil.PersistAction.CREATE, "Public Video was successfully created.");
 
         if (!JsfUtil.isValidationFailed()) {
@@ -300,5 +308,7 @@ public class UserRecipeController implements Serializable {
         userRecipeConsumedFacade.edit(recipeConsumed);
         Methods.showMessage("Information", "Progress Updated!",
                 "Meal was successfully added to your daily progress!.");
+
+        selected = null;
     }
 }

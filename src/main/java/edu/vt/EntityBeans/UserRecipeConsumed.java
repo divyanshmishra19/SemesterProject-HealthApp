@@ -18,7 +18,7 @@ public class UserRecipeConsumed {
 
     //UserRecipe-ID -> Foreign Key
     @JoinColumn(name = "user_recipe_id", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     private UserRecipe recipeId;
 
     @NotNull
