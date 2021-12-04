@@ -33,8 +33,7 @@ public class AchievementController implements Serializable {
     public boolean dailyCalorieIntakeGoal()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = new User();//(User) sessionMap.get("user");
-        signedInUser.setId(1);
+        User signedInUser = (User) sessionMap.get("user");
 
         Date todaysDate = new Date(System.currentTimeMillis());
         Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
@@ -49,8 +48,7 @@ public class AchievementController implements Serializable {
     public boolean dailyCalorieBurnGoal()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = new User();//(User) sessionMap.get("user");
-        signedInUser.setId(1);
+        User signedInUser = (User) sessionMap.get("user");
 
         Date todaysDate = new Date(System.currentTimeMillis());
         Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
@@ -65,8 +63,7 @@ public class AchievementController implements Serializable {
     public int longestCalorieBurnStreak()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = new User();//(User) sessionMap.get("user");
-        signedInUser.setId(1);
+        User signedInUser = (User) sessionMap.get("user");
 
         Date todaysDate = new Date(System.currentTimeMillis());
         Calendar cal = Calendar.getInstance();
@@ -93,8 +90,7 @@ public class AchievementController implements Serializable {
     public int longestCalorieIntakeStreak()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
-        User signedInUser = new User();//(User) sessionMap.get("user");
-        signedInUser.setId(1);
+        User signedInUser = (User) sessionMap.get("user");
 
         Date todaysDate = new Date(System.currentTimeMillis());
         Calendar cal = Calendar.getInstance();
