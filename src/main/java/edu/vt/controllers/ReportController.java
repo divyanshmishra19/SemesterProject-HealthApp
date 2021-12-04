@@ -16,7 +16,6 @@ import java.util.*;
 @SessionScoped
 public class ReportController implements Serializable {
 
-    private static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
     UserRecipeFacade and UserWorkoutFacade bean into the instance variables 'userRecipeFacade' and 'userWorkoutFacade'
@@ -190,17 +189,19 @@ public class ReportController implements Serializable {
         User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
 
-        List<Double> fats = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0, 0.0));
+        List<Double> fats = new ArrayList<>();
         String fatLabels = "Saturated|Trans|Monounsaturated|Polyunsaturated";
+        Double sat = 0.0, trans = 0.0, mono = 0.0, poly =0.0;
         for (int i = 0; i < 7; i++) {
             List<Double> dailyFats = userRecipeConsumedFacade.getFats(todaysDate, signedInUser.getId());
             todaysDate = getPreviousDate(todaysDate);
 
-            fats.add(0, fats.get(0) + dailyFats.get(0));
-            fats.add(1, fats.get(1) + dailyFats.get(1));
-            fats.add(2, fats.get(2) + dailyFats.get(2));
-            fats.add(3, fats.get(3) + dailyFats.get(3));
+            sat += dailyFats.get(0);
+            trans += dailyFats.get(1);
+            mono += dailyFats.get(2);
+            poly += dailyFats.get(3);
         }
+        fats.add(sat); fats.add(trans); fats.add(mono); fats.add(poly);
 
         StringBuilder pieChartUrl = new StringBuilder();
         pieChartUrl.append(getFixedPieChartUrl());
@@ -251,16 +252,17 @@ public class ReportController implements Serializable {
         Date todaysDate = new Date(System.currentTimeMillis());
 
         String fatLabels = "Carbs|Fats|Proteins";
-        List<Double> calorieSplit = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0));
+        List<Double> calorieSplit = new ArrayList<>();
+        Double carbs = 0.0, proteins = 0.0, fats = 0.0;
         for (int i = 0; i < 7; i++) {
             List<Double> dailyalorieSplit = userRecipeConsumedFacade.getDailyCalorieSplit(todaysDate, signedInUser.getId());
             todaysDate = getPreviousDate(todaysDate);
 
-            calorieSplit.add(0, calorieSplit.get(0) + dailyalorieSplit.get(0));
-            calorieSplit.add(1, calorieSplit.get(1) + dailyalorieSplit.get(1));
-            calorieSplit.add(2, calorieSplit.get(2) + dailyalorieSplit.get(2));
+            carbs+= dailyalorieSplit.get(0);
+            fats+= dailyalorieSplit.get(1);
+            proteins+= dailyalorieSplit.get(2);
         }
-
+        calorieSplit.add(carbs); calorieSplit.add(fats); calorieSplit.add(proteins);
 
         StringBuilder pieChartUrl = new StringBuilder();
         pieChartUrl.append(getFixedPieChartUrl());
@@ -279,19 +281,22 @@ public class ReportController implements Serializable {
         User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
 
-        List<Double> nutrients = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0, 0.0, 0.0, 0.0));
+        List<Double> nutrients = new ArrayList<>();
         String nutrientsLabels = "Sodium|Calcium|Magnesium|Potassium|Iron|Zinc";
+        Double na = 0.0, ca = 0.0, mg = 0.0, k = 0.0, fe = 0.0, zn = 0.0;
         for (int i = 0; i < 7; i++) {
             List<Double> dailyNutrients = userRecipeConsumedFacade.getMicronutrients(todaysDate, signedInUser.getId());
             todaysDate = getPreviousDate(todaysDate);
 
-            nutrients.add(0, nutrients.get(0) + dailyNutrients.get(0));
-            nutrients.add(1, nutrients.get(1) + dailyNutrients.get(1));
-            nutrients.add(2, nutrients.get(2) + dailyNutrients.get(2));
-            nutrients.add(3, nutrients.get(3) + dailyNutrients.get(3));
-            nutrients.add(4, nutrients.get(4) + dailyNutrients.get(4));
-            nutrients.add(5, nutrients.get(5) + dailyNutrients.get(5));
+            na += dailyNutrients.get(0);
+            ca += dailyNutrients.get(1);
+            k += dailyNutrients.get(2);
+            mg += dailyNutrients.get(3);
+            fe += dailyNutrients.get(4);
+            zn += dailyNutrients.get(5);
         }
+        nutrients.add(na); nutrients.add(ca); nutrients.add(mg);
+        nutrients.add(k); nutrients.add(fe); nutrients.add(zn);
 
         StringBuilder barChartUrl = new StringBuilder();
         barChartUrl.append(getFixedBarChartUrl());
@@ -310,17 +315,20 @@ public class ReportController implements Serializable {
         User signedInUser = getLoggedInUser();
         Date todaysDate = new Date(System.currentTimeMillis());
 
-        List<Double> workoutCategoryWiseCalories = new ArrayList<>(Arrays.asList(0.0, 0.0, 0.0, 0.0));
+        List<Double> workoutCategoryWiseCalories = new ArrayList<>();
         String categoryLabels = "Calisthenics|Cardio|Strength|HIIT";
+        Double calis = 0.0, cardio = 0.0, strength = 0.0, hiit = 0.0;
         for (int i = 0; i < 7; i++) {
             List<Double> dailyWorkoutCategoryWiseCalories = userWorkoutDoneFacade.getCategoryWiseCalories(todaysDate, signedInUser.getId());
             todaysDate = getPreviousDate(todaysDate);
 
-            workoutCategoryWiseCalories.add(0, workoutCategoryWiseCalories.get(0) + dailyWorkoutCategoryWiseCalories.get(0));
-            workoutCategoryWiseCalories.add(1, workoutCategoryWiseCalories.get(1) + dailyWorkoutCategoryWiseCalories.get(1));
-            workoutCategoryWiseCalories.add(2, workoutCategoryWiseCalories.get(2) + dailyWorkoutCategoryWiseCalories.get(2));
-            workoutCategoryWiseCalories.add(3, workoutCategoryWiseCalories.get(3) + dailyWorkoutCategoryWiseCalories.get(3));
+            calis += dailyWorkoutCategoryWiseCalories.get(0);
+            cardio += dailyWorkoutCategoryWiseCalories.get(1);
+            strength += dailyWorkoutCategoryWiseCalories.get(2);
+            hiit += dailyWorkoutCategoryWiseCalories.get(3);
         }
+        workoutCategoryWiseCalories.add(calis); workoutCategoryWiseCalories.add(cardio);
+        workoutCategoryWiseCalories.add(strength); workoutCategoryWiseCalories.add(hiit);
 
         StringBuilder barChartUrl = new StringBuilder();
         barChartUrl.append(getFixedBarChartUrl());
@@ -361,7 +369,7 @@ public class ReportController implements Serializable {
     }
 
     public Date getPreviousDate(Date currentDate) {
-        currentDate = new Date(currentDate.getTime() - MILLIS_IN_A_DAY);
+        currentDate = new Date(currentDate.getTime() - Constants.MILLIS_IN_A_DAY);
         return currentDate;
     }
 }

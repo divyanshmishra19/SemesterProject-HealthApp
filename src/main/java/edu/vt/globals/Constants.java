@@ -12,6 +12,7 @@ public class Constants {
     public static final String PIE_CHART = "p3";
     public static final String DATA = "&chd=t:";
     public static final String LABEL = "&chl=";
+    public static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
     public static final String[] QUESTIONS = {
             "In what city or town did your mother and father meet?",
             "In what city or town were you born?",

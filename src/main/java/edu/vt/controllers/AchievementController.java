@@ -2,6 +2,7 @@ package edu.vt.controllers;
 
 import edu.vt.EntityBeans.User;
 import edu.vt.FacadeBeans.*;
+import edu.vt.globals.Constants;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
@@ -30,7 +31,7 @@ public class AchievementController implements Serializable {
     @EJB
     private UserFacade userFacade;
 
-    public boolean dailyCalorieIntakeGoal()
+    public String dailyCalorieIntakeGoal()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -40,12 +41,12 @@ public class AchievementController implements Serializable {
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
         if(calories>expectedCalories)
-            return true;
+            return "true";
         else
-            return false;
+            return "false";
     }
 
-    public boolean dailyCalorieBurnGoal()
+    public String dailyCalorieBurnGoal()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -55,29 +56,25 @@ public class AchievementController implements Serializable {
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
         if(caloriesBurned>desiredCaloriesBurned)
-            return true;
+            return "true";
         else
-            return false;
+            return "false";
     }
 
     public int longestCalorieBurnStreak()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
-
         Date todaysDate = new Date(System.currentTimeMillis());
-        Calendar cal = Calendar.getInstance();
-        cal.setTime (todaysDate); // convert your date to Calendar object
-        int daysToDecrement = -1;
 
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
         int streak=0, maxStreak=0;
         Integer caloriesBurned = 0;
-        while(caloriesBurned!=null)
+        while(caloriesBurned!=0.0)
         {
             caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
-            cal.add(Calendar.DATE, daysToDecrement);
-            todaysDate = (Date) cal.getTime(); // again get back your date object
+            todaysDate = new Date(todaysDate.getTime() - Constants.MILLIS_IN_A_DAY);
+
             if(caloriesBurned>desiredCaloriesBurned)
                 streak++;
             else
@@ -91,11 +88,7 @@ public class AchievementController implements Serializable {
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
-
         Date todaysDate = new Date(System.currentTimeMillis());
-        Calendar cal = Calendar.getInstance();
-        cal.setTime (todaysDate); // convert your date to Calendar object
-        int daysToDecrement = -1;
 
         Double desiredCaloriesIntake = userFacade.getUserCalorieIntake(signedInUser.getId());
         int streak=0, maxStreak=0;
@@ -103,8 +96,8 @@ public class AchievementController implements Serializable {
         while(caloriesConsumed!=null)
         {
             caloriesConsumed = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
-            cal.add(Calendar.DATE, daysToDecrement);
-            todaysDate = (Date) cal.getTime(); // again get back your date object
+            todaysDate = new Date(todaysDate.getTime() - Constants.MILLIS_IN_A_DAY);
+
             if(caloriesConsumed>desiredCaloriesIntake)
                 streak++;
             else
