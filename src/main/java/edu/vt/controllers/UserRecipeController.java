@@ -137,7 +137,6 @@ public class UserRecipeController implements Serializable {
     public void createAndAddToProgress() throws IOException {
         Methods.preserveMessages();
         setApiResponse();
-        //userRecipeFacade.edit(selected);
         addToProgress();
     }
 
