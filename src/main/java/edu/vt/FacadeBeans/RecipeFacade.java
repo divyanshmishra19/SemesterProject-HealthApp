@@ -25,4 +25,11 @@ public class RecipeFacade extends AbstractFacade<Recipe> {
         super(Recipe.class);
     }
 
+    public Recipe findRecipeById(int id) {
+        return (Recipe) getEntityManager().createQuery(
+                        "Select c From Recipe c Where c.id = :id")
+                .setParameter("id", id)
+                .getSingleResult();
+    }
+
 }

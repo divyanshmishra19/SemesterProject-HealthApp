@@ -5,19 +5,14 @@ import edu.vt.EntityBeans.User;
 import edu.vt.EntityBeans.UserRecipe;
 import edu.vt.FacadeBeans.RecipeFacade;
 import edu.vt.FacadeBeans.UserRecipeFacade;
-import edu.vt.controllers.util.JsfUtil;
 import edu.vt.globals.Methods;
 
 import javax.ejb.EJB;
-import javax.ejb.EJBException;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Named("recipeController")
 @SessionScoped

@@ -1,5 +1,6 @@
 package edu.vt.FacadeBeans;
 
+import edu.vt.EntityBeans.UserRecipe;
 import edu.vt.EntityBeans.UserWorkout;
 
 import javax.ejb.Stateless;
@@ -36,6 +37,14 @@ public class UserWorkoutFacade extends AbstractFacade<UserWorkout> {
         return (List<UserWorkout>) getEntityManager().createQuery(
                         "Select c From UserWorkout c Where c.userId.id = :userId")
                 .setParameter("userId", id)
+                .getResultList();
+    }
+
+    public List<UserWorkout> findUserWorkoutsByName(int id, String name) {
+        return (List<UserWorkout>) getEntityManager().createQuery(
+                        "Select c From UserWorkout c Where c.userId.id = :userId AND c.name LIKE :name")
+                .setParameter("userId", id)
+                .setParameter("name", name)
                 .getResultList();
     }
 }

@@ -1,5 +1,6 @@
 package edu.vt.FacadeBeans;
 
+import edu.vt.EntityBeans.Recipe;
 import edu.vt.EntityBeans.Workout;
 
 import javax.ejb.Stateless;
@@ -33,5 +34,12 @@ public class WorkoutFacade extends AbstractFacade<Workout> {
      */
     public WorkoutFacade() {
         super(Workout.class);
+    }
+
+    public Workout findWorkoutById(int id) {
+        return (Workout) getEntityManager().createQuery(
+                        "Select c From Workout c Where c.id = :id")
+                .setParameter("id", id)
+                .getSingleResult();
     }
 }

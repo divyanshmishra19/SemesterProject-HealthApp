@@ -1,7 +1,6 @@
 package edu.vt.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.vt.EntityBeans.Recipe;
 import edu.vt.EntityBeans.User;
 import edu.vt.EntityBeans.UserRecipe;
 import edu.vt.EntityBeans.UserRecipeConsumed;
