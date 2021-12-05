@@ -34,7 +34,13 @@ public class NutritionalPlanController implements Serializable {
     @EJB
     private UserFacade userFacade;
 
+    @EJB
+    private NutritionalPlanFacade nutritionalPlanFacade;
+
     public List<NutritionalPlan> getListOfNutritionalPlans() {
+        if (listOfNutritionalPlans == null) {
+            listOfNutritionalPlans = nutritionalPlanFacade.findAll();
+        }
         return listOfNutritionalPlans;
     }
 
@@ -90,6 +96,14 @@ public class NutritionalPlanController implements Serializable {
         this.userFacade = userFacade;
     }
 
+    public NutritionalPlanFacade getNutritionalPlanFacade() {
+        return nutritionalPlanFacade;
+    }
+
+    public void setNutritionalPlanFacade(NutritionalPlanFacade nutritionalPlanFacade) {
+        this.nutritionalPlanFacade = nutritionalPlanFacade;
+    }
+
     public void unselect() {
         selected = null;
     }
@@ -97,13 +111,20 @@ public class NutritionalPlanController implements Serializable {
     public String cancel() {
         // Unselect previously selected nutritionalPlan object if any
         selected = null;
-        return "/health/List?faces-redirect=true";
+        return "/NutritionalPlan/PlanList?faces-redirect=true";
     }
 
-    public void optIn()
-    {
+    public void optIn() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User editUser = (User) sessionMap.get("user");
+
+        if(editUser==null)
+        {
+            Methods.preserveMessages();
+            Methods.showMessage("Error", "Log-In Required!",
+                    "You need to log-in to an existing account or create a new one to access this feature!");
+            return;
+        }
 
         //getting calorie goals from selected plan and updating user goals.
         double calorieIntakeGoal = selected.getDailyCalorieIntake();
@@ -115,8 +136,7 @@ public class NutritionalPlanController implements Serializable {
         //adding recipes from nutritional plan to user's custom list
         String recipeIds[] = selected.getRecipeIds().split(",");
         String recipeNames[] = selected.getRecipeNames().split(",");
-        for(int i=0;i<recipeIds.length;i++)
-        {
+        for (int i = 0; i < recipeIds.length; i++) {
             //get recipe from public list
             Recipe recipe = recipeFacade.findRecipeById(Integer.parseInt(recipeIds[i].trim()));
 
@@ -124,10 +144,9 @@ public class NutritionalPlanController implements Serializable {
             List<UserRecipe> userRecipeList = userRecipeFacade.findUserRecipesByName(editUser.getId(), recipeNames[i]);
 
             //if any recipe with this name already exists, we do not add it to the custom list again
-            if(userRecipeList!=null)
+            if (userRecipeList.size()!=0)
                 continue;
-            else
-            {
+            else {
                 UserRecipe userRecipe = new UserRecipe();
                 //no recipe with this name exists in user list, so we add it
                 userRecipe.setName(recipe.getName());
@@ -171,19 +190,17 @@ public class NutritionalPlanController implements Serializable {
         //adding workouts from nutritional plan to user's custom list
         String workoutIds[] = selected.getWorkoutIds().split(",");
         String workoutNames[] = selected.getWorkoutNames().split(",");
-        for(int i=0;i<workoutIds.length;i++)
-        {
+        for (int i = 0; i < workoutIds.length; i++) {
             //get workout from public list
             Workout workout = workoutFacade.findWorkoutById(Integer.parseInt(workoutIds[i].trim()));
 
             //check if workout of same name exists in user's custom workout list or not
-            List<UserWorkout> userWorkoutList = userWorkoutFacade.findUserWorkoutsByName(editUser.getId(), recipeNames[i]);
+            List<UserWorkout> userWorkoutList = userWorkoutFacade.findUserWorkoutsByName(editUser.getId(), workoutNames[i]);
 
             //if any workout with this name already exists, we do not add it to the custom list again
-            if(userWorkoutList!=null)
+            if (userWorkoutList.size()!=0)
                 continue;
-            else
-            {
+            else {
                 UserWorkout userWorkout = new UserWorkout();
                 //no workout with this name exists in user list, so we add it
                 userWorkout.setYoutubeTutorialVideoId(workout.getYoutubeTutorialVideoId());

@@ -52,6 +52,7 @@ siteTemplate for the entire site, achieving great maintainability.
                 <p:menuitem value="Weekly Reports" outcome="/reports/weeklyReports.xhtml"/>
             </p:submenu>
             <p:menuitem value="See Your Achievements" outcome="/Achievements/AchievementPage.xhtml"/>
+            <p:menuitem value="View Nutritional Plans" outcome="/NutritionalPlan/PlanList.xhtml"/>
             <c:if test="#{userController.isLoggedIn() == true}">
                 <p:menuitem value="My Account" outcome="/userAccount/Profile.xhtml"/>
             </c:if>
