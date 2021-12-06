@@ -174,20 +174,20 @@ public class UserRecipeController implements Serializable {
             selected.setCalories((Double) totalNutrients.get("ENERC_KCAL").get("quantity"));
 
             //fat and fat distribution
-            selected.setFatTotal((Double) totalNutrients.get("FAT").get("quantity"));
-            selected.setFatSat((Double) totalNutrients.get("FASAT").get("quantity"));
-            selected.setFatMono((Double) totalNutrients.get("FAMS").get("quantity"));
-            selected.setFatTrans((Double) totalNutrients.get("FATRN").get("quantity"));
-            selected.setFatPoly((Double) totalNutrients.get("FAPU").get("quantity"));
+            selected.setFatTotal(totalNutrients.containsKey("FAT")?(Double)totalNutrients.get("FAT").get("quantity"):0.0);
+            selected.setFatSat(totalNutrients.containsKey("FASAT")?(Double)totalNutrients.get("FASAT").get("quantity"):0.0);
+            selected.setFatMono(totalNutrients.containsKey("FAMS")?(Double)totalNutrients.get("FAMS").get("quantity"):0.0);
+            selected.setFatTrans(totalNutrients.containsKey("FATRN")?(Double)totalNutrients.get("FATRN").get("quantity"):0.0);
+            selected.setFatPoly(totalNutrients.containsKey("FAPU")?(Double)totalNutrients.get("FAPU").get("quantity"):0.0);
 
             //Macronutrients - Carbs, Proteins...
             selected.setCarbs((Double) totalNutrients.get("CHOCDF").get("quantity"));
             selected.setProtein((Double) totalNutrients.get("PROCNT").get("quantity"));
 
             //Contribution of macronutrients to daily requirement...
-            selected.setProteinCal(((Integer) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity")) * 1.0);
-            selected.setCarbCal(((Integer) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity")) * 1.0);
-            selected.setFatCal(((Integer) totalNutrientsKCal.get("FAT_KCAL").get("quantity")) * 1.0);
+            selected.setProteinCal(totalNutrientsKCal.containsKey("PROCNT_KCAL")?((Integer) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity")) * 1.0:0);
+            selected.setCarbCal(totalNutrientsKCal.containsKey("CHOCDF_KCAL")?((Integer) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity")) * 1.0:0);
+            selected.setFatCal(totalNutrientsKCal.containsKey("FAT_KCAL")?((Integer) totalNutrientsKCal.get("FAT_KCAL").get("quantity")) * 1.0:0);
 
             //Micronutrients - Minerals
             selected.setSodium((Double) totalNutrients.get("NA").get("quantity"));
@@ -218,7 +218,7 @@ public class UserRecipeController implements Serializable {
     public void create() throws IOException {
         Methods.preserveMessages();
         setApiResponse();
-        persist(JsfUtil.PersistAction.CREATE, "Public Video was successfully created.");
+        persist(JsfUtil.PersistAction.CREATE, "Recipe was successfully added to your custom list.");
 
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The CREATE operation is successfully performed.
