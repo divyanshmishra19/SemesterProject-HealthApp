@@ -18,65 +18,173 @@
     -->
     <p:dialog id="RecipeViewDlg" header="View User Recipe Details" widgetVar="RecipeViewDialog"
               modal="true" position="center" appendTo="@(body)"
-              showEffect="slide" hideEffect="fade" responsive="true" width="30%" height="300">
+              showEffect="slide" hideEffect="fade" responsive="true" width="50%" height="500">
 
         <h:form id="RecipeViewForm" class="ui-datatable-data">
             <div align="center">
                 <h:panelGroup id="display">
                     <br /><br />
                     <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
-                                 rendered="#{recipeController.selected != null}">
+                                 rendered="#{userRecipeController.selected != null}">
 
                         <!--
                         *********************
-                        *    Video Title    *
+                        *    Recipe Name    *
                         *********************
                         -->
                         <h:outputText value="Name:"/>
-                        <h:outputText value="#{recipeController.selected.name}" />
+                        <h:outputText value="#{userRecipeController.selected.name}" />
 
                         <!--
-                        ***********************
-                        *   Video Description *
-                        ***********************
+                        **********************
+                        *   Recipe Calories  *
+                        **********************
                         -->
                         <h:outputText value="Calories:"/>
-                        <h:outputText value="#{recipeController.selected.calories}" />
+                        <h:outputText value="#{userRecipeController.selected.calories}" />
+
+                        <!--
+                        *************************
+                        *   Recipe Fat Content  *
+                        *************************
+                        -->
+                        <h:outputText value="Total Fat:"/>
+                        <h:outputText value="#{userRecipeController.selected.fatTotal}" />
 
                         <!--
                         *********************
-                        *   Video YouTubeID *
+                        *   Saturated Fats  *
+                        *********************
+                        -->
+                        <h:outputText value="Saturated Fat:"/>
+                        <h:outputText value="#{userRecipeController.selected.fatSat}" />
+
+                        <!--
+                        ************************
+                        *   Trans Fat Content  *
+                        ************************
+                        -->
+                        <h:outputText value="Trans Fat:"/>
+                        <h:outputText value="#{userRecipeController.selected.fatTrans}" />
+
+                        <!--
+                        **********************************
+                        *   Monounsaturated Fat Content  *
+                        **********************************
+                        -->
+                        <h:outputText value="Monounsaturated Fat:"/>
+                        <h:outputText value="#{userRecipeController.selected.fatMono}" />
+
+                        <!--
+                        **********************************
+                        *   Polyunsaturated Fat Content  *
+                        **********************************
+                        -->
+                        <h:outputText value="Polyunsaturated Fat:"/>
+                        <h:outputText value="#{userRecipeController.selected.fatPoly}" />
+
+                        <!--
+                        ********************
+                        *   Fat Calories   *
+                        ********************
+                        -->
+                        <h:outputText value="Fat Calories:"/>
+                        <h:outputText value="#{userRecipeController.selected.fatCal}" />
+
+                        <!--
+                        *********************
+                        *   Carbs Content   *
                         *********************
                         -->
                         <h:outputText value="Carbohydrates:"/>
-                        <h:outputText value="#{recipeController.selected.carbs}" />
+                        <h:outputText value="#{userRecipeController.selected.carbs}" />
 
                         <!--
                         *********************
-                        *   Video Duration  *
+                        *   Carbs Calories  *
                         *********************
                         -->
-                        <h:outputText value="Total Fat:"/>
-                        <h:outputText value="#{recipeController.selected.fatTotal}" />
+                        <h:outputText value="Carbohydrates Calories:"/>
+                        <h:outputText value="#{userRecipeController.selected.carbCal}" />
 
                         <!--
-                        ******************
-                        *   Video Date   *
-                        ******************
+                        ***********************
+                        *   Protein Content   *
+                        ***********************
                         -->
                         <h:outputText value="Protein:"/>
-                        <h:outputText value="#{recipeController.selected.protein}" />
+                        <h:outputText value="#{userRecipeController.selected.protein}" />
 
                         <!--
-                        *********************
-                        *   Video Category  *
-                        *********************
+                        ************************
+                        *   Protein Calories   *
+                        ************************
+                        -->
+                        <h:outputText value="Protein Calories:"/>
+                        <h:outputText value="#{userRecipeController.selected.proteinCal}" />
+
+                        <!--
+                        ************************
+                        *   Sodium Content   *
+                        ************************
+                        -->
+                        <h:outputText value="Sodium:"/>
+                        <h:outputText value="#{userRecipeController.selected.sodium}" />
+
+                        <!--
+                        ***********************
+                        *   Calcium Content   *
+                        ***********************
+                        -->
+                        <h:outputText value="Calcium:"/>
+                        <h:outputText value="#{userRecipeController.selected.calcium}" />
+
+                        <!--
+                        *************************
+                        *   Magnesium Content   *
+                        *************************
+                        -->
+                        <h:outputText value="Magnesium:"/>
+                        <h:outputText value="#{userRecipeController.selected.magnesium}" />
+
+                        <!--
+                        *************************
+                        *   Potassium Content   *
+                        *************************
+                        -->
+                        <h:outputText value="Potassium:"/>
+                        <h:outputText value="#{userRecipeController.selected.potassium}" />
+
+                        <!--
+                        ********************
+                        *   Iron Content   *
+                        ********************
+                        -->
+                        <h:outputText value="Iron:"/>
+                        <h:outputText value="#{userRecipeController.selected.iron}" />
+
+                        <!--
+                        ********************
+                        *   Zinc Content   *
+                        ********************
+                        -->
+                        <h:outputText value="Zinc:"/>
+                        <h:outputText value="#{userRecipeController.selected.zinc}" />
+                        <!--
+                        ******************
+                        *   Diet Labels  *
+                        ******************
                         -->
                         <h:outputText value="Diet Labels:"/>
-                        <h:outputText value="#{recipeController.selected.dietLabels}" />
+                        <h:outputText value="#{userRecipeController.selected.dietLabels}" />
 
+                        <!--
+                        ******************
+                        *   Ingredients  *
+                        ******************
+                        -->
                         <h:outputText value="Ingredients:"/>
-                        <h:outputText value="#{recipeController.selected.ingredients}" />
+                        <h:outputText value="#{userRecipeController.selected.ingredients}" />
                     </p:panelGrid>
                 </h:panelGroup>
                 <br /><br />

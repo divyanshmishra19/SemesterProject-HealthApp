@@ -42,7 +42,8 @@
 
                                 <div class="card">
                                     <div class="speeddial-circle-demo" style="position: relative; height: 500px;">
-                                        <p:speedDial radius="150" direction="right" type="semi-circle" buttonStyleClass="ui-button-success">
+                                        <p:speedDial radius="170" direction="right" type="semi-circle" buttonStyleClass="ui-button-success">
+                                            <p:menuitem icon="pi pi-sign-out" title="Sign Out" actionListener="#{userController.logout()}"/>
                                             <p:menuitem icon="pi pi-trash" oncomplete="PF('SecurityQuestionDialog').show()" update=":SecurityQuestionForm" title="Delete Account">
                                                 <p:confirm header="Account Deletion Confirmation"
                                                            message="Are you sure to permanently delete your account? This cannot be undone!" />
@@ -65,9 +66,7 @@
                                             <p:menuitem icon="pi pi-chart-line" outcome="/reports/dailyReports" title="Daily Report"/>
                                             <p:menuitem icon="pi pi-thumbs-up" outcome="/Achievements/AchievementPage" title="My Achievements"/>
                                             <p:menuitem icon="pi pi-list" outcome="/userWorkout/List" title="My Workouts"/>
-                                            <p:menuitem icon="pi pi-list" outcome="/userRecipe/List" title="My Recipes">
-                                                <i class="fa-light fa-pot-food"/>
-                                            </p:menuitem>
+                                            <p:menuitem icon="pi pi-list" outcome="/userRecipe/List" title="My Recipes"/>
                                             <p:menuitem icon="pi pi-home" outcome="/index" title="Home"/>
                                         </p:speedDial>
                                     </div>

@@ -366,7 +366,7 @@ body .ui-panel .ui-panel-content {
 }
 
 body .ui-datatable .ui-datatable-header {
-    background: grey;
+    background: #495057;
     border: 1px solid #e9ecef;
     border-width: 1px 0 1px 0;
     color: white;
@@ -377,14 +377,14 @@ body .ui-datatable .ui-datatable-header {
 }
 
 body .ui-paginator {
-    background: grey;
+    background: #495057;
     border: solid #e9ecef;
     border-width: 0;
     padding: 1rem;
 }
 
 body .ui-datatable .ui-datatable-footer {
-    background: grey;
+    background: #495057;
     border: 1px solid #e9ecef;
     border-width: 0 0 1px 0;
     color: white;
@@ -402,7 +402,7 @@ body .ui-datatable .ui-datatable-footer {
 }
 
 body .ui-datatable thead th {
-    background: grey;
+    background: #495057;
     color: white;
     padding: 1rem 1rem;
     border: 1px solid #e9ecef;
@@ -419,7 +419,7 @@ body .ui-datatable .ui-datatable-data > tr > td {
 }
 
 body .ui-datatable .ui-datatable-data > tr {
-    background: grey;
+    background: #495057;
     color: white;
     transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
@@ -445,7 +445,7 @@ body .ui-button {
 
 body .ui-panelgrid .ui-panelgrid-cell {
     border: 1px solid #dee2e6;
-    background: grey;
+    background: #495057;
     color: white;
     padding: 1rem;
 }
@@ -455,7 +455,7 @@ body .ui-panelgrid .ui-panelgrid-cell {
     white-space: nowrap;
     padding-top: 5px !important;
     padding-bottom: 5px !important;
-    background-color: grey !important;
+    background-color: #495057 !important;
 }
 
 body .ui-button.ui-button-text-icon-left .ui-button-text {
@@ -486,7 +486,7 @@ body .ui-icon {
 /* User Account table */
 body .ui-panelgrid .ui-panelgrid-cell {
     border: 1px solid #dee2e6;
-    background: grey;
+    background: #495057;
     color: white;
     padding: 1rem;
 }
@@ -498,7 +498,7 @@ body .ui-button.ui-button-outlined {
 }
 
 body .ui-button.ui-button-outlined.ui-state-hover {
-    background-color: transparent;
+    background-color: black;
     color: white;
     border: 1px solid;
 }
@@ -529,7 +529,7 @@ body .ui-paginator .ui-paginator-first, body .ui-paginator .ui-paginator-prev, b
 /* User Edit Profile */
 body .ui-panelgrid .ui-panelgrid-cell {
     border: 1px solid #dee2e6;
-    background: grey;
+    background: #495057;
     color: white;
     padding: 1rem;
 }
