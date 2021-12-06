@@ -114,6 +114,20 @@
                                                  update=":RecipeViewDlg" oncomplete="PF('RecipeViewDialog').show()"
                                                  disabled="#{empty userRecipeController.selected}"/>
 
+                                <!-- DELETE button: id is used since it is referenced to be activated or deactivated -->
+                                <p:commandButton id="deleteButton" value="Delete" icon="fas fa-trash-alt"  styleClass="rounded-button"
+                                                 actionListener="#{userRecipeController.destroy()}"
+                                                 update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
+                                                 disabled="#{empty userRecipeController.selected}">
+
+                                    <p:confirm header="Deletion Confirmation" message="Are you sure you want to permanently delete the selected User Recipe #{userWorkoutController.selected.name} from the database?"/>
+                                </p:commandButton>
+                                <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                    <div align="center">
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fas fa-window-close" />
+                                        <p:commandButton value="Yes" type="button" class="ui-confirmdialog-yes ui-button-danger" icon="fas fa-check-square" />
+                                    </div>
+                                </p:confirmDialog>
                                 &nbsp;&nbsp;
                                 <!-- ADD button -->
                                 <p:commandButton id="addButton" value="Add To Day" icon="fas fa-share" styleClass="rounded-button"
