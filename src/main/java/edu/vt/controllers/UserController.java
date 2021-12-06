@@ -7,9 +7,11 @@ package edu.vt.controllers;
 import edu.vt.EntityBeans.User;
 import edu.vt.EntityBeans.UserPhoto;
 import edu.vt.EntityBeans.UserRecipe;
+import edu.vt.EntityBeans.UserWorkout;
 import edu.vt.FacadeBeans.UserFacade;
 import edu.vt.FacadeBeans.UserPhotoFacade;
 import edu.vt.FacadeBeans.UserRecipeFacade;
+import edu.vt.FacadeBeans.UserWorkoutFacade;
 import edu.vt.controllers.util.JsfUtil;
 import edu.vt.globals.Constants;
 import edu.vt.globals.Methods;
@@ -83,6 +85,9 @@ public class UserController implements Serializable {
      */
     @EJB
     private UserRecipeFacade userRecipeFacade;
+
+    @EJB
+    private UserWorkoutFacade userWorkoutFacade;
 
     /*
     =========================
@@ -532,7 +537,9 @@ public class UserController implements Serializable {
             deleteAllUserPhotos(userPrimaryKey);
 
             // Delete all of the user files associated with the signed-in user whose primary key is userPrimaryKey
-            deleteAllUserVideos(userPrimaryKey);
+            deleteAllUserRecipes(userPrimaryKey);
+
+            deleteAllUserWorkouts(userPrimaryKey);
 
             // Delete the User entity from the database
             userFacade.deleteUser(userPrimaryKey);
@@ -691,12 +698,11 @@ public class UserController implements Serializable {
     object whose database primary key is primaryKey
     ***********************************************
      */
-    public void deleteAllUserVideos(int primaryKey) {
-        /*
-        List<UserVideo> videoList = userVideoFacade.findVideosByUserId(primaryKey);
+    public void deleteAllUserRecipes(int primaryKey) {
+        List<UserRecipe> recipeList = userRecipeFacade.findRecipesByUserId(primaryKey);
         try {
-            for (UserVideo video : videoList)
-                userVideoFacade.remove(video);
+            for (UserRecipe recipe : recipeList)
+                userRecipeFacade.remove(recipe);
         } catch (EJBException ex) {
             String msg = "";
             Throwable cause = ex.getCause();
@@ -709,8 +715,24 @@ public class UserController implements Serializable {
                 JsfUtil.addErrorMessage(ex, "A persistence error occurred.");
             }
         }
+    }
 
-         */
-
+    public void deleteAllUserWorkouts(int primaryKey) {
+        List<UserWorkout> workoutList = userWorkoutFacade.findWorkoutsByUserId(primaryKey);
+        try {
+            for (UserWorkout workout : workoutList)
+                userWorkoutFacade.remove(workout);
+        } catch (EJBException ex) {
+            String msg = "";
+            Throwable cause = ex.getCause();
+            if (cause != null) {
+                msg = cause.getLocalizedMessage();
+            }
+            if (msg.length() > 0) {
+                JsfUtil.addErrorMessage(msg);
+            } else {
+                JsfUtil.addErrorMessage(ex, "A persistence error occurred.");
+            }
+        }
     }
 }
