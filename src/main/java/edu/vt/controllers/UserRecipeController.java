@@ -121,7 +121,7 @@ public class UserRecipeController implements Serializable {
     public String cancel() {
         // Unselect previously selected userRecipe object if any
         selected = null;
-        return "/health/List?faces-redirect=true";
+        return "/userRecipe/List?faces-redirect=true";
     }
 
 

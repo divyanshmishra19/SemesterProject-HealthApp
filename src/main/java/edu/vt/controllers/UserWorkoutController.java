@@ -102,7 +102,7 @@ public class UserWorkoutController implements Serializable {
     public String cancel() {
         // Unselect previously selected movie object if any
         selected = null;
-        return "/health/WorkoutList?faces-redirect=true";
+        return "/userWorkout/List?faces-redirect=true";
     }
 
     public void prepareCreate() {
