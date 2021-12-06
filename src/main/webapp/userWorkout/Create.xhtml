@@ -59,8 +59,8 @@
                                      ajax="false" actionListener="#{userWorkoutController.create()}"
                                      update="display,:WorkoutListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
                                      oncomplete="handleSubmit(args,'WorkoutCreateDialog');" >
-                    <f:actionListener binding="#{userWorkoutController.selected.setUserId(userController.selected)}"/>
-                    <f:actionListener binding="#{userWorkoutController.create()}"/>
+                        <f:actionListener binding="#{userWorkoutController.selected.setUserId(userController.selected)}"/>
+                        <f:actionListener binding="#{userWorkoutController.create()}"/>
                     </p:commandButton>
                     &nbsp;
                     <!--

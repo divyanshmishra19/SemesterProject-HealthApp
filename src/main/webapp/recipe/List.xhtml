@@ -60,42 +60,38 @@
                         </f:facet>
 
 
-                        <p:column headerText="Name" sortBy="#{aRecipe.name}"
+                        <p:column headerText="Name"
                                   filterBy="#{aRecipe.name}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.name}"/>
                         </p:column>
 
                         <p:column headerText="Calories" sortBy="#{aRecipe.calories}"
-                                  filterBy="#{aRecipe.calories}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.calories}"/>
                         </p:column>
 
                         <p:column headerText="Carbohydrate (grams)" sortBy="#{aRecipe.carbs}"
-                                  filterBy="#{aRecipe.carbs}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.carbs}"/>
                         </p:column>
                         <p:column headerText="Fat (grams)" sortBy="#{aRecipe.fatTotal}"
-                                  filterBy="#{aRecipe.fatTotal}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.fatTotal}"/>
                         </p:column>
                         <p:column headerText="Protein (grams)" sortBy="#{aRecipe.protein}"
-                                  filterBy="#{aRecipe.protein}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.protein}"/>
                         </p:column>
 
-                        <p:column headerText="Diet Labels" sortBy="#{aRecipe.dietLabels}"
+                        <p:column headerText="Diet Labels"
                                   filterBy="#{aRecipe.dietLabels}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.dietLabels}"/>
                         </p:column>
 
 
-                        <p:column headerText="Ingredients" sortBy="#{aRecipe.ingredients}"
+                        <p:column headerText="Ingredients"
                                   filterBy="#{aRecipe.ingredients}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.ingredients}"/>

@@ -65,7 +65,7 @@
                         *   Workout Name   *
                         ********************
                         -->
-                        <p:column headerText="Name" sortBy="#{aWorkout.name}"
+                        <p:column headerText="Name"
                                   filterBy="#{aWorkout.name}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aWorkout.name}"/>
@@ -88,7 +88,6 @@
                         -->
 
                         <p:column headerText="BurnRate" sortBy="#{aWorkout.burnRate}"
-                                  filterBy="#{aWorkout.burnRate}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aWorkout.burnRate}"/>
                         </p:column>

@@ -62,20 +62,18 @@
                         </f:facet>
 
 
-                        <p:column headerText="Name" sortBy="#{aPlan.name}"
+                        <p:column headerText="Name"
                                   filterBy="#{aPlan.name}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aPlan.name}"/>
                         </p:column>
 
                         <p:column headerText="Calories Burn Goal" sortBy="#{aPlan.dailyCalorieBurn}"
-                                  filterBy="#{aPlan.dailyCalorieBurn}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aPlan.dailyCalorieBurn}"/>
                         </p:column>
 
                         <p:column headerText="Calories Intake Goal" sortBy="#{aPlan.dailyCalorieIntake}"
-                                  filterBy="#{aPlan.dailyCalorieIntake}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aPlan.dailyCalorieIntake}"/>
                         </p:column>
@@ -86,7 +84,7 @@
                             <h:outputText value="#{aPlan.workoutNames}"/>
                         </p:column>
 
-                        <p:column headerText="Recipes Suggested" sortBy="#{aPlan.recipeNames}"
+                        <p:column headerText="Recipes Suggested"
                                   filterBy="#{aPlan.recipeNames}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aPlan.recipeNames}"/>

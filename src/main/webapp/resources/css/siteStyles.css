@@ -331,7 +331,7 @@ cascading hierarchy, use the !important attribute.
 /* My Additions- Neel */
 body .ui-menu.ui-menubar {
     padding: 0.1rem;
-    background: grey;
+    background: #f8f9fa;
     border-radius: 0px;
     border: none;
 }
@@ -340,7 +340,7 @@ body .ui-menu .ui-menu-list .ui-menuitem .ui-menuitem-link .ui-menuitem-text {
     float: none;
     vertical-align: middle;
     color: black;
-    background-color: white;
+    background-color: #ffffff00;
 }
 
 body .ui-panel .ui-panel-titlebar {
