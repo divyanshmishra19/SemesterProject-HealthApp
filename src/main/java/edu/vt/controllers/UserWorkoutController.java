@@ -115,6 +115,9 @@ public class UserWorkoutController implements Serializable {
 
 
     public void create() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+        selected.setUserId(signedInUser);
         Methods.preserveMessages();
 
         persist(JsfUtil.PersistAction.CREATE, "User Workout Routine was successfully created.");
@@ -127,6 +130,9 @@ public class UserWorkoutController implements Serializable {
     }
 
     public void update() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+        selected.setUserId(signedInUser);
         Methods.preserveMessages();
 
         persist(JsfUtil.PersistAction.UPDATE, "User Workout Routine successfully updated.");
@@ -139,6 +145,9 @@ public class UserWorkoutController implements Serializable {
     }
 
     public void destroy() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+        selected.setUserId(signedInUser);
         Methods.preserveMessages();
 
         persist(JsfUtil.PersistAction.DELETE, "User Workout Routine successfully deleted.");

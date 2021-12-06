@@ -228,6 +228,9 @@ public class UserRecipeController implements Serializable {
     }
 
     public void destroy() {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+        selected.setUserId(signedInUser);
         Methods.preserveMessages();
 
         persist(JsfUtil.PersistAction.DELETE, "User Recipe was successfully deleted.");
