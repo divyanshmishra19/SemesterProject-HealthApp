@@ -24,7 +24,7 @@ siteTemplate for the entire site, achieving great maintainability.
     <h:form>
         <p:menubar>
             <p:menuitem outcome="/index.html">
-                <img src="#{resource['images:HealthTech-logo.png']}" style="height:60px; vertical-align: middle" alt="Health Tech Logo"/>
+                <img src="#{resource['images:HealthTech-logo.png']}" style="height:50px; vertical-align: middle" alt="Health Tech Logo"/>
             </p:menuitem>
             <p:divider layout="vertical"/>
             <p:submenu label="Recipes">
@@ -70,13 +70,8 @@ siteTemplate for the entire site, achieving great maintainability.
             <c:if test="#{userController.isLoggedIn() == true}">
                 <p:menuitem value="See Your Achievements" outcome="/Achievements/AchievementPage.xhtml"/>
             </c:if>
-            <c:if test="#{userController.isLoggedIn() == false}">
-                <p:menuitem value="View Nutritional Plans" update=":LogInDlg"
-                            oncomplete="PF('LogInDialog').show()"/>
-            </c:if>
-            <c:if test="#{userController.isLoggedIn() == true}">
-                <p:menuitem value="View Nutritional Plans" outcome="/NutritionalPlan/PlanList.xhtml"/>
-            </c:if>
+
+            <p:menuitem value="View Nutritional Plans" outcome="/NutritionalPlan/PlanList.xhtml"/>
 
             <c:if test="#{userController.isLoggedIn() == true}">
                 <p:menuitem value="My Account" outcome="/userAccount/Profile.xhtml"/>

@@ -330,8 +330,8 @@ cascading hierarchy, use the !important attribute.
 
 /* My Additions- Neel */
 body .ui-menu.ui-menubar {
-    padding: 0.5rem;
-    background: white;
+    padding: 0.1rem;
+    background: grey;
     border-radius: 0px;
     border: none;
 }

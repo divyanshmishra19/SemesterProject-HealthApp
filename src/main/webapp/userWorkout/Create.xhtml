@@ -58,7 +58,10 @@
                     <p:commandButton value="Save" icon="fas fa-save" styleClass="rounded-button"
                                      ajax="false" actionListener="#{userWorkoutController.create()}"
                                      update="display,:WorkoutListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
-                                     oncomplete="handleSubmit(args,'WorkoutCreateDialog');" />
+                                     oncomplete="handleSubmit(args,'WorkoutCreateDialog');" >
+                    <f:actionListener binding="#{userWorkoutController.selected.setUserId(userController.selected)}"/>
+                    <f:actionListener binding="#{userWorkoutController.create()}"/>
+                    </p:commandButton>
                     &nbsp;
                     <!--
                     CANCEL button: Call the cancel() method immediately without first rendering this JSF page.
