@@ -40,10 +40,14 @@
 
 
                     <p:outputLabel value="Category:" for="category" />
-                    <p:inputText id="category" value="#{userWorkoutController.selected.category}" style="width:400px"
-                                 required="true" requiredMessage="Workout Category is required!"/>
-
-
+                    <p:selectOneMenu id="category" value="#{userWorkoutController.selected.category}" style="width:400px"
+                                 required="true" requiredMessage="Workout Category is required!">
+                        <f:selectItem itemLabel="Select Workout Category"   itemValue="" noSelectionOption="true"/>
+                        <f:selectItem itemLabel="Calisthenics" itemValue="Calisthenics"/>
+                        <f:selectItem itemLabel="Cardio" itemValue="Cardio"/>
+                        <f:selectItem itemLabel="Strength" itemValue="Strength"/>
+                        <f:selectItem itemLabel="HIIT" itemValue="HIIT"/>
+                    </p:selectOneMenu>
                 </p:panelGrid>
             </h:panelGroup>
 

@@ -18,14 +18,116 @@
 
     <ui:define name="editableContent">
         <div class="card">
-            <p:graphicImage value="#{reportController.weeklyCalorieChart}" title="Daily Calories Consumed" style="margin: 40px" stream="false"/>
-            <p:graphicImage value="#{reportController.weeklyWorkout}" title="Daily Calories Burnt" style="margin: 40px" stream="false"/>
-            <p:graphicImage value="#{reportController.weeklyFatsChart}" title="Daily Fat Distribution" stream="false"/>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.weeklyCalorieChart}" title="Daily Calories Consumed" style="margin: 40px" stream="false"/>
+                <table id="display1" style="width: 100%; background-color: black; text-align: center; border-collapse: separate; border-spacing: 0 15px; border: solid green 2px;" cellspacing="1" cellpadding="10">
+                    <tbody>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #ecaa8e; color:black; width: 50px; height: 25px">Calories Consumed</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: yellow; color:black; width: 50px; height: 25px">Calories left</label><br/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.weeklyWorkout}" title="Daily Calories Burnt" style="margin: 40px" stream="false"/>
+                <table id="display2" style="width: 100%; background-color: black; text-align: center; border-collapse: separate; border-spacing: 0 15px; border: solid green 2px;" cellspacing="1" cellpadding="10">
+                    <tbody>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #ecaa8e; color:black; width: 50px; height: 25px">Burnt Calories</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: yellow; color:black; width: 50px; height: 25px">Calories Burnt Extra</label><br/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.weeklyFatsChart}" title="Daily Fat Distribution" stream="false"/>
+                <table id="display3" style="width: 100%; background-color: black; text-align: center; border-collapse: separate; border-spacing: 0 15px; border: solid green 2px;" cellspacing="1" cellpadding="10">
+                    <tbody>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #ecaa8e; color:black; width: 50px; height: 25px">Saturated</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: yellow; color:black; width: 50px; height: 25px">Trans</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #b5cca0; color:black; width: 50px; height: 25px">Mono-Unsaturated</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #1b7685; color:black; width: 50px; height: 25px">Poly-Unsaturated</label><br/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div class="card">
-            <p:graphicImage value="#{reportController.weeklyMicronutrients}" title="Daily Micronutrients Consumption" style="margin: 40px" stream="false"/>
-            <p:graphicImage value="#{reportController.weeklyCategoryWiseCalories}" title="Daily Workout Categories" style="margin: 40px" stream="false"/>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.weeklyMicronutrients}" title="Daily Micronutrients Consumption" style="margin: 40px" stream="false"/>
+                <table id="display4" style="width: 100%; background-color: black; text-align: center; border-collapse: separate; border-spacing: 0 15px; border: solid green 2px;" cellspacing="1" cellpadding="10">
+                    <tbody>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #ecaa8e; color:black; width: 50px; height: 25px">Sodium</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: yellow; color:black; width: 50px; height: 25px">Calcium</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #b5cca0; color:black; width: 50px; height: 25px">Magnesium</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #1b7685; color:black; width: 50px; height: 25px">Potassium</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #dca8f8; color:black; width: 50px; height: 25px">Iron</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #002d88; color:black; width: 50px; height: 25px">Zinc</label><br/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.weeklyCategoryWiseCalories}" title="Daily Workout Categories" style="margin: 40px" stream="false"/>
+                <table id="display5" style="width: 100%; background-color: black; text-align: center; border-collapse: separate; border-spacing: 0 15px; border: solid green 2px;" cellspacing="1" cellpadding="10">
+                    <tbody>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #ecaa8e; color:black; width: 50px; height: 25px">Calisthenics</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: yellow; color:black; width: 50px; height: 25px">Cardio</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #b5cca0; color:black; width: 50px; height: 25px">Strength</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #1b7685; color:black; width: 50px; height: 25px">HIIT</label><br/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
     </ui:define>
