@@ -49,6 +49,25 @@
                 </table>
             </div>
             <div class="report-box">
+                <p:graphicImage value="#{reportController.weeklyCalorieSplit}" title="Weekly Calorie Split-Up" style="margin: 40px" stream="false"/>
+                <table id="display6" style="width: 100%; background-color: black; text-align: center; border-collapse: separate; border-spacing: 0 15px; border: solid green 2px;" cellspacing="1" cellpadding="10">
+                    <tbody>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #ecaa8e; color:black; width: 50px; height: 25px">Carbs</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: yellow; color:black; width: 50px; height: 25px">Fats</label><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label style="font-style: italic; background-color: #b5cca0; color:black; width: 50px; height: 25px">Proteins</label><br/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="report-box">
                 <p:graphicImage value="#{reportController.weeklyFatsChart}" title="Daily Fat Distribution" stream="false"/>
                 <table id="display3" style="width: 100%; background-color: black; text-align: center; border-collapse: separate; border-spacing: 0 15px; border: solid green 2px;" cellspacing="1" cellpadding="10">
                     <tbody>

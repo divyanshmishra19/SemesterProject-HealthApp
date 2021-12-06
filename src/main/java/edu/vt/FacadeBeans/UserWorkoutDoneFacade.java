@@ -30,7 +30,7 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
 
     public List<Double> getCategoryWiseCalories(Date date, Integer userId) {
         String category[] = {"Calisthenics", "Cardio", "Strength", "HIIT"};
-        Double calis = (Double) getEntityManager().createQuery(
+        Long calis = (Long) getEntityManager().createQuery(
                         "SELECT SUM(c.calories) FROM UserWorkoutDone c " +
                                 "JOIN UserWorkout d on c.workoutId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date AND d.category LIKE :category")
@@ -39,7 +39,7 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
                 .setParameter("category", category[0])
                 .getSingleResult();
 
-        Double cardio = (Double) getEntityManager().createQuery(
+        Long cardio = (Long) getEntityManager().createQuery(
                         "SELECT SUM(c.calories) FROM UserWorkoutDone c " +
                                 "JOIN UserWorkout d on c.workoutId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date AND d.category LIKE :category")
@@ -48,7 +48,7 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
                 .setParameter("category", category[1])
                 .getSingleResult();
 
-        Double strength = (Double) getEntityManager().createQuery(
+        Long strength = (Long) getEntityManager().createQuery(
                         "SELECT SUM(c.calories) FROM UserWorkoutDone c " +
                                 "JOIN UserWorkout d on c.workoutId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date AND d.category LIKE :category")
@@ -57,7 +57,7 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
                 .setParameter("category", category[2])
                 .getSingleResult();
 
-        Double hiit = (Double) getEntityManager().createQuery(
+        Long hiit = (Long) getEntityManager().createQuery(
                         "SELECT SUM(c.calories) FROM UserWorkoutDone c " +
                                 "JOIN UserWorkout d on c.workoutId = d " +
                                 "Where d.userId.id = :userId AND c.date = :date AND d.category LIKE :category")
@@ -68,10 +68,10 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
 
         List<Double> categoryWiseCalories = new ArrayList<>();
 
-        categoryWiseCalories.add(calis!=null?calis:0.0);
-        categoryWiseCalories.add(cardio!=null?cardio:0.0);
-        categoryWiseCalories.add(strength!=null?strength:0.0);
-        categoryWiseCalories.add(hiit!=null?hiit:0.0);
+        categoryWiseCalories.add(calis != null ? calis.doubleValue() : 0.0);
+        categoryWiseCalories.add(cardio != null ? cardio.doubleValue() : 0.0);
+        categoryWiseCalories.add(strength != null ? strength.doubleValue() : 0.0);
+        categoryWiseCalories.add(hiit != null ? hiit.doubleValue() : 0.0);
 
         return categoryWiseCalories;
     }
@@ -84,7 +84,7 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
                 .setParameter("userId", userId)
                 .setParameter("date", date)
                 .getSingleResult();
-        if(ans==null)
+        if (ans == null)
             return 0;
         return ans.intValue();
     }

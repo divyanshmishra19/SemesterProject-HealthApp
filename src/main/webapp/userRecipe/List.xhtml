@@ -41,8 +41,8 @@
                                  rows="5"
                                  rowsPerPageTemplate="5,10,20,30,50,70,90"
                                  emptyMessage="No Recipe found for the search query entered!">
-                        <p:ajax event="rowSelect"   update="createButton viewButton addButton "/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton addButton "/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton addButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton addButton deleteButton"/>
                         <!--
                         *************************
                         *   Data Table Header   *
@@ -113,7 +113,7 @@
                                 <p:commandButton id="viewButton" value="View" icon="fas fa-eye" styleClass="rounded-button"
                                                  update=":RecipeViewDlg" oncomplete="PF('RecipeViewDialog').show()"
                                                  disabled="#{empty userRecipeController.selected}"/>
-
+                                &nbsp;
                                 <!-- DELETE button: id is used since it is referenced to be activated or deactivated -->
                                 <p:commandButton id="deleteButton" value="Delete" icon="fas fa-trash-alt"  styleClass="rounded-button"
                                                  actionListener="#{userRecipeController.destroy()}"
