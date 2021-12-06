@@ -18,11 +18,11 @@
     -->
     <p:dialog id="RecipeViewDlg" header="View User Recipe Details" widgetVar="RecipeViewDialog"
               modal="true" position="center" appendTo="@(body)"
-              showEffect="slide" hideEffect="fade" responsive="true" width="50%" height="400">
+              showEffect="slide" hideEffect="fade" responsive="true" width="30%" height="300">
 
         <h:form id="RecipeViewForm" class="ui-datatable-data">
             <div align="center">
-                <h:panelGroup id="display" >
+                <h:panelGroup id="display">
                     <br /><br />
                     <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
                                  rendered="#{recipeController.selected != null}">

@@ -491,6 +491,41 @@ body .ui-panelgrid .ui-panelgrid-cell {
     padding: 1rem;
 }
 
+body .ui-button.ui-button-outlined {
+    background-color: #000000;
+    color: #f8f9fa;
+    border: 1px solid;
+}
+
+body .ui-button.ui-button-outlined.ui-state-hover {
+    background-color: transparent;
+    color: white;
+    border: 1px solid;
+}
+
+body .ui-button.ui-state-hover {
+    background-color: black;
+    color: white;
+    opacity: 0.8;
+}
+
+body .ui-button.ui-button-outlined.ui-state-active, body .ui-button.ui-button-outlined.ui-state-down {
+    background-color: white;
+    color: black;
+}
+
+body .ui-paginator .ui-paginator-first, body .ui-paginator .ui-paginator-prev, body .ui-paginator .ui-paginator-next, body .ui-paginator .ui-paginator-last {
+    color: #ffffff;
+    width: 2.286em;
+    height: 2.286em;
+    margin: 0 0.125em;
+    border: 1px solid transparent;
+    vertical-align: top;
+    padding: 0;
+    border-radius: 4px;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
 /* User Edit Profile */
 body .ui-panelgrid .ui-panelgrid-cell {
     border: 1px solid #dee2e6;
@@ -499,7 +534,12 @@ body .ui-panelgrid .ui-panelgrid-cell {
     padding: 1rem;
 }
 
+body .ui-datatable .ui-datatable-data > tr.ui-state-highlight {
+    background: #ffffff;
+    color: #000000;
+}
+
 .speeddial-circle-demo .ui-speeddial-semi-circle.ui-speeddial-direction-right {
     left: 0.5em;
-    top: calc(50% - 2rem);
+    top: calc(40% - 2rem);
 }
