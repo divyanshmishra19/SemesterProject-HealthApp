@@ -85,11 +85,12 @@ siteTemplate for the entire site, achieving great maintainability.
             <f:facet name="options">
                 <c:if test="#{userController.isLoggedIn() == false}">
                     <p:button value="Login" icon="pi pi-fw pi-sign-in" outcome="/SignIn.xhtml"
-                              styleClass="ui-button-info"/>
+                              styleClass="ui-button-info" style="margin-top: 15px"/>
                 </c:if>
                 <c:if test="#{userController.isLoggedIn() == true}">
                     <p:button value="Logout" icon="pi pi-fw pi-sign-out" outcome="/index.xhtml"
-                              action="#{userController.logout()}" styleClass="ui-button-info"/>
+                              action="#{userController.logout()}" styleClass="ui-button-info"
+                              style="margin-top: 15px"/>
                 </c:if>
             </f:facet>
         </p:menubar>

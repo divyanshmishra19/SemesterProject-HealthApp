@@ -2,6 +2,11 @@
 *   Cascading Style Sheets (CSS) Style Definitions   *
 *  Created by Divyansh Mishra for the CloudDrive app *
 *****************************************************/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap');
+
+*{
+    font-family:Nunito, Arial;
+}
 
 html, body {
     background-color: black;
@@ -11,7 +16,7 @@ html, body {
 }
 
 body, p {
-    font-family: "Times New Roman", Times, serif;
+    /*font-family: "Times New Roman", Times, serif;*/
     font-size: 12pt;
     font-style: normal;
     font-weight: normal;
@@ -20,7 +25,7 @@ body, p {
 }
 
 h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 12pt;
     font-style: normal;
     font-weight: normal;
@@ -47,7 +52,7 @@ Style the div component whose unique id is "page"
 <div id="page"> in siteTemplate
 */
 #page {
-    font-family: "Times New Roman", Times, serif;
+    /*font-family: "Times New Roman", Times, serif;*/
     font-size: 12pt;
     font-style: normal;
     font-weight: normal;
@@ -107,7 +112,7 @@ Hyperlinks (or links) are styled differently depending on what state they are in
 
 /* Set the font family for the standard HTML tag "a" for hyperlinks */
 a {
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 10pt;
 }
 
@@ -160,7 +165,7 @@ Used in Profile
 
 /* Style class for <ul>, <li> and <a> hyperlink tag */
 .verticalMenu, .verticalMenuItem a {
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 10pt;
     font-style: normal;
     font-weight: normal;
@@ -184,7 +189,7 @@ Used in Profile
 
 /* Used in headerTemplate */
 .headerTitle {
-    font-family: "Times New Roman", Times, serif;
+    /*font-family: "Times New Roman", Times, serif;*/
     font-size: 18pt;
     font-style: italic;
     font-weight: normal;
@@ -193,7 +198,7 @@ Used in Profile
 }
 
 .titleSmall, .alertUser {
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
     font-size: 12pt;
     font-style: normal;
     font-weight: normal;
@@ -353,7 +358,7 @@ body .ui-panel .ui-panel-titlebar {
 
 body .ui-panel .ui-panel-content {
     border: 1px solid #dee2e6;
-    background: rgba(49, 56, 49, 0.97);
+    background: #f8f9fa;
     color: #495057;
     padding: 1rem;
     border-bottom-left-radius: 4px;
