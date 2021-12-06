@@ -498,3 +498,8 @@ body .ui-panelgrid .ui-panelgrid-cell {
     color: white;
     padding: 1rem;
 }
+
+.speeddial-circle-demo .ui-speeddial-semi-circle.ui-speeddial-direction-right {
+    left: 0.5em;
+    top: calc(50% - 2rem);
+}

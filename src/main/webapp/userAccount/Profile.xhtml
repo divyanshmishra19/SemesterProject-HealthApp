@@ -20,6 +20,38 @@
         <!-- Create the content for this page below -->
         <ui:define name="editableContent">
 
+            <h:form id="speedDialForm">
+                <p:tooltip />
+                <p:growl id="messages" showDetail="true"/>
+
+                <div class="card">
+                    <h5>Circle, Semi-Circle and Quarter-Circle</h5>
+                    <div class="speeddial-circle-demo" style="position: relative; height: 700px; width: 500px">
+                        <p:speedDial radius="120" direction="right" type="semi-circle" buttonStyleClass="ui-button-success">
+                            <p:menuitem icon="pi pi-home" outcome="/index" title="Home"/>
+                            <p:menuitem icon="pi pi-pencil" outcome="/userAccount/EditAccount" title="Home"/>
+                            <p:menuitem icon="pi pi-camera" outcome="/userPhoto/ChangePhoto" title="Home"/>
+                            <p:menuitem icon="pi pi-key" outcome="/userPasswordChange/EnterUsername" title="Home"/>
+                            <p:menuitem icon="pi pi-trash" oncomplete="PF('SecurityQuestionDialog').show()" update=":SecurityQuestionForm" title="Home">
+                                <p:confirm header="Account Deletion Confirmation"
+                                           message="Are you sure to permanently delete your account? This cannot be undone!" />
+                            </p:menuitem>
+                            <!--
+                                    The confirmation dialog is displayed to check if the user really wants to delete the account.
+                                    -->
+                            <p:confirmDialog id="confirmDialogBox1" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                <div align="center">
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fas fa-window-close" />
+                                    &nbsp;
+                                    <p:commandButton value="Yes" type="button" class="ui-confirmdialog-yes ui-button-danger" icon="fas fa-check-square" />
+                                </div>
+                            </p:confirmDialog>
+                            <!-- ****************** Delete Account End **************************** -->
+                            <p:menuitem icon="pi pi-sign-out" action="#{userController.logout()}"/>
+                        </p:speedDial>
+                    </div>
+                </div>
+            </h:form>
             <h:form id="UserProfileForm">
                 <!--
                 The table below has 1 row and 2 columns.
