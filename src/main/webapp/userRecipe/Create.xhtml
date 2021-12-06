@@ -17,7 +17,7 @@
     |  window for the user to enter the data to create a new recipe.   |
     ===================================================================
     -->
-    <p:dialog id="RecipeCreateDlg" header="Create New Public Recipe" widgetVar="RecipeCreateDialog"
+    <p:dialog id="RecipeCreateDlg" header="Create New User Recipe" widgetVar="RecipeCreateDialog"
               modal="true" position="center" appendTo="@(body)"
               showEffect="slide" hideEffect="fade" responsive="true" width="55%">
         <!--
@@ -73,7 +73,7 @@
                     &nbsp;
 
                     <!-- Directly add to day button -->
-                    <p:commandButton value="Add To Day" icon="fas fa-add" styleClass="rounded-button"
+                    <p:commandButton value="Add To Day" icon="fas fa-share" styleClass="rounded-button"
                                      ajax="false" actionListener="#{userRecipeController.createAndAddToProgress()}"
                                      update="display,:RecipeListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
                                      oncomplete="handleSubmit(args,'RecipeCreateDialog');" />

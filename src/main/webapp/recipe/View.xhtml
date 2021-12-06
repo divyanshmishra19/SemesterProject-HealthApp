@@ -16,9 +16,9 @@
     Dialog pop-up window to VIEW a user video
     *************************************************
     -->
-    <p:dialog id="RecipeViewDlg" header="View YouTube Video Data" widgetVar="RecipeViewDialog"
+    <p:dialog id="RecipeViewDlg" header="View Recipe Details" widgetVar="RecipeViewDialog"
               modal="true" position="center" appendTo="@(body)"
-              showEffect="slide" hideEffect="fade" responsive="true" width="70%" height="400">
+              showEffect="slide" hideEffect="fade" responsive="true" width="50%" height="400">
 
         <h:form id="RecipeViewForm" class="ui-datatable-data">
             <div align="center">
@@ -57,9 +57,7 @@
                         *********************
                         -->
                         <h:outputText value="Total Fat:"/>
-                        <h:outputText value="#{recipeController.selected.fatTotal}" >
-                            <f:convertNumber type="number" groupingUsed="true" />
-                        </h:outputText>
+                        <h:outputText value="#{recipeController.selected.fatTotal}" />
 
                         <!--
                         ******************
@@ -67,9 +65,7 @@
                         ******************
                         -->
                         <h:outputText value="Protein:"/>
-                        <h:outputText value="#{recipeController.selected.protein}" >
-                            <f:convertNumber type="number" groupingUsed="true" />
-                        </h:outputText>
+                        <h:outputText value="#{recipeController.selected.protein}" />
 
                         <!--
                         *********************
