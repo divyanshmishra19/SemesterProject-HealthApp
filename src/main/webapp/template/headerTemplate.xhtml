@@ -83,9 +83,8 @@ siteTemplate for the entire site, achieving great maintainability.
                               styleClass="ui-button-info" style="margin-top: 15px"/>
                 </c:if>
                 <c:if test="#{userController.isLoggedIn() == true}">
-                    <p:button value="Logout" icon="pi pi-fw pi-sign-out" outcome="/index.xhtml"
-                              action="#{userController.logout()}" styleClass="ui-button-info"
-                              style="margin-top: 15px"/>
+                    <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out" action="#{userController.logout()}"
+                              styleClass="ui-button-info" style="margin-top: 15px"/>
                 </c:if>
             </f:facet>
         </p:menubar>
