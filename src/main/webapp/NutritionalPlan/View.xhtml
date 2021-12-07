@@ -33,17 +33,18 @@
                         <h:outputText value="Description:"/>
                         <h:outputText value="#{nutritionalController.selected.description}" />
 
+                        <h:outputText value="Suggested Recipes:"/>
+                        <h:outputText value="#{nutritionalController.selected.recipeNames}" />
+
+                        <h:outputText value="Suggested Workouts:"/>
+                        <h:outputText value="#{nutritionalController.selected.workoutNames}" />
+
                         <h:outputText value="Daily Calorie Intake Goal:"/>
                         <h:outputText value="#{nutritionalController.selected.dailyCalorieIntake}" />
 
                         <h:outputText value="Daily Calorie Burn Goal:"/>
                         <h:outputText value="#{nutritionalController.selected.dailyCalorieBurn}" />
 
-                        <h:outputText value="Suggested Recipes:"/>
-                        <h:outputText value="#{nutritionalController.selected.recipeNames}" />
-
-                        <h:outputText value="Suggested Workouts:"/>
-                        <h:outputText value="#{nutritionalController.selected.workoutNames}" />
 
                     </p:panelGrid>
                 </h:panelGroup>
