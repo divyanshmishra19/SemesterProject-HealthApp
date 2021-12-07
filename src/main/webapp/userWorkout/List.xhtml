@@ -18,13 +18,13 @@
     </ui:define>
     <!-- Create the content for this page below -->
     <ui:define name="editableContent">
-        <!-- In case of JSF validation error, set 'selected' to null in workoutController -->
+        <!-- In case of JSF validation error, set 'selected' to null in userWorkoutController -->
         <c:if test="#{facesContext.validationFailed}">
-            ${workoutController.unselect()}
+            ${userWorkoutController.unselect()}
         </c:if>
-        <!-- Set 'selected' to null in workoutController when the user refreshes / reloads this JSF page -->
+        <!-- Set 'selected' to null in userWorkoutController when the user refreshes / reloads this JSF page -->
         <f:metadata>
-            <f:viewAction action="#{workoutController.unselect()}" rendered="#{facesContext.postback}"/>
+            <f:viewAction action="#{userWorkoutController.unselect()}" rendered="#{facesContext.postback}"/>
         </f:metadata>
         <div align="center" style="text-align: center;">
             <h:form id="WorkoutListForm">
