@@ -31,7 +31,14 @@
                     <h3 class="achievements-text">You missed today's calorie intake goal!</h3>
                 </c:if>
                 <h:form>
-                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    <c:if test="#{achievementController.dailyCalorieIntakeGoal() == true}">
+                        <p:button value="Share to WhatsApp" onclick="#{}" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie intake goal today!"
+                                  icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    </c:if>
+                    <c:if test="#{achievementController.dailyCalorieIntakeGoal() == false}">
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie intake goal today!"
+                                  icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    </c:if>
                 </h:form>
             </div>
             <div class="achievements-container">

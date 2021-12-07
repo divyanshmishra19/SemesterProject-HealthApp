@@ -108,4 +108,9 @@ public class AchievementController implements Serializable {
 
         return burnSymbols.equals("") ? "☹" : burnSymbols;
     }
+
+    public String shareToWhatsapp()
+    {
+        return "https://api.whatsapp.com/send?text=urlencodedtext";
+    }
 }
