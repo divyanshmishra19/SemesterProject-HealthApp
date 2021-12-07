@@ -30,7 +30,7 @@ public class AchievementController implements Serializable {
     @EJB
     private UserFacade userFacade;
 
-    public String dailyCalorieIntakeGoal()
+    public boolean dailyCalorieIntakeGoal()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -39,13 +39,10 @@ public class AchievementController implements Serializable {
         Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
-        if(calories>expectedCalories)
-            return "true";
-        else
-            return "false";
+        return calories>expectedCalories;
     }
 
-    public String dailyCalorieBurnGoal()
+    public boolean dailyCalorieBurnGoal()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -54,13 +51,10 @@ public class AchievementController implements Serializable {
         Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
-        if(caloriesBurned>desiredCaloriesBurned)
-            return "true";
-        else
-            return "false";
+        return caloriesBurned>desiredCaloriesBurned;
     }
 
-    public int longestCalorieBurnStreak()
+    public String longestCalorieBurnStreak()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -80,10 +74,10 @@ public class AchievementController implements Serializable {
                 streak=0;
             maxStreak = Math.max(streak, maxStreak);
         }
-        return maxStreak;
+        return maxStreak + (maxStreak == 1 ? " day " : " days ") + burnSymbols(maxStreak);
     }
 
-    public int longestCalorieIntakeStreak()
+    public String longestCalorieIntakeStreak()
     {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -103,6 +97,15 @@ public class AchievementController implements Serializable {
                 streak=0;
             maxStreak = Math.max(streak, maxStreak);
         }
-        return maxStreak;
+        return maxStreak +( maxStreak == 1 ? " day " : " days ") + burnSymbols(maxStreak);
+    }
+
+    private String burnSymbols(int streak){
+        String burnSymbols = "";
+        for(int i = 0; i < streak && i<25; i+=5){
+            burnSymbols += "\uD83D\uDD25";
+        }
+
+        return burnSymbols.equals("") ? "☹" : burnSymbols;
     }
 }

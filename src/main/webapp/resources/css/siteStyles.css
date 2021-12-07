@@ -189,12 +189,10 @@ Used in Profile
 
 /* Used in headerTemplate */
 .headerTitle {
-    /*font-family: "Times New Roman", Times, serif;*/
     font-size: 18pt;
-    font-style: italic;
-    font-weight: normal;
+    font-weight: bold;
     text-decoration: none;
-    color: mediumblue;
+    color: white;
 }
 
 .titleSmall, .alertUser {
@@ -617,4 +615,26 @@ body .ui-datatable .ui-datatable-data > tr.ui-state-highlight {
 
 .share-btn {
     background-color: green;
+}
+
+
+.achievements-text{
+    color: white;
+}
+
+.achievements-container{
+    margin: 10px;
+    padding: 10px;
+    min-width: 45%;
+    border: 2px solid white;
+
+}
+
+.streak-days{
+    width: 400px;
+    height: 200px;
+    font-size: 64px;
+    font-style: italic;
+    color: white;
+    padding: 5px;
 }

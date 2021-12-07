@@ -7,24 +7,54 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition template="/template/siteTemplate.xhtml">
     <ui:define name="title">
         <!-- Set the page title -->
         <h:outputText value="Your Achievements" />
-
     </ui:define>
-
     <ui:define name="editableContent">
-        <div class="card">
-            <p>Working!</p>
-            <!--<h:outputText value="#{achievementController.dailyCalorieBurnGoal()}"/>
-            <h:outputText value="#{achievementController.dailyCalorieIntakeGoal()}"/>
-            <h:outputText value="#{achievementController.longestCalorieBurnStreak()}"/>
-            <h:outputText value="#{achievementController.longestCalorieIntakeStreak()}"/>-->
-        </div>
+        <span class="headerTitle">Achievements</span>
 
+        <div style="display: flex;">
+        <div class="achievements-container">
+            <h1>Daily Calorie Intake Goal</h1>
+            <c:if test="#{achievementController.dailyCalorieIntakeGoal() == true}">
+                <h:graphicImage value="#{resource['images:trophy.png']}" class="scalableImage"/>
+                <h3 class="achievements-text">You met today's calorie intake goal!</h3>
+            </c:if>
+            <c:if test="#{achievementController.dailyCalorieIntakeGoal() == false}">
+                <h:graphicImage value="#{resource['images:frown.png']}" class="scalableImage"/>
+                <h3 class="achievements-text">You missed today's calorie intake goal!</h3>
+            </c:if>
+        </div>
+        <div class="achievements-container">
+            <h1>Daily Calorie Burn Goal</h1>
+            <c:if test="#{achievementController.dailyCalorieBurnGoal() == true}">
+                <h:graphicImage value="#{resource['images:trophy.png']}" class="scalableImage"/>
+                <h3 class="achievements-text">You met today's calorie burn goal!</h3>
+            </c:if>
+            <c:if test="#{achievementController.dailyCalorieBurnGoal() == false}">
+                <h:graphicImage value="#{resource['images:frown.png']}" class="scalableImage"/>
+                <h3 class="achievements-text">You missed today's calorie burn goal!</h3>
+            </c:if>
+        </div>
+        </div>
+        <div style="display: flex;">
+            <div class="achievements-container">
+                <h1>Current Calorie Intake Streak</h1>
+                <div class="streak-days">
+                    #{achievementController.longestCalorieIntakeStreak()}
+                </div>
+            </div>
+            <div class="achievements-container">
+                <h1>Current Calorie Burn Streak</h1>
+                <div class="streak-days">
+                    #{achievementController.longestCalorieBurnStreak()}
+                </div>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>
 </html>
