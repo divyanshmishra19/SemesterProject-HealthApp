@@ -3,119 +3,114 @@
   - Created by Divyansh Mishra on 2021.11.21
   - Copyright © 2021 Divyansh Mishra. All rights reserved.
   -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/template/siteTemplate.xhtml">
-<ui:define name="title">
-    <!-- Set the page title -->
-    <h:outputText value="Daily Reports" />
+    <ui:define name="title">
+        <!-- Set the page title -->
+        <h:outputText value="Daily Reports"/>
 
-</ui:define>
+    </ui:define>
 
-<ui:define name="editableContent">
-    <div class="card">
-        <div class="report-box">
-            <p:graphicImage value="#{reportController.dailyCalorieChart}" title="Daily Calories Consumed" style="margin: 40px" stream="false"/>
-            <div class="legend">
-                <label class="chart-name">Daily Calories Consumed</label><br/>
-                <label class="legend-field-1">Expected Calories</label><br/>
-                <label class="legend-field-2">Calories Extra</label><br/>
-                <h:form>
-                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(1)}"
-                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
-                    &nbsp;
-                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
-                </h:form>
+    <ui:define name="editableContent">
+        <div class="card">
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.dailyCalorieChart}" title="Daily Calories Consumed"
+                                style="margin: 40px" stream="false"/>
+                <div class="legend">
+                    <label class="chart-name">Daily Calories Consumed</label><br/>
+                    <label class="legend-field-1">Expected Calories</label><br/>
+                    <label class="legend-field-2">Calories Extra</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(1)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    </h:form>
+                </div>
+            </div>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.dailyWorkout}" title="Daily Calories Burnt"
+                                style="margin: 40px" stream="false"/>
+                <div class="legend">
+                    <label class="chart-name">Daily Calories Burnt</label><br/>
+                    <label class="legend-field-1">Burnt Calories</label><br/>
+                    <label class="legend-field-2">Calories Burnt Extra</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(2)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    </h:form>
+                </div>
+            </div>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.dailyFatsChart}" title="Daily Fat Distribution"
+                                style="margin: 40px" stream="false"/>
+                <div class="legend">
+                    <label class="chart-name">Daily Fat Distribution</label><br/>
+                    <label class="legend-field-1">Saturated</label><br/>
+                    <label class="legend-field-2">Trans</label><br/>
+                    <label class="legend-field-3">Mono-Unsaturated</label><br/>
+                    <label class="legend-field-4">Poly-Unsaturated</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(3)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    </h:form>
+                </div>
+            </div>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.dailyCalorieSplit}" title="Daily Calorie Split-Up"
+                                style="margin: 40px" stream="false"/>
+                <div class="legend">
+                    <label class="chart-name">Daily Calorie Split-Up</label><br/>
+                    <label class="legend-field-1">Carbs</label><br/>
+                    <label class="legend-field-2">Fats</label><br/>
+                    <label class="legend-field-3">Proteins</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(4)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    </h:form>
+                </div>
             </div>
         </div>
-        <div class="report-box">
-            <p:graphicImage value="#{reportController.dailyWorkout}" title="Daily Calories Burnt" style="margin: 40px" stream="false"/>
-            <div class="legend">
-                <label class="chart-name">Daily Calories Burnt</label><br/>
-                <label class="legend-field-1">Burnt Calories</label><br/>
-                <label class="legend-field-2">Calories Burnt Extra</label><br/>
-                <h:form>
-                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(2)}"
-                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
-                    &nbsp;
-                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
-                </h:form>
-            </div>
-        </div>
-        <div class="report-box">
-            <p:graphicImage value="#{reportController.dailyFatsChart}" title="Daily Fat Distribution" style="margin: 40px" stream="false"/>
-            <div class="legend">
-                <label class="chart-name">Daily Fat Distribution</label><br/>
-                <label class="legend-field-1">Saturated</label><br/>
-                <label class="legend-field-2">Trans</label><br/>
-                <label class="legend-field-3">Mono-Unsaturated</label><br/>
-                <label class="legend-field-4">Poly-Unsaturated</label><br/>
-                <h:form>
-                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(3)}"
-                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
-                    &nbsp;
-                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
-                </h:form>
-            </div>
-        </div>
-        <div class="report-box">
-            <p:graphicImage value="#{reportController.dailyCalorieSplit}" title="Daily Calorie Split-Up" style="margin: 40px" stream="false"/>
-            <div class="legend">
-                <label class="chart-name">Daily Calorie Split-Up</label><br/>
-                <label class="legend-field-1">Carbs</label><br/>
-                <label class="legend-field-2">Fats</label><br/>
-                <label class="legend-field-3">Proteins</label><br/>
-                <h:form>
-                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(4)}"
-                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
-                    &nbsp;
-                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
-                </h:form>
-            </div>
-        </div>
-    </div>
 
-    <div class="card">
-        <div class="report-box">
-            <p:graphicImage value="#{reportController.dailyMicronutrients}" title="Daily Micronutrients Consumption" style="margin: 40px" stream="false"/>
-            <div class="legend">
-                <label class="chart-name">Daily Micronutrients Consumption</label><br/>
-                <label class="legend-field-1">Sodium</label><br/>
-                <label class="legend-field-2">Calcium</label><br/>
-                <label class="legend-field-3">Magnesium</label><br/>
-                <label class="legend-field-4">Potassium</label><br/>
-                <label class="legend-field-5">Iron</label><br/>
-                <label class="legend-field-6">Zinc</label><br/>
-                <h:form>
-                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(5)}"
-                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
-                    &nbsp;
-                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
-                </h:form>
+        <div class="card">
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.dailyMicronutrients}" title="Daily Micronutrients Consumption"
+                                style="margin: 40px" stream="false"/>
+                <div class="legend">
+                    <label class="chart-name">Daily Micronutrients Consumption</label><br/>
+                    <label class="legend-field-1">Sodium</label><br/>
+                    <label class="legend-field-2">Calcium</label><br/>
+                    <label class="legend-field-3">Magnesium</label><br/>
+                    <label class="legend-field-4">Potassium</label><br/>
+                    <label class="legend-field-5">Iron</label><br/>
+                    <label class="legend-field-6">Zinc</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(5)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    </h:form>
+                </div>
+            </div>
+            <div class="report-box">
+                <p:graphicImage value="#{reportController.dailyCategoryWiseCalories}" title="Daily Workout Categories"
+                                style="margin: 40px" stream="false"/>
+                <div class="legend">
+                    <label class="chart-name">Daily Workout Categories</label><br/>
+                    <label class="legend-field-1">Calisthenics</label><br/>
+                    <label class="legend-field-2">Cardio</label><br/>
+                    <label class="legend-field-3">Strength</label><br/>
+                    <label class="legend-field-4">HIIT</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(6)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    </h:form>
+                </div>
             </div>
         </div>
-        <div class="report-box">
-            <p:graphicImage value="#{reportController.dailyCategoryWiseCalories}" title="Daily Workout Categories" style="margin: 40px" stream="false"/>
-            <div class="legend">
-                <label class="chart-name">Daily Workout Categories</label><br/>
-                <label class="legend-field-1">Calisthenics</label><br/>
-                <label class="legend-field-2">Cardio</label><br/>
-                <label class="legend-field-3">Strength</label><br/>
-                <label class="legend-field-4">HIIT</label><br/>
-                <h:form>
-                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(6)}"
-                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
-                    &nbsp;
-                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
-                </h:form>
-            </div>
-        </div>
-    </div>
 
-</ui:define>
+    </ui:define>
 </ui:composition>
 </html>

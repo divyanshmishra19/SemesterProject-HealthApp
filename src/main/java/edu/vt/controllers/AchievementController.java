@@ -30,8 +30,7 @@ public class AchievementController implements Serializable {
     @EJB
     private UserFacade userFacade;
 
-    public boolean dailyCalorieIntakeGoal()
-    {
+    public boolean dailyCalorieIntakeGoal() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
 
@@ -39,11 +38,10 @@ public class AchievementController implements Serializable {
         Double calories = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
         Double expectedCalories = userFacade.getUserCalorieIntake(signedInUser.getId());
 
-        return calories>expectedCalories;
+        return calories > expectedCalories;
     }
 
-    public boolean dailyCalorieBurnGoal()
-    {
+    public boolean dailyCalorieBurnGoal() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
 
@@ -51,66 +49,57 @@ public class AchievementController implements Serializable {
         Integer caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
 
-        return caloriesBurned>desiredCaloriesBurned;
+        return caloriesBurned > desiredCaloriesBurned;
     }
 
-    public String longestCalorieBurnStreak()
-    {
+    public String longestCalorieBurnStreak() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
         Date todaysDate = new Date(System.currentTimeMillis());
 
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
-        int streak=0, maxStreak=0;
+        int streak = 0, maxStreak = 0;
         Integer caloriesBurned = 0;
-        for(int i=0;i<30;i++)
-        {
+        for (int i = 0; i < 30; i++) {
             caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
             todaysDate = new Date(todaysDate.getTime() - Constants.MILLIS_IN_A_DAY);
 
-            if(caloriesBurned>desiredCaloriesBurned)
+            if (caloriesBurned > desiredCaloriesBurned)
                 streak++;
             else
-                streak=0;
+                streak = 0;
             maxStreak = Math.max(streak, maxStreak);
         }
         return maxStreak + (maxStreak == 1 ? " day " : " days ") + burnSymbols(maxStreak);
     }
 
-    public String longestCalorieIntakeStreak()
-    {
+    public String longestCalorieIntakeStreak() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
         Date todaysDate = new Date(System.currentTimeMillis());
 
         Double desiredCaloriesIntake = userFacade.getUserCalorieIntake(signedInUser.getId());
-        int streak=0, maxStreak=0;
+        int streak = 0, maxStreak = 0;
         Double caloriesConsumed = 0.0;
-        for(int i=0;i<30;i++)
-        {
+        for (int i = 0; i < 30; i++) {
             caloriesConsumed = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
             todaysDate = new Date(todaysDate.getTime() - Constants.MILLIS_IN_A_DAY);
 
-            if(caloriesConsumed>desiredCaloriesIntake)
+            if (caloriesConsumed > desiredCaloriesIntake)
                 streak++;
             else
-                streak=0;
+                streak = 0;
             maxStreak = Math.max(streak, maxStreak);
         }
-        return maxStreak +( maxStreak == 1 ? " day " : " days ") + burnSymbols(maxStreak);
+        return maxStreak + (maxStreak == 1 ? " day " : " days ") + burnSymbols(maxStreak);
     }
 
-    private String burnSymbols(int streak){
+    private String burnSymbols(int streak) {
         String burnSymbols = "";
-        for(int i = 0; i < streak && i<25; i+=5){
+        for (int i = 0; i < streak && i < 25; i += 5) {
             burnSymbols += "\uD83D\uDD25";
         }
 
         return burnSymbols.equals("") ? "☹" : burnSymbols;
-    }
-
-    public String shareToWhatsapp()
-    {
-        return "https://api.whatsapp.com/send?text=urlencodedtext";
     }
 }

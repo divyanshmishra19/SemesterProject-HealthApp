@@ -32,11 +32,11 @@
                 </c:if>
                 <h:form>
                     <c:if test="#{achievementController.dailyCalorieIntakeGoal() == true}">
-                        <p:button value="Share to WhatsApp" onclick="#{}" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie intake goal today!"
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie intake goal today! You can get healthier too by using HealthTech - "
                                   icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                     </c:if>
                     <c:if test="#{achievementController.dailyCalorieIntakeGoal() == false}">
-                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie intake goal today!"
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie intake goal today! You can get healthier too by using HealthTech - "
                                   icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                     </c:if>
                 </h:form>
@@ -52,7 +52,14 @@
                     <h3 class="achievements-text">You missed today's calorie burn goal!</h3>
                 </c:if>
                 <h:form>
-                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    <c:if test="#{achievementController.dailyCalorieBurnGoal() == true}">
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie burn goal today! You can get healthier too by using HealthTech - "
+                                  icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    </c:if>
+                    <c:if test="#{achievementController.dailyCalorieBurnGoal() == false}">
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie burn goal today! You can get healthier too by using HealthTech - "
+                                  icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    </c:if>
                 </h:form>
             </div>
         </div>
@@ -63,7 +70,8 @@
                     #{achievementController.longestCalorieIntakeStreak()}
                 </div>
                 <h:form>
-                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    <p:commandButton type="button" target="_blank" href="https://api.whatsapp.com/send?text=Just made a calorie intake goal streak! You can get healthir too by using HealthTech - "
+                                     value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                 </h:form>
             </div>
             <div class="achievements-container">
@@ -72,7 +80,8 @@
                     #{achievementController.longestCalorieBurnStreak()}
                 </div>
                 <h:form>
-                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                    <p:commandButton type="button" target="_blank" href="https://api.whatsapp.com/send?text=Just made a calorie burn goal streak! You can get healthir too by using HealthTech - "
+                                     value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                 </h:form>
             </div>
         </div>
