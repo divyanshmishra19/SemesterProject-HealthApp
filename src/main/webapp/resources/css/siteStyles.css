@@ -436,11 +436,74 @@ body .ui-button {
 
 .report-box {
     border: solid white 2px;
+    display: flex;
+    flex-direction: row;
 }
 
 .report-box div {
     float: left;
     clear: none;
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    margin: 2em 2em;
+}
+
+.legend-field-1 {
+    text-align: center;
+    font-style: italic;
+    background-color: #ecaa8e;
+    color: black;
+    width: 200px;
+    height: 30px;
+    margin-top: 10%;
+}
+
+.legend-field-2 {
+    text-align: center;
+    font-style: italic;
+    background-color: yellow;
+    color: black;
+    width: 200px;
+    height: 30px;
+}
+
+.legend-field-3 {
+    text-align: center;
+    font-style: italic;
+    background-color: #b5cca0;
+    color: black;
+    width: 200px;
+    height: 30px;
+}
+
+.legend-field-4 {
+    text-align: center;
+    font-style: italic;
+    background-color: #1b7685;
+    color: black;
+    width: 200px;
+    height: 30px;
+}
+
+.legend-field-5 {
+    text-align: center;
+    font-style: italic;
+    background-color: #dca8f8;
+    color: black;
+    width: 200px;
+    height: 30px;
+}
+
+.legend-field-6 {
+    text-align: center;
+    font-style: italic;
+    background-color: #002d88;
+    color: black;
+    width: 200px;
+    height: 30px;
 }
 
 body .ui-panelgrid .ui-panelgrid-cell {
@@ -542,4 +605,16 @@ body .ui-datatable .ui-datatable-data > tr.ui-state-highlight {
 .speeddial-circle-demo .ui-speeddial-semi-circle.ui-speeddial-direction-right {
     left: 0.5em;
     top: calc(40% - 2rem);
+}
+
+.chart-name {
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    margin-bottom: 2em;
+    font-size: 1.5em;
+}
+
+.share-btn {
+    background-color: green;
 }
