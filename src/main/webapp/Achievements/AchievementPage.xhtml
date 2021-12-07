@@ -3,43 +3,51 @@
   - Created by Divyansh Mishra on 2021.11.21
   - Copyright © 2021 Divyansh Mishra. All rights reserved.
   -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/template/siteTemplate.xhtml">
     <ui:define name="title">
         <!-- Set the page title -->
-        <h:outputText value="Your Achievements" />
+        <h:outputText value="Your Achievements"/>
     </ui:define>
     <ui:define name="editableContent">
         <span class="headerTitle">Achievements</span>
 
         <div style="display: flex;">
-        <div class="achievements-container">
-            <h1>Daily Calorie Intake Goal</h1>
-            <c:if test="#{achievementController.dailyCalorieIntakeGoal() == true}">
-                <h:graphicImage value="#{resource['images:trophy.png']}" class="scalableImage"/>
-                <h3 class="achievements-text">You met today's calorie intake goal!</h3>
-            </c:if>
-            <c:if test="#{achievementController.dailyCalorieIntakeGoal() == false}">
-                <h:graphicImage value="#{resource['images:frown.png']}" class="scalableImage"/>
-                <h3 class="achievements-text">You missed today's calorie intake goal!</h3>
-            </c:if>
-        </div>
-        <div class="achievements-container">
-            <h1>Daily Calorie Burn Goal</h1>
-            <c:if test="#{achievementController.dailyCalorieBurnGoal() == true}">
-                <h:graphicImage value="#{resource['images:trophy.png']}" class="scalableImage"/>
-                <h3 class="achievements-text">You met today's calorie burn goal!</h3>
-            </c:if>
-            <c:if test="#{achievementController.dailyCalorieBurnGoal() == false}">
-                <h:graphicImage value="#{resource['images:frown.png']}" class="scalableImage"/>
-                <h3 class="achievements-text">You missed today's calorie burn goal!</h3>
-            </c:if>
-        </div>
+            <div class="achievements-container">
+                <h1>Daily Calorie Intake Goal</h1>
+                <c:if test="#{achievementController.dailyCalorieIntakeGoal() == true}">
+                    <h:graphicImage value="#{resource['images:trophy.png']}" class="scalableImage"/>
+                    <h3 class="achievements-text">You met today's calorie intake goal!</h3>
+                </c:if>
+                <c:if test="#{achievementController.dailyCalorieIntakeGoal() == false}">
+                    <h:graphicImage value="#{resource['images:frown.png']}" class="scalableImage"/>
+                    <h3 class="achievements-text">You missed today's calorie intake goal!</h3>
+                </c:if>
+                <h:form>
+                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                </h:form>
+            </div>
+            <div class="achievements-container">
+                <h1>Daily Calorie Burn Goal</h1>
+                <c:if test="#{achievementController.dailyCalorieBurnGoal() == true}">
+                    <h:graphicImage value="#{resource['images:trophy.png']}" class="scalableImage"/>
+                    <h3 class="achievements-text">You met today's calorie burn goal!</h3>
+                </c:if>
+                <c:if test="#{achievementController.dailyCalorieBurnGoal() == false}">
+                    <h:graphicImage value="#{resource['images:frown.png']}" class="scalableImage"/>
+                    <h3 class="achievements-text">You missed today's calorie burn goal!</h3>
+                </c:if>
+                <h:form>
+                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                </h:form>
+            </div>
         </div>
         <div style="display: flex;">
             <div class="achievements-container">
@@ -47,12 +55,18 @@
                 <div class="streak-days">
                     #{achievementController.longestCalorieIntakeStreak()}
                 </div>
+                <h:form>
+                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                </h:form>
             </div>
             <div class="achievements-container">
                 <h1>Current Calorie Burn Streak</h1>
                 <div class="streak-days">
                     #{achievementController.longestCalorieBurnStreak()}
                 </div>
+                <h:form>
+                    <p:commandButton type="button" value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
+                </h:form>
             </div>
         </div>
     </ui:define>
