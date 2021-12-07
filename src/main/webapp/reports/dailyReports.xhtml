@@ -25,11 +25,10 @@
                 <label class="legend-field-1">Expected Calories</label><br/>
                 <label class="legend-field-2">Calories Extra</label><br/>
                 <h:form>
-                    <p:commandButton value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(start, stop);"
-                                 icon="pi pi-arrow-down" styleClass="ui-button-outlined">
-                    <p:fileDownload value="#{reportController.dailyCalorieChart}"/>
-                    </p:commandButton>
-                    <p:commandButton type="button" value="WhatsApp" icon="pi pi-share" class="share-btn"/>
+                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(1)}"
+                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    &nbsp;
+                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                 </h:form>
             </div>
         </div>
