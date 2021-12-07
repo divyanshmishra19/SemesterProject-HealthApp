@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.Calendar;
 import java.util.Map;
 
 @Named("achievementController")
@@ -70,7 +69,7 @@ public class AchievementController implements Serializable {
         Double desiredCaloriesBurned = userFacade.getUserWorkoutCalories(signedInUser.getId());
         int streak=0, maxStreak=0;
         Integer caloriesBurned = 0;
-        while(caloriesBurned!=0.0)
+        for(int i=0;i<30;i++)
         {
             caloriesBurned = userWorkoutDoneFacade.getDailyWorkoutCalories(todaysDate, signedInUser.getId());
             todaysDate = new Date(todaysDate.getTime() - Constants.MILLIS_IN_A_DAY);
@@ -93,7 +92,7 @@ public class AchievementController implements Serializable {
         Double desiredCaloriesIntake = userFacade.getUserCalorieIntake(signedInUser.getId());
         int streak=0, maxStreak=0;
         Double caloriesConsumed = 0.0;
-        while(caloriesConsumed!=null)
+        for(int i=0;i<30;i++)
         {
             caloriesConsumed = userRecipeConsumedFacade.getTotalDailyCalories(todaysDate, signedInUser.getId());
             todaysDate = new Date(todaysDate.getTime() - Constants.MILLIS_IN_A_DAY);
