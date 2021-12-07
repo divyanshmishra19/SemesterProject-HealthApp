@@ -41,47 +41,59 @@
                         **********************
                         -->
                         <h:outputText value="Calories:"/>
-                        <h:outputText value="#{userRecipeController.selected.calories}" />
+                        <h:outputText value="#{userRecipeController.selected.calories}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         *************************
                         *   Recipe Fat Content  *
                         *************************
                         -->
-                        <h:outputText value="Total Fat:"/>
-                        <h:outputText value="#{userRecipeController.selected.fatTotal}" />
+                        <h:outputText value="Total Fat (grams):"/>
+                        <h:outputText value="#{userRecipeController.selected.fatTotal}">
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         *********************
                         *   Saturated Fats  *
                         *********************
                         -->
-                        <h:outputText value="Saturated Fat:"/>
-                        <h:outputText value="#{userRecipeController.selected.fatSat}" />
+                        <h:outputText value="Saturated Fat (grams):"/>
+                        <h:outputText value="#{userRecipeController.selected.fatSat}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         ************************
                         *   Trans Fat Content  *
                         ************************
                         -->
-                        <h:outputText value="Trans Fat:"/>
-                        <h:outputText value="#{userRecipeController.selected.fatTrans}" />
+                        <h:outputText value="Trans Fat (grams):"/>
+                        <h:outputText value="#{userRecipeController.selected.fatTrans}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         **********************************
                         *   Monounsaturated Fat Content  *
                         **********************************
                         -->
-                        <h:outputText value="Monounsaturated Fat:"/>
-                        <h:outputText value="#{userRecipeController.selected.fatMono}" />
+                        <h:outputText value="Monounsaturated Fat (grams):"/>
+                        <h:outputText value="#{userRecipeController.selected.fatMono}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         **********************************
                         *   Polyunsaturated Fat Content  *
                         **********************************
                         -->
-                        <h:outputText value="Polyunsaturated Fat:"/>
-                        <h:outputText value="#{userRecipeController.selected.fatPoly}" />
+                        <h:outputText value="Polyunsaturated Fat (grams):"/>
+                        <h:outputText value="#{userRecipeController.selected.fatPoly}">
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         ********************
@@ -89,15 +101,19 @@
                         ********************
                         -->
                         <h:outputText value="Fat Calories:"/>
-                        <h:outputText value="#{userRecipeController.selected.fatCal}" />
+                        <h:outputText value="#{userRecipeController.selected.fatCal}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         *********************
                         *   Carbs Content   *
                         *********************
                         -->
-                        <h:outputText value="Carbohydrates:"/>
-                        <h:outputText value="#{userRecipeController.selected.carbs}" />
+                        <h:outputText value="Carbohydrates (grams):"/>
+                        <h:outputText value="#{userRecipeController.selected.carbs}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         *********************
@@ -105,19 +121,23 @@
                         *********************
                         -->
                         <h:outputText value="Carbohydrates Calories:"/>
-                        <h:outputText value="#{userRecipeController.selected.carbCal}" />
+                        <h:outputText value="#{userRecipeController.selected.carbCal}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         ***********************
-                        *   Protein Content   *
+                        *   ProteContent   *
                         ***********************
                         -->
-                        <h:outputText value="Protein:"/>
-                        <h:outputText value="#{userRecipeController.selected.protein}" />
+                        <h:outputText value="Protein (grams):"/>
+                        <h:outputText value="#{userRecipeController.selected.protein}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         ************************
-                        *   Protein Calories   *
+                        *   ProteCalories   *
                         ************************
                         -->
                         <h:outputText value="Protein Calories:"/>
@@ -128,48 +148,60 @@
                         *   Sodium Content   *
                         ************************
                         -->
-                        <h:outputText value="Sodium:"/>
-                        <h:outputText value="#{userRecipeController.selected.sodium}" />
+                        <h:outputText value="Sodium (milligrams):"/>
+                        <h:outputText value="#{userRecipeController.selected.sodium}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         ***********************
                         *   Calcium Content   *
                         ***********************
                         -->
-                        <h:outputText value="Calcium:"/>
-                        <h:outputText value="#{userRecipeController.selected.calcium}" />
+                        <h:outputText value="Calcium (milligrams):"/>
+                        <h:outputText value="#{userRecipeController.selected.calcium}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         *************************
                         *   Magnesium Content   *
                         *************************
                         -->
-                        <h:outputText value="Magnesium:"/>
-                        <h:outputText value="#{userRecipeController.selected.magnesium}" />
+                        <h:outputText value="Magnesium (milligrams):"/>
+                        <h:outputText value="#{userRecipeController.selected.magnesium}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         *************************
                         *   Potassium Content   *
                         *************************
                         -->
-                        <h:outputText value="Potassium:"/>
-                        <h:outputText value="#{userRecipeController.selected.potassium}" />
+                        <h:outputText value="Potassium (milligrams):"/>
+                        <h:outputText value="#{userRecipeController.selected.potassium}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         ********************
                         *   Iron Content   *
                         ********************
                         -->
-                        <h:outputText value="Iron:"/>
-                        <h:outputText value="#{userRecipeController.selected.iron}" />
+                        <h:outputText value="Iron (milligrams):"/>
+                        <h:outputText value="#{userRecipeController.selected.iron}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
 
                         <!--
                         ********************
                         *   Zinc Content   *
                         ********************
                         -->
-                        <h:outputText value="Zinc:"/>
-                        <h:outputText value="#{userRecipeController.selected.zinc}" />
+                        <h:outputText value="Zinc (milligrams):"/>
+                        <h:outputText value="#{userRecipeController.selected.zinc}" >
+                            <f:convertNumber type="number" groupingUsed="true" />
+                        </h:outputText>
                         <!--
                         ******************
                         *   Diet Labels  *

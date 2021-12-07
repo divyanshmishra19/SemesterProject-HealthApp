@@ -76,21 +76,21 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="Carbohydrate" sortBy="#{aRecipe.carbs}"
+                        <p:column headerText="Carbohydrate (grams)" sortBy="#{aRecipe.carbs}"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.carbs}">
                                 <f:convertNumber type="number" groupingUsed="true"/>
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="Fat" sortBy="#{aRecipe.fatTotal}"
+                        <p:column headerText="Fat (grams)" sortBy="#{aRecipe.fatTotal}"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.fatTotal}">
                                 <f:convertNumber type="number" groupingUsed="true"/>
                             </h:outputText>
                         </p:column>
 
-                        <p:column headerText="Protein" sortBy="#{aRecipe.protein}"
+                        <p:column headerText="Protein (grams)" sortBy="#{aRecipe.protein}"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aRecipe.protein}">
                                 <f:convertNumber type="number" groupingUsed="true"/>
