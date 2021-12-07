@@ -42,12 +42,12 @@
 
                     <!--
                     *********************
-                    *   Recipe Title     *
+                    *   Recipe Name     *
                     *********************
                     -->
-                    <p:outputLabel value="Title:" for="title" />
-                    <p:inputText id="title" value="#{userRecipeController.recipeName}" style="width:350px"
-                                 required="true" requiredMessage="Recipe title is required!"/>
+                    <p:outputLabel value="Name:" for="name" />
+                    <p:inputText id="name" value="#{userRecipeController.recipeName}" style="width:350px"
+                                 required="true" requiredMessage="Recipe name is required!"/>
 
                     <!--
                     ****************************
@@ -56,7 +56,8 @@
                     -->
                     <p:outputLabel value="Ingredients:" for="ingredients" />
                     <p:inputText id="ingredients" value="#{userRecipeController.ingredients}" style="width:350px"
-                                 required="true" requiredMessage="Recipe title is required!"/>
+                                 required="true" requiredMessage="Recipe title is required!"
+                                 placeholder="10oz Cheese,100g Wheat,20ml Olive oil"/>
 
 
                 </p:panelGrid>
