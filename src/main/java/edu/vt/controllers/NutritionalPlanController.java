@@ -127,10 +127,8 @@ public class NutritionalPlanController implements Serializable {
         }
 
         //getting calorie goals from selected plan and updating user goals.
-        double calorieIntakeGoal = selected.getDailyCalorieIntake();
-        double calorieBurnGoal = selected.getDailyCalorieBurn();
-        editUser.setDailyCalorieBurn(calorieBurnGoal);
-        editUser.setDailyCalorieIntake(calorieIntakeGoal);
+        editUser.setDailyCalorieBurn(selected.getDailyCalorieBurn());
+        editUser.setDailyCalorieIntake(selected.getDailyCalorieIntake());
         userFacade.edit(editUser);
 
         //adding recipes from nutritional plan to user's custom list
@@ -141,7 +139,7 @@ public class NutritionalPlanController implements Serializable {
             Recipe recipe = recipeFacade.findRecipeById(Integer.parseInt(recipeIds[i].trim()));
 
             //check if recipe of same name exists in user's custom recipe list or not
-            List<UserRecipe> userRecipeList = userRecipeFacade.findUserRecipesByName(editUser.getId(), recipeNames[i]);
+            List<UserRecipe> userRecipeList = userRecipeFacade.findUserRecipesByName(editUser.getId(), recipeNames[i].trim());
 
             //if any recipe with this name already exists, we do not add it to the custom list again
             if (userRecipeList.size()!=0)
@@ -195,7 +193,7 @@ public class NutritionalPlanController implements Serializable {
             Workout workout = workoutFacade.findWorkoutById(Integer.parseInt(workoutIds[i].trim()));
 
             //check if workout of same name exists in user's custom workout list or not
-            List<UserWorkout> userWorkoutList = userWorkoutFacade.findUserWorkoutsByName(editUser.getId(), workoutNames[i]);
+            List<UserWorkout> userWorkoutList = userWorkoutFacade.findUserWorkoutsByName(editUser.getId(), workoutNames[i].trim());
 
             //if any workout with this name already exists, we do not add it to the custom list again
             if (userWorkoutList.size()!=0)
