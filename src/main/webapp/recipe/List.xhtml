@@ -68,20 +68,29 @@
 
                         <p:column headerText="Calories" sortBy="#{aRecipe.calories}"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.calories}"/>
+                            <h:outputText value="#{aRecipe.calories}">
+                                <f:convertNumber type="number" groupingUsed="true"/>
+                            </h:outputText>
                         </p:column>
 
                         <p:column headerText="Carbohydrate (grams)" sortBy="#{aRecipe.carbs}"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.carbs}"/>
+                            <h:outputText value="#{aRecipe.carbs}">
+                                <f:convertNumber type="number" groupingUsed="true" />
+                            </h:outputText>
                         </p:column>
+
                         <p:column headerText="Fat (grams)" sortBy="#{aRecipe.fatTotal}"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.fatTotal}"/>
+                            <h:outputText value="#{aRecipe.fatTotal}">
+                                <f:convertNumber type="number" groupingUsed="true" />
+                            </h:outputText>
                         </p:column>
                         <p:column headerText="Protein (grams)" sortBy="#{aRecipe.protein}"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.protein}"/>
+                            <h:outputText value="#{aRecipe.protein}">
+                                <f:convertNumber type="number" groupingUsed="true" />
+                            </h:outputText>
                         </p:column>
 
                         <p:column headerText="Diet Labels"
@@ -93,8 +102,8 @@
 
                         <p:column headerText="Ingredients"
                                   filterBy="#{aRecipe.ingredients}" filterMatchMode="contains"
-                                  style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aRecipe.ingredients}"/>
+                                  style="vertical-align: top;text-align: center" width="300">
+                            <h:outputText value="#{aRecipe.ingredients}" styleClass="scrollableTextBox"/>
                         </p:column>
 
                         <!--

@@ -75,16 +75,22 @@ public class UserFacade extends AbstractFacade<User> {
     }
 
     public Double getUserCalorieIntake(int userId) {
-        return (Double)getEntityManager().createQuery(
+            Double cals = (Double)getEntityManager().createQuery(
                         "SELECT c.dailyCalorieIntake FROM User c WHERE c.id = :userId")
                 .setParameter("userId", userId)
                 .getSingleResult();
+            if(cals==null)
+                return 0.0;
+            return cals;
     }
 
     public Double getUserWorkoutCalories(int userId) {
-        return (Double)getEntityManager().createQuery(
+        Double cals =  (Double)getEntityManager().createQuery(
                         "SELECT c.dailyCalorieBurn FROM User c WHERE c.id = :userId")
                 .setParameter("userId", userId)
                 .getSingleResult();
+        if(cals==null)
+            return 0.0;
+        return cals;
     }
 }

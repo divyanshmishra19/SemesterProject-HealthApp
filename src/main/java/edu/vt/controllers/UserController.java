@@ -577,8 +577,8 @@ public class UserController implements Serializable {
         securityQuestionNumber = 0;
         answerToSecurityQuestion = email = "";
         selected = null;
-        dailyCalorieIntake=0;
-        dailyCalorieBurnt=0;
+        dailyCalorieIntake = 0;
+        dailyCalorieBurnt = 0;
 
         // Since we will redirect to show the home page, invoke preserveMessages()
         Methods.preserveMessages();

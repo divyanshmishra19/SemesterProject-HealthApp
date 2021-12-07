@@ -131,7 +131,7 @@
                         ********************************
                         -->
                         <p:outputLabel value="Daily Calorie Intake:" for="calorieIntake" />
-                        <p:inputNumber id="calorieIntake" value="#{userController.dailyCalorieIntake}"
+                        <p:inputNumber id="calorieIntake" value="#{userController.selected.dailyCalorieIntake}"
                                        style="width: 290px" required="true" thousandSeparator=","
                                        requiredMessage="Daily Calorie Intake is required!">
                             <f:validateLength minimum="2" />
@@ -143,7 +143,7 @@
                        ********************************
                        -->
                         <p:outputLabel value="Daily Calorie Burn:" for="calorieBurn" />
-                        <p:inputNumber id="calorieBurn" value="#{userController.dailyCalorieBurnt}"
+                        <p:inputNumber id="calorieBurn" value="#{userController.selected.dailyCalorieBurn}"
                                        style="width: 290px" required="true" thousandSeparator=","
                                        requiredMessage="Desired Daily Calorie Burn is required!">
                             <f:validateLength minimum="2" />

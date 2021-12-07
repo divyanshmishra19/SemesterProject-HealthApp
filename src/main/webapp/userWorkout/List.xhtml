@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
@@ -12,7 +13,7 @@
 <ui:composition template="/template/siteTemplate.xhtml">
     <ui:define name="title">
         <!-- Set the page title -->
-        <h:outputText value="User Workout List" />
+        <h:outputText value="User Workout List"/>
 
     </ui:define>
     <!-- Create the content for this page below -->
@@ -23,7 +24,7 @@
         </c:if>
         <!-- Set 'selected' to null in workoutController when the user refreshes / reloads this JSF page -->
         <f:metadata>
-            <f:viewAction action="#{workoutController.unselect()}" rendered="#{facesContext.postback}" />
+            <f:viewAction action="#{workoutController.unselect()}" rendered="#{facesContext.postback}"/>
         </f:metadata>
         <div align="center" style="text-align: center;">
             <h:form id="WorkoutListForm">
@@ -41,8 +42,10 @@
                                  rows="5"
                                  rowsPerPageTemplate="5,10,20,30,50,70,90"
                                  emptyMessage="No User Workouts added">
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton playButton addButton "/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton playButton addButton "/>
+                        <p:ajax event="rowSelect"
+                                update="createButton viewButton editButton deleteButton playButton addButton "/>
+                        <p:ajax event="rowUnselect"
+                                update="createButton viewButton editButton deleteButton playButton addButton "/>
                         <!--
                         *************************
                         *   Data Table Header   *
@@ -50,12 +53,14 @@
                         -->
                         <f:facet name="header">
                             <div align="center">
-                                <p:inputText id="globalFilter" onkeyup="PF('userWorkoutDataTable').filter()" filterMatchMode="contains"
+                                <p:inputText id="globalFilter" onkeyup="PF('userWorkoutDataTable').filter()"
+                                             filterMatchMode="contains"
                                              style="width: 250px"
-                                             placeholder="Enter Global Search Query" />
+                                             placeholder="Enter Global Search Query"/>
                                 &nbsp;
                                 <p:commandButton type="button" value="Clear All Filters" styleClass="ui-button-outlined"
-                                                 icon="fas fa-undo" onclick="PF('userWorkoutDataTable').clearFilters()" />
+                                                 icon="fas fa-undo"
+                                                 onclick="PF('userWorkoutDataTable').clearFilters()"/>
                             </div>
                         </f:facet>
 
@@ -65,7 +70,7 @@
                         *   Workout Name   *
                         ********************
                         -->
-                        <p:column headerText="Name"
+                        <p:column headerText="Name" sortBy="#{aWorkout.name}"
                                   filterBy="#{aWorkout.name}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aWorkout.name}"/>
@@ -77,8 +82,9 @@
                         ************************
                         -->
                         <p:column headerText="Thumbnail" style="width: 80px; text-align: center; vertical-align: top">
-                            <h:graphicImage value="https://i1.ytimg.com/vi/#{aWorkout.youtubeTutorialVideoId}/mqdefault.jpg"
-                                            class="scalableImage" />
+                            <h:graphicImage
+                                    value="https://i1.ytimg.com/vi/#{aWorkout.youtubeTutorialVideoId}/mqdefault.jpg"
+                                    class="scalableImage"/>
                         </p:column>
 
                         <!--
@@ -89,7 +95,9 @@
 
                         <p:column headerText="BurnRate" sortBy="#{aWorkout.burnRate}"
                                   style="vertical-align: top;text-align: center">
-                            <h:outputText value="#{aWorkout.burnRate}"/>
+                            <h:outputText value="#{aWorkout.burnRate}">
+                                <f:convertNumber type="number" groupingUsed="true"/>
+                            </h:outputText>
                         </p:column>
 
                         <!--
@@ -105,48 +113,60 @@
 
 
                         *************************
-                        *   Data Table Footer   *
+                        * Data Table Footer *
                         *************************
                         <f:facet name="footer">
                             <div align="center">
                                 <!--                                &lt;!&ndash; CREATE button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
-                                <p:commandButton id="createButton" value="Create" icon="fas fa-plus" styleClass="rounded-button"
+                                <p:commandButton id="createButton" value="Create" icon="fas fa-plus"
+                                                 styleClass="rounded-button"
                                                  actionListener="#{userWorkoutController.prepareCreate()}"
-                                                 update=":WorkoutCreateForm" oncomplete="PF('WorkoutCreateDialog').show()"/>
+                                                 update=":WorkoutCreateForm"
+                                                 oncomplete="PF('WorkoutCreateDialog').show()"/>
                                 &nbsp;
                                 <!--                                &lt;!&ndash; VIEW button: id is used since it is referenced to be activated or deactivated &ndash;&gt;-->
-                                <p:commandButton id="viewButton" value="View" icon="fas fa-eye" styleClass="rounded-button"
+                                <p:commandButton id="viewButton" value="View" icon="fas fa-eye"
+                                                 styleClass="rounded-button"
                                                  update=":WorkoutViewDlg" oncomplete="PF('WorkoutViewDialog').show()"
                                                  disabled="#{empty userWorkoutController.selected}"/>
                                 <!--                                    &nbsp;-->&nbsp;&nbsp;
                                 <!--                                &lt;!&ndash;                                    &lt;!&ndash; EDIT button: id is used since it is referenced to be activated or deactivated &ndash;&gt;&ndash;&gt;-->
-                                <p:commandButton id="editButton" value="Edit" icon="fas fa-edit" styleClass="rounded-button"
+                                <p:commandButton id="editButton" value="Edit" icon="fas fa-edit"
+                                                 styleClass="rounded-button"
                                                  update=":WorkoutEditDlg" oncomplete="PF('WorkoutEditDialog').show()"
                                                  disabled="#{empty userWorkoutController.selected}"/>
                                 &nbsp;&nbsp;
                                 <!-- DELETE button: id is used since it is referenced to be activated or deactivated -->
-                                <p:commandButton id="deleteButton" value="Delete" icon="fas fa-trash-alt"  styleClass="rounded-button"
+                                <p:commandButton id="deleteButton" value="Delete" icon="fas fa-trash-alt"
+                                                 styleClass="rounded-button"
                                                  actionListener="#{userWorkoutController.destroy()}"
                                                  update="datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
                                                  disabled="#{empty userWorkoutController.selected}">
 
-                                    <p:confirm header="Deletion Confirmation" message="Are you sure you want to permanently delete the selected Workout #{userWorkoutController.selected.name} from the database?"/>
+                                    <p:confirm header="Deletion Confirmation"
+                                               message="Are you sure you want to permanently delete the selected Workout #{userWorkoutController.selected.name} from the database?"/>
                                 </p:commandButton>
-                                <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                <p:confirmDialog id="confirmDialogBox" global="true" showEffect="fade" hideEffect="fade"
+                                                 responsive="true" width="350">
                                     <div align="center">
-                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fas fa-window-close" />
-                                        <p:commandButton value="Yes" type="button" class="ui-confirmdialog-yes ui-button-danger" icon="fas fa-check-square" />
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no"
+                                                         icon="fas fa-window-close"/>
+                                        <p:commandButton value="Yes" type="button"
+                                                         class="ui-confirmdialog-yes ui-button-danger"
+                                                         icon="fas fa-check-square"/>
                                     </div>
                                 </p:confirmDialog>
                                 &nbsp;&nbsp;
 
-                                <p:commandButton id="playButton" value="Play" icon="fas fa-play" styleClass="rounded-button"
+                                <p:commandButton id="playButton" value="Play" icon="fas fa-play"
+                                                 styleClass="rounded-button"
                                                  actionListener="#{userWorkoutController.setYoutubeTutorialVideoId(userWorkoutController.selected.youtubeTutorialVideoId)}"
                                                  update=":WorkoutPlayForm" oncomplete="PF('WorkoutPlayDialog').show()"
-                                                 disabled="#{empty userWorkoutController.selected}" />
+                                                 disabled="#{empty userWorkoutController.selected}"/>
 
                                 &nbsp;
-                                <p:commandButton id="addButton" value="Add To Day" icon="fas fa-plus" styleClass="rounded-button"
+                                <p:commandButton id="addButton" value="Add To Day" icon="fas fa-plus"
+                                                 styleClass="rounded-button"
                                                  update=":WorkoutAddDlg" oncomplete="PF('WorkoutAddDialog').show()"
                                                  disabled="#{empty userWorkoutController.selected}"/>
 
@@ -157,15 +177,15 @@
                 </p:panel>
             </h:form>
         </div>
-                <ui:include src="/userWorkout/Create.xhtml"/>
+        <ui:include src="/userWorkout/Create.xhtml"/>
 
-                <ui:include src="/userWorkout/View.xhtml"/>
+        <ui:include src="/userWorkout/View.xhtml"/>
 
-                <ui:include src="/userWorkout/Edit.xhtml"/>
+        <ui:include src="/userWorkout/Edit.xhtml"/>
 
-                <ui:include src="/userWorkout/YouTubeVideoPlayer.xhtml"/>
+        <ui:include src="/userWorkout/YouTubeVideoPlayer.xhtml"/>
 
-                <ui:include src="/userWorkout/AddToDay.xhtml"/>
+        <ui:include src="/userWorkout/AddToDay.xhtml"/>
 
     </ui:define>
 </ui:composition>

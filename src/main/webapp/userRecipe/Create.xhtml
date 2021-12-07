@@ -73,7 +73,7 @@
                     &nbsp;
 
                     <!-- Directly add to day button -->
-                    <p:commandButton value="Add To Day" icon="fas fa-share" styleClass="rounded-button"
+                    <p:commandButton value="Add To Day" icon="fas fa-plus" styleClass="rounded-button"
                                      ajax="false" actionListener="#{userRecipeController.createAndAddToProgress()}"
                                      update="display,:RecipeListForm:datalist,:growlInfoMessage,:growlWarningMessage,:growlErrorMessage,:growlFatalMessage"
                                      oncomplete="handleSubmit(args,'RecipeCreateDialog');" />
