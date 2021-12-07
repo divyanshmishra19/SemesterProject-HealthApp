@@ -362,6 +362,7 @@ public class ReportController implements Serializable {
         barChartUrl.append(Constants.BAR_CHART);
         barChartUrl.append("&chs=500x500");
         barChartUrl.append("&chxt=y,x");
+        barChartUrl.append(("&chbr=10"));
 
         return barChartUrl.toString();
     }

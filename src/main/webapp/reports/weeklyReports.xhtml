@@ -3,7 +3,8 @@
   - Created by Divyansh Mishra on 2021.11.21
   - Copyright © 2021 Divyansh Mishra. All rights reserved.
   -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -12,54 +13,87 @@
 <ui:composition template="/template/siteTemplate.xhtml">
     <ui:define name="title">
         <!-- Set the page title -->
-        <h:outputText value="Weekly Reports" />
+        <h:outputText value="Weekly Reports"/>
 
     </ui:define>
 
     <ui:define name="editableContent">
         <div class="card">
             <div class="report-box">
-                <p:graphicImage value="#{reportController.weeklyCalorieChart}" title="Weekly Calories Consumed" style="margin: 40px" stream="false"/>
+                <p:graphicImage value="#{reportController.weeklyCalorieChart}" title="Weekly Calories Consumed"
+                                style="margin: 40px" stream="false"/>
                 <div class="legend">
                     <label class="chart-name">Weekly Calories Consumed</label><br/>
                     <label class="legend-field-1">Calories Consumed</label><br/>
                     <label class="legend-field-2">Calories left</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(7)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        &nbsp;
+                        <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp"
+                                         styleClass="ui-button-outlined"/>
+                    </h:form>
                 </div>
             </div>
             <div class="report-box">
-                <p:graphicImage value="#{reportController.weeklyWorkout}" title="Weekly Calories Burnt" style="margin: 40px" stream="false"/>
+                <p:graphicImage value="#{reportController.weeklyWorkout}" title="Weekly Calories Burnt"
+                                style="margin: 40px" stream="false"/>
                 <div class="legend">
                     <label class="chart-name">Weekly Calories Burnt</label><br/>
                     <label class="legend-field-1">Burnt Calories</label><br/>
                     <label class="legend-field-2">Calories Burnt Extra</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(8)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        &nbsp;
+                        <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp"
+                                         styleClass="ui-button-outlined"/>
+                    </h:form>
                 </div>
 
             </div>
-            <div class="report-box">
-                <p:graphicImage value="#{reportController.weeklyCalorieSplit}" title="Weekly Calorie Split-Up" style="margin: 40px" stream="false"/>
-                <div class="legend">
-                    <label class="chart-name">Weekly Calorie Split-Up</label><br/>
-                    <label class="legend-field-1">Carbs</label><br/>
-                    <label class="legend-field-2">Fats</label><br/>
-                    <label class="legend-field-3">Proteins</label><br/>
-                </div>
 
-            </div>
             <div class="report-box">
-                <p:graphicImage value="#{reportController.weeklyFatsChart}" title="Weekly Fat Distribution" style="margin: 40px" stream="false"/>
+                <p:graphicImage value="#{reportController.weeklyFatsChart}" title="Weekly Fat Distribution"
+                                style="margin: 40px" stream="false"/>
                 <div class="legend">
                     <label class="chart-name">Weekly Fat Distribution</label><br/>
                     <label class="legend-field-1">Saturated</label><br/>
                     <label class="legend-field-2">Trans</label><br/>
                     <label class="legend-field-3">Mono-Unsaturated</label><br/>
                     <label class="legend-field-4">Poly-Unsaturated</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(9)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        &nbsp;
+                        <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp"
+                                         styleClass="ui-button-outlined"/>
+                    </h:form>
                 </div>
             </div>
         </div>
+        <div class="report-box">
+            <p:graphicImage value="#{reportController.weeklyCalorieSplit}" title="Weekly Calorie Split-Up"
+                            style="margin: 40px" stream="false"/>
+            <div class="legend">
+                <label class="chart-name">Weekly Calorie Split-Up</label><br/>
+                <label class="legend-field-1">Carbs</label><br/>
+                <label class="legend-field-2">Fats</label><br/>
+                <label class="legend-field-3">Proteins</label><br/>
+                <h:form>
+                    <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(10)}"
+                                     icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                    &nbsp;
+                    <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp"
+                                     styleClass="ui-button-outlined"/>
+                </h:form>
+            </div>
 
+        </div>
         <div class="card">
             <div class="report-box">
-                <p:graphicImage value="#{reportController.weeklyMicronutrients}" title="Weekly Micronutrients Consumption" style="margin: 40px" stream="false"/>
+                <p:graphicImage value="#{reportController.weeklyMicronutrients}"
+                                title="Weekly Micronutrients Consumption" style="margin: 40px" stream="false"/>
                 <div class="legend">
                     <label class="chart-name">Weekly Micronutrients Consumption</label><br/>
                     <label class="legend-field-1">Sodium</label><br/>
@@ -68,16 +102,31 @@
                     <label class="legend-field-4">Potassium</label><br/>
                     <label class="legend-field-5">Iron</label><br/>
                     <label class="legend-field-6">Zinc</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(11)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        &nbsp;
+                        <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp"
+                                         styleClass="ui-button-outlined"/>
+                    </h:form>
                 </div>
             </div>
             <div class="report-box">
-                <p:graphicImage value="#{reportController.weeklyCategoryWiseCalories}" title="Weekly Workout Categories" style="margin: 40px" stream="false"/>
+                <p:graphicImage value="#{reportController.weeklyCategoryWiseCalories}" title="Weekly Workout Categories"
+                                style="margin: 40px" stream="false"/>
                 <div class="legend">
                     <label class="chart-name">Weekly Workout Categories</label><br/>
                     <label class="legend-field-1">Calisthenics</label><br/>
                     <label class="legend-field-2">Cardio</label><br/>
                     <label class="legend-field-3">Strength</label><br/>
                     <label class="legend-field-4">HIIT</label><br/>
+                    <h:form>
+                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(12)}"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        &nbsp;
+                        <p:commandButton type="button" value="WhatsApp" icon="fab fa-whatsapp"
+                                         styleClass="ui-button-outlined"/>
+                    </h:form>
                 </div>
             </div>
         </div>

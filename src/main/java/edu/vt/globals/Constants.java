@@ -6,11 +6,10 @@ public class Constants {
     public static final String API_ID = "772949eb";
     public static final String API_KEY = "f46ba1f1fed8cbf37a4c450f21b9dc1d";
     public static final String PHOTOS_ABSOLUTE_PATH = "C:/Users/hp/DocRoot/PhotoStorage/";
-    public static final String API_APP_NAME = "API signup";
     public static final String CHART_API_URL = "https://image-charts.com/chart?cht=";
     public static final String BAR_CHART = "bvg";
     public static final String PIE_CHART = "p3";
-    public static final String DATA = "&chd=t:";
+    public static final String DATA = "&chd=a:";
     public static final String LABEL = "&chl=";
     public static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
     public static final String[] QUESTIONS = {
