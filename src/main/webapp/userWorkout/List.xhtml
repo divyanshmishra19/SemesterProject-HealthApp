@@ -117,7 +117,7 @@
 
 
                         *************************
-                        * Data Table Footer *
+                        *   Data Table Footer   *
                         *************************
                         <f:facet name="footer">
                             <div align="center">
@@ -181,14 +181,19 @@
                 </p:panel>
             </h:form>
         </div>
+        <!-- Clicking the Create button displays the included Create.xhtml file in a dialog box on top of this page. -->
         <ui:include src="/userWorkout/Create.xhtml"/>
 
+        <!-- Clicking the View button displays the included View.xhtml file in a dialog box on top of this page. -->
         <ui:include src="/userWorkout/View.xhtml"/>
 
+        <!-- Clicking the Edit button displays the included Edit.xhtml file in a dialog box on top of this page. -->
         <ui:include src="/userWorkout/Edit.xhtml"/>
 
+        <!-- Clicking the Play Video button displays the included YoutubeVideoPlayer.xhtml file in a dialog box on top of this page. -->
         <ui:include src="/userWorkout/YouTubeVideoPlayer.xhtml"/>
 
+        <!-- Clicking the AddToDay button displays the included AddToDay.xhtml file in a dialog box on top of this page. -->
         <ui:include src="/userWorkout/AddToDay.xhtml"/>
 
     </ui:define>
