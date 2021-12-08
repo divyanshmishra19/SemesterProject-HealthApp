@@ -155,7 +155,7 @@
                                     </div>
                                 </p:confirmDialog>
                                 &nbsp;&nbsp;
-                                <!-- ADD button -->
+                                <!-- Add To Day button: to add the selected recipe to user's today progress -->
                                 <p:commandButton id="addButton" value="Add To Day" icon="fas fa-plus"
                                                  styleClass="rounded-button"
                                                  actionListener="#{userRecipeController.addToProgress()}"
@@ -181,8 +181,10 @@
                 </p:panel>
             </h:form>
         </div>
+        <!-- Clicking the Create button displays the included Create.xhtml file in a dialog box on top of this page. -->
         <ui:include src="/userRecipe/Create.xhtml"/>
 
+        <!-- Clicking the View button displays the included View.xhtml file in a dialog box on top of this page. -->
         <ui:include src="/userRecipe/View.xhtml"/>
 
     </ui:define>

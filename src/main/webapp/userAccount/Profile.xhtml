@@ -32,9 +32,9 @@
                     <tr>
 
                         <!--
-                        ***********************************************
-                        Row 1 Column 1 (Left): VERTICAL NAVIGATION MENU
-                        ***********************************************
+                        ***************************************************
+                        Row 1 Column 1 (Left): SEMICIRCULAR NAVIGATION MENU
+                        ***************************************************
                         -->
                         <td width="50" align="left" valign="middle" nowrap="nowrap">
                             <h:form id="speedDialForm">
@@ -46,31 +46,86 @@
                                         <p:speedDial radius="170" direction="right" type="semi-circle"
                                                      buttonStyleClass="ui-button-success">
 
+                                            <!--
+                                            ===============================
+                                            |    PASSWORD CHANGE Link     |
+                                            ===============================
+                                            -->
                                             <p:menuitem icon="pi pi-key" outcome="/userPasswordChange/EnterUsername"
                                                         title="Change Password"/>
+                                            <!--
+                                            ================================
+                                            |          HOME Link           |
+                                            ================================
+                                            -->
                                             <p:menuitem icon="pi pi-pencil" outcome="/userAccount/EditAccount"
                                                         title="Edit Account"/>
+                                            <!--
+                                            ========================================
+                                            |          CHANGE PHOTO Link           |
+                                            ========================================
+                                            -->
                                             <p:menuitem icon="pi pi-camera" outcome="/userPhoto/ChangePhoto"
                                                         title="Update Profile Photo"/>
+                                            <!--
+                                            ==========================================
+                                            |          WEEKLY REPORTS Link           |
+                                            ==========================================
+                                            -->
                                             <p:menuitem icon="pi pi-chart-line" outcome="/reports/weeklyReports"
                                                         title="Weekly Report"/>
+                                            <!--
+                                            =========================================
+                                            |          DAILY REPORTS Link           |
+                                            =========================================
+                                            -->
                                             <p:menuitem icon="pi pi-chart-line" outcome="/reports/dailyReports"
                                                         title="Daily Report"/>
+                                            <!--
+                                            ========================================
+                                            |          ACHIEVEMENTS Link           |
+                                            ========================================
+                                            -->
                                             <p:menuitem icon="pi pi-thumbs-up" outcome="/Achievements/AchievementPage"
                                                         title="My Achievements"/>
+                                            <!--
+                                            =============================================
+                                            |          USER WORKOUT LIST Link           |
+                                            =============================================
+                                            -->
                                             <p:menuitem icon="pi pi-list" outcome="/userWorkout/List"
                                                         title="My Workouts"/>
+                                            <!--
+                                            ============================================
+                                            |          USER RECIPE LIST Link           |
+                                            ============================================
+                                            -->
                                             <p:menuitem icon="pi pi-list" outcome="/userRecipe/List"
                                                         title="My Recipes"/>
+                                            <!--
+                                            ================================
+                                            |          HOME Link           |
+                                            ================================
+                                            -->
                                             <p:menuitem icon="pi pi-home" outcome="/index" title="Home"/>
                                         </p:speedDial>
                                     </div>
                                 </div>
                                 <div class="card">
+                                    <!--
+                                    ================================
+                                    |         SIGN OUT Link        |
+                                    ================================
+                                    -->
                                     <p:commandButton icon="pi pi-sign-out" action="#{userController.logout()}"
                                                      styleClass="rounded-button ui-button-secondary"
                                                      style="margin-top: 15px"/>
                                     &nbsp;
+                                    <!--
+                                    ================================
+                                    |      DELETE ACCOUNT Link     |
+                                    ================================
+                                    -->
                                     <p:commandButton icon="pi pi-trash" oncomplete="PF('SecurityQuestionDialog').show()"
                                                      update=":SecurityQuestionForm" title="Delete Account"
                                                      styleClass="rounded-button ui-button-secondary">
