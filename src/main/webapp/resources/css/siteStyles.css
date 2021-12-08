@@ -438,11 +438,6 @@ body .ui-button {
     flex-direction: row;
 }
 
-.report-box div {
-    margin: auto;
-    clear: none;
-}
-
 .legend {
     display: flex;
     flex-direction: column;
@@ -502,6 +497,10 @@ body .ui-button {
     color: black;
     width: 200px;
     height: 30px;
+}
+
+.gap-fill {
+    width: 25%;
 }
 
 body .ui-panelgrid .ui-panelgrid-cell {
