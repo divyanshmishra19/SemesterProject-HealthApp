@@ -141,7 +141,7 @@ public class UserRecipeController implements Serializable {
 
     public void setApiResponse() {
         recipePayload = new RecipePayload(recipeName, ingredients);
-
+        Methods.preserveMessages();
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
 
@@ -161,6 +161,13 @@ public class UserRecipeController implements Serializable {
 
             String responseString = response.body();
 
+            if(responseString.contains("error") && responseString.contains("low_quality"))
+            {
+                Methods.showMessage("Fatal", "Application Failed!",
+                        "An unrecognised error has occurred!.");
+                return;
+            }
+
             Map<String, Map<String, Map<String, Object>>> result = new ObjectMapper().readValue(responseString, HashMap.class);
             Map<String, Map<String, Object>> totalNutrients = result.get("totalNutrients");
             Map<String, Map<String, Object>> totalNutrientsKCal = result.get("totalNutrientsKCal");
@@ -174,20 +181,20 @@ public class UserRecipeController implements Serializable {
             selected.setCalories((Double) totalNutrients.get("ENERC_KCAL").get("quantity"));
 
             //fat and fat distribution
-            selected.setFatTotal(totalNutrients.containsKey("FAT")?(Double)totalNutrients.get("FAT").get("quantity"):0.0);
-            selected.setFatSat(totalNutrients.containsKey("FASAT")?(Double)totalNutrients.get("FASAT").get("quantity"):0.0);
-            selected.setFatMono(totalNutrients.containsKey("FAMS")?(Double)totalNutrients.get("FAMS").get("quantity"):0.0);
-            selected.setFatTrans(totalNutrients.containsKey("FATRN")?(Double)totalNutrients.get("FATRN").get("quantity"):0.0);
-            selected.setFatPoly(totalNutrients.containsKey("FAPU")?(Double)totalNutrients.get("FAPU").get("quantity"):0.0);
+            selected.setFatTotal(totalNutrients.containsKey("FAT") ? (Double) totalNutrients.get("FAT").get("quantity") : 0.0);
+            selected.setFatSat(totalNutrients.containsKey("FASAT") ? (Double) totalNutrients.get("FASAT").get("quantity") : 0.0);
+            selected.setFatMono(totalNutrients.containsKey("FAMS") ? (Double) totalNutrients.get("FAMS").get("quantity") : 0.0);
+            selected.setFatTrans(totalNutrients.containsKey("FATRN") ? (Double) totalNutrients.get("FATRN").get("quantity") : 0.0);
+            selected.setFatPoly(totalNutrients.containsKey("FAPU") ? (Double) totalNutrients.get("FAPU").get("quantity") : 0.0);
 
             //Macronutrients - Carbs, Proteins...
             selected.setCarbs((Double) totalNutrients.get("CHOCDF").get("quantity"));
             selected.setProtein((Double) totalNutrients.get("PROCNT").get("quantity"));
 
             //Contribution of macronutrients to daily requirement...
-            selected.setProteinCal(totalNutrientsKCal.containsKey("PROCNT_KCAL")?((Integer) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity")) * 1.0:0);
-            selected.setCarbCal(totalNutrientsKCal.containsKey("CHOCDF_KCAL")?((Integer) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity")) * 1.0:0);
-            selected.setFatCal(totalNutrientsKCal.containsKey("FAT_KCAL")?((Integer) totalNutrientsKCal.get("FAT_KCAL").get("quantity")) * 1.0:0);
+            selected.setProteinCal(totalNutrientsKCal.containsKey("PROCNT_KCAL") ? ((Integer) totalNutrientsKCal.get("PROCNT_KCAL").get("quantity")) * 1.0 : 0);
+            selected.setCarbCal(totalNutrientsKCal.containsKey("CHOCDF_KCAL") ? ((Integer) totalNutrientsKCal.get("CHOCDF_KCAL").get("quantity")) * 1.0 : 0);
+            selected.setFatCal(totalNutrientsKCal.containsKey("FAT_KCAL") ? ((Integer) totalNutrientsKCal.get("FAT_KCAL").get("quantity")) * 1.0 : 0);
 
             //Micronutrients - Minerals
             selected.setSodium((Double) totalNutrients.get("NA").get("quantity"));
@@ -209,7 +216,6 @@ public class UserRecipeController implements Serializable {
             //finally setting userId
             selected.setUserId(signedInUser);
         } catch (Exception e) {
-            e.printStackTrace();
             Methods.showMessage("Fatal", "Application Failed!",
                     "An unrecognised error has occurred!.");
         }
