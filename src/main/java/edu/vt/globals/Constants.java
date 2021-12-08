@@ -16,6 +16,11 @@ public class Constants {
     public static final String DATA = "&chd=a:";
     public static final String LABEL = "&chl=";
     public static final long MILLIS_IN_A_DAY = 1000 * 60 * 60 * 24;
+    /*
+     A security question is selected and answered by the user at the time of account creation.
+     The selected question/answer is used as a second level of authentication for
+     (a) resetting user's password, and (b) deleting user's account.
+     */
     public static final String[] QUESTIONS = {
             "In what city or town did your mother and father meet?",
             "In what city or town were you born?",
@@ -38,8 +43,27 @@ public class Constants {
             "NV", "NY", "OH", "OK", "OR", "PA", "PR", "PW", "RI", "SC", "SD", "TN", "TX", "UT",
             "VA", "VI", "VT", "WA", "WI", "WV", "WY"};
 
-    public static final String PHOTOS_URI = "http://localhost:8080/profilephotos/";
+    /*
+    =================================================================================================
+            |   For displaying external files to the user in an XHTML page, we use the Undertow subsystem.  |
+            =================================================================================================
+    We configured WildFly Undertow subsystem so that
+    http://localhost:8080/photos/p displays file p from /Users/gadan/DocRoot/CloudStorage/PhotoStorage/
+            */
 
+    //-----------------------------------------------------
+    // To run on your AWS EC2 instance with your IP address
+    //-----------------------------------------------------
+    public static final String PHOTOS_URI = "http://localhost:8080/profilephotos/";
+    //    public static final String PHOTOS_URI = "http://54.92.194.218:8080/photos/";
+
+    /*
+    =============================================
+    |   Our Design Decision for Profile Photo   |
+    =============================================
+    We do not want to use the uploaded user profile photo as is, which may be very large
+    degrading performance. We scale it down to size 200x200 called the Thumbnail photo size.
+     */
     public static final Integer THUMBNAIL_SIZE = 200;
 
     public static final String SAMPLE_JSON = "{\n" +

@@ -12,9 +12,9 @@
 
 <ui:composition>
     <!--
-    *************************************************
-    Dialog pop-up window to VIEW a user video
-    *************************************************
+    **************************************************
+    Dialog pop-up window to VIEW the Nutritional Plans
+    **************************************************
     -->
     <p:dialog id="PlanViewDlg" header="View Nutrtionl Plan" widgetVar="PlanViewDialog"
               modal="true" position="center" appendTo="@(body)"
@@ -26,22 +26,51 @@
                     <br /><br />
                     <p:panelGrid columns="2" columnClasses="panelGridColumn1, panelGridColumn2"
                                  rendered="#{nutritionalController.selected != null}">
-
+                        <!--
+                        *****************
+                        *   Plan Name   *
+                        *****************
+                        -->
                         <h:outputText value="Name:"/>
                         <h:outputText value="#{nutritionalController.selected.name}" />
 
+                        <!--
+                        ******************
+                        *   Description  *
+                        ******************
+                        -->
                         <h:outputText value="Description:"/>
                         <h:outputText value="#{nutritionalController.selected.description}" />
 
+                        <!--
+                        *****************************
+                        *   Suggested Recipes list  *
+                        *****************************
+                        -->
                         <h:outputText value="Suggested Recipes:"/>
                         <h:outputText value="#{nutritionalController.selected.recipeNames}" />
 
+                        <!--
+                        ******************************
+                        *   Suggested Workouts List  *
+                        ******************************
+                        -->
                         <h:outputText value="Suggested Workouts:"/>
                         <h:outputText value="#{nutritionalController.selected.workoutNames}" />
 
+                        <!--
+                        *********************************
+                        *   Daily Calories Intake Goal  *
+                        *********************************
+                        -->
                         <h:outputText value="Daily Calorie Intake Goal:"/>
                         <h:outputText value="#{nutritionalController.selected.dailyCalorieIntake}" />
 
+                        <!--
+                        ********************************
+                        *   Daily Calories Burn Goal   *
+                        ********************************
+                        -->
                         <h:outputText value="Daily Calorie Burn Goal:"/>
                         <h:outputText value="#{nutritionalController.selected.dailyCalorieBurn}" />
 
