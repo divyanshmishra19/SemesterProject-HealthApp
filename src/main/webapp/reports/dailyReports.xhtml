@@ -20,8 +20,11 @@
     <ui:define name="editableContent">
         <div class="card">
             <div class="report-box">
-                <p:graphicImage value="#{reportController.dailyCalorieChart}" title="Daily Calories Consumed"
+                <div class="gap-fill"></div>
+                <div class="align-chart">
+                    <p:graphicImage value="#{reportController.dailyCalorieChart}" title="Daily Calories Consumed"
                                 style="margin: 40px" stream="false"/>
+                </div>
                 <div class="legend">
                     <label class="chart-name">Daily Calories Consumed</label><br/>
                     <label class="legend-field-1">Expected Calories</label><br/>
@@ -31,8 +34,10 @@
                                          icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
                     </h:form>
                 </div>
+                <div class="gap-fill"></div>
             </div>
             <div class="report-box">
+                <div class="gap-fill"></div>
                 <p:graphicImage value="#{reportController.dailyWorkout}" title="Daily Calories Burnt"
                                 style="margin: 40px" stream="false"/>
                 <div class="legend">
@@ -44,8 +49,10 @@
                                          icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
                     </h:form>
                 </div>
+                <div class="gap-fill"></div>
             </div>
             <div class="report-box">
+                <div class="gap-fill"></div>
                 <p:graphicImage value="#{reportController.dailyFatsChart}" title="Daily Fat Distribution"
                                 style="margin: 40px" stream="false"/>
                 <div class="legend">
@@ -59,8 +66,10 @@
                                          icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
                     </h:form>
                 </div>
+                <div class="gap-fill"></div>
             </div>
             <div class="report-box">
+                <div class="gap-fill"></div>
                 <p:graphicImage value="#{reportController.dailyCalorieSplit}" title="Daily Calorie Split-Up"
                                 style="margin: 40px" stream="false"/>
                 <div class="legend">
@@ -73,11 +82,13 @@
                                          icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
                     </h:form>
                 </div>
+                <div class="gap-fill"></div>
             </div>
         </div>
 
         <div class="card">
             <div class="report-box">
+                <div class="gap-fill"></div>
                 <p:graphicImage value="#{reportController.dailyMicronutrients}" title="Daily Micronutrients Consumption"
                                 style="margin: 40px" stream="false"/>
                 <div class="legend">
@@ -93,8 +104,10 @@
                                          icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
                     </h:form>
                 </div>
+                <div class="gap-fill"></div>
             </div>
             <div class="report-box">
+                <div class="gap-fill"></div>
                 <p:graphicImage value="#{reportController.dailyCategoryWiseCalories}" title="Daily Workout Categories"
                                 style="margin: 40px" stream="false"/>
                 <div class="legend">
@@ -108,6 +121,7 @@
                                          icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
                     </h:form>
                 </div>
+                <div class="gap-fill"></div>
             </div>
         </div>
 
