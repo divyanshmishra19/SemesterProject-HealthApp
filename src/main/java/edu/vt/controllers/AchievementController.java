@@ -99,11 +99,6 @@ public class AchievementController implements Serializable {
     }
 
     private String burnSymbols(int streak) {
-        String burnSymbols = "";
-        for (int i = 0; i < streak && i < 25; i += 5) {
-            burnSymbols += "\uD83D\uDD25";
-        }
-
-        return burnSymbols.equals("") ? "☹" : burnSymbols;
+        return streak == 0 ? "☹" : "\uD83D\uDD25";
     }
 }

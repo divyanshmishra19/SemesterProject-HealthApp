@@ -119,7 +119,7 @@
                                     -->
                                     <p:commandButton icon="pi pi-sign-out" action="#{userController.logout()}"
                                                      styleClass="rounded-button ui-button-secondary"
-                                                     style="margin-top: 15px"/>
+                                                     style="margin-top: 15px" title="Sign Out"/>
                                     &nbsp;
                                     <!--
                                     ================================
@@ -129,7 +129,7 @@
                                     <p:commandButton icon="pi pi-trash" oncomplete="PF('SecurityQuestionDialog').show()"
                                                      update=":SecurityQuestionForm" title="Delete Account"
                                                      styleClass="rounded-button ui-button-secondary">
-                                        <p:confirm header="Account Deletion Confirmation"
+                                        <p:confirm header="Delete Account Confirmation"
                                                    message="Are you sure to permanently delete your account? This cannot be undone!"/>
                                     </p:commandButton>
                                     <!--

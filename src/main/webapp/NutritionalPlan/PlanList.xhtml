@@ -72,6 +72,12 @@
                             <h:outputText value="#{aPlan.name}"/>
                         </p:column>
 
+                        <p:column headerText="Description"
+                                  filterBy="#{aPlan.description}" filterMatchMode="contains"
+                                  style="vertical-align: top;text-align: center">
+                            <h:outputText value="#{aPlan.description}"/>
+                        </p:column>
+
                         <p:column headerText="Calories Burn Goal" sortBy="#{aPlan.dailyCalorieBurn}"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aPlan.dailyCalorieBurn}"/>
@@ -82,7 +88,7 @@
                             <h:outputText value="#{aPlan.dailyCalorieIntake}"/>
                         </p:column>
 
-                        <p:column headerText="Workouts Suggested" sortBy="#{aPlan.workoutNames}"
+                        <p:column headerText="Workouts Suggested"
                                   filterBy="#{aPlan.workoutNames}" filterMatchMode="contains"
                                   style="vertical-align: top;text-align: center">
                             <h:outputText value="#{aPlan.workoutNames}"/>
