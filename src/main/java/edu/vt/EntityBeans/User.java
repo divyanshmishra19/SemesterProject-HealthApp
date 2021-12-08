@@ -1,6 +1,6 @@
 /*
- * Created by Divyansh Mishra on 2021.11.20
- * Copyright © 2021 Divyansh Mishra. All rights reserved.
+ * Created by Team 10 on 2021.12.08
+ * Copyright © 2021 Team 10. All rights reserved.
  */
 package edu.vt.EntityBeans;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 /*
 The @Entity annotation designates this class as a JPA Entity POJO class
-representing the User table in the CloudDriveDB database.
+representing the User table in the HealthTechDB database.
  */
 @Entity
 

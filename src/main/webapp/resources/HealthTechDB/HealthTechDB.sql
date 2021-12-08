@@ -1,7 +1,7 @@
 # -----------------------------------------------
 # SQL script to create the HealthTechDB database
 # tables and populate the Recipe, Workout tables.
-# Created by Team HealthTech
+# Created by Team 10
 # -----------------------------------------------
 
 DROP TABLE IF EXISTS NutritionalPlan, UserPhoto, Recipe, UserRecipeConsumed, UserRecipe, UserWorkoutDone, UserWorkout, Workout, User;

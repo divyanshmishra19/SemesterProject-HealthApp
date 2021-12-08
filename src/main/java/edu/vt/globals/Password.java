@@ -5,7 +5,7 @@
  * Website: https://crackstation.net/hashing-security.htm
  * Code Provided At GitHub:
  * https://github.com/defuse/password-hashing/blob/master/PasswordStorage.java
- * Documentation by Osman Balci on 2021-07-13
+ * Documentation by Team 10 on 2021-08-12
  ******************************************************************************
  */
 package edu.vt.globals;
