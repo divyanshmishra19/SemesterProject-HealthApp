@@ -58,8 +58,8 @@ CREATE TABLE Recipe
 	potassium DECIMAL(8,4) NOT NULL,
 	iron DECIMAL(8,4) NOT NULL,
 	zinc DECIMAL(8,4) NOT NULL,
-	diet_labels VARCHAR(256) NOT NULL,
-	ingredients VARCHAR(256) NOT NULL
+	diet_labels VARCHAR(1024) NOT NULL,
+	ingredients VARCHAR(1024) NOT NULL
 );
 
 
@@ -86,8 +86,8 @@ CREATE TABLE UserRecipe
 	potassium DECIMAL(8,4) NOT NULL,
 	iron DECIMAL(8,4) NOT NULL,
 	zinc DECIMAL(8,4) NOT NULL,
-	diet_labels VARCHAR(256) NOT NULL,
-	ingredients VARCHAR(256) NOT NULL,
+	diet_labels VARCHAR(1024) NOT NULL,
+	ingredients VARCHAR(1024) NOT NULL,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
 
@@ -138,7 +138,7 @@ CREATE TABLE UserWorkoutDone
 
 CREATE TABLE NutritionalPlan
 (
-    id  				 int auto_increment primary key,
+    id  				 int auto_increment primary key not null,
     name                 varchar(256)  not null,
     daily_calorie_intake decimal(8,4) not null,
     daily_calorie_burn   decimal(8,4) not null,
@@ -146,7 +146,7 @@ CREATE TABLE NutritionalPlan
     workout_names        varchar(512)  not null,
     recipe_ids           varchar(64)   not null,
     workout_ids          varchar(64)   not null,
-    description          varchar(512)  not null
+    description          varchar(1024)  not null
 );
 
 

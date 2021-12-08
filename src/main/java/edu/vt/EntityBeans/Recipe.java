@@ -111,13 +111,13 @@ public class Recipe implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 256)
+    @Size(min = 1, max = 1024)
     @Column(name = "diet_labels")
     private String dietLabels;
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 256)
+    @Size(min = 1, max = 1024)
     @Column(name = "ingredients")
     private String ingredients;
 
