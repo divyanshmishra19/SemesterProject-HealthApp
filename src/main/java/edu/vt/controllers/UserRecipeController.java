@@ -145,7 +145,7 @@ public class UserRecipeController implements Serializable {
         ingredients = null;
     }
 
-    public void setApiResponse() {
+    public boolean setApiResponse() {
         recipePayload = new RecipePayload(recipeName, ingredients);
         Methods.preserveMessages();
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
@@ -171,7 +171,7 @@ public class UserRecipeController implements Serializable {
             {
                 Methods.showMessage("Fatal", "Application Failed!",
                         "An unrecognised error has occurred!.");
-                return;
+                return false;
             }
 
             Map<String, Map<String, Map<String, Object>>> result = new ObjectMapper().readValue(responseString, HashMap.class);
@@ -213,25 +213,32 @@ public class UserRecipeController implements Serializable {
             //Diet Labels
             StringBuilder dietLabel = new StringBuilder();
             if (dietLabels != null) {
-                for (String labels : dietLabels)
-                    dietLabel.append(labels + ",");
-            } else
+                for (String labels : dietLabels){
+                    if(dietLabel.length() + labels.length() > 2048){
+                        break;
+                    }
+                    dietLabel.append(labels + ", ");
+                }
+            } else {
                 dietLabel.append("NA");
+            }
             selected.setDietLabels(dietLabel.toString());
 
             //finally setting userId
             selected.setUserId(signedInUser);
+            return true;
         } catch (Exception e) {
             Methods.showMessage("Fatal", "Application Failed!",
                     "An unrecognised error has occurred!.");
+            return false;
         }
     }
 
     public void create() throws IOException {
         Methods.preserveMessages();
-        setApiResponse();
-        persist(JsfUtil.PersistAction.CREATE, "Recipe was successfully added to your custom list.");
-
+        if(setApiResponse()) {
+            persist(JsfUtil.PersistAction.CREATE, "Recipe was successfully added to your custom list.");
+        }
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The CREATE operation is successfully performed.
             selected = null;        // Remove selection

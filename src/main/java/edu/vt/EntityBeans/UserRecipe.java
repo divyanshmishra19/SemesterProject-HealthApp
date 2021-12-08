@@ -113,7 +113,7 @@ public class UserRecipe {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2048)
+    @Size(min = 0, max = 2048)
     @Column(name = "diet_labels")
     private String dietLabels;
 
