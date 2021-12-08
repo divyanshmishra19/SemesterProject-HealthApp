@@ -159,9 +159,26 @@ INSERT INTO Recipe (name, calories, fat_total, fat_sat, fat_trans, fat_mono, fat
 
 
 INSERT INTO Workout (name, category, youtube_tutorial_video_id, burn_rate) VALUES
-('Sleeping', 'Nidra', '6-kviptjtXk', 3.4),
-('Running', 'Nidra', 'VH155nbJtzo', 3.4),
-('Walking', 'Nidra', 'kJU6kxy9Njc', 3.4);
+('Walking-Lunges', 'Strength', 'qLyj6xo3j5c', 3.5),
+('Dumbbell row', 'Strength', 'roCP6wCXPqo', 5.1),
+('Tricep dips', 'Strength', '6kALZikXxLc', 2.8),
+('Squats', 'Strength', 'aclHkVaku9U', 7.2),
+('Glute Bridge', 'Strength', 'wPM8icPu6H8', 4.1),
+('Running', 'Cardio', 'kVnyY17VS9Y', 2.5),
+('Swimming', 'Cardio', 'gh5mAtmeR3Y', 4.9),
+('Burpees', 'Cardio', 'qLBImHhCXSw', 8.1),
+('Bear Crawls', 'Cardio', '6muIdIDEE2E', 4.2),
+('Water Aerobics', 'Cardio', 'p-Vi854oZac', 3.8),
+('Plyo Push-Ups', 'HIIT', 'FRo3b_Pfw3M', 8.3),
+('Russian Twists', 'HIIT', '9V9csctSKj0', 8.9),
+('Lateral Lunges with Hops', 'HIIT', 'JO9NkIo2-0M', 9.1),
+('Tuck-Ups', 'HIIT', '_kd7k3t3IcY', 10.2),
+('Mountain Climbers', 'HIIT', 'cnyTQDSE884', 11.8),
+('Pull-Ups', 'Calisthenics', 'jFmCrA6fo78', 5.4),
+('Chin-Ups', 'Calisthenics', 'pspXcUhoygA', 3.9),
+('Dips', 'Calisthenics', 'l41SoWZiowI', 4.1),
+('Crunches', 'Calisthenics', '5ER5Of4MOPI', 6.1),
+('Jump Squats', 'Calisthenics', 'A-cFYWvaHr0', 5.8);
 
 INSERT INTO NutritionalPlan (name, daily_calorie_burn, daily_calorie_intake, recipe_names, workout_names, recipe_ids, workout_ids, description) VALUES
 ('Plan1', '30','30','Pappardelle With Beef, Pappardelle With Beef','Running, Sleeping','1, 2','1, 2', 'This is a low calorie diet plan'),
