@@ -1,7 +1,7 @@
 # -----------------------------------------------
 # SQL script to create the HealthTechDB database
 # tables and populate the Recipe, Workout tables.
-# Created by Team 10
+# Created by Team HealthTech
 # -----------------------------------------------
 
 DROP TABLE IF EXISTS NutritionalPlan, UserPhoto, Recipe, UserRecipeConsumed, UserRecipe, UserWorkoutDone, UserWorkout, Workout, User;
@@ -23,117 +23,117 @@ CREATE TABLE User
     security_question_number INT NOT NULL,   /* Refers to the number of the selected security question */
     security_answer VARCHAR(128) NOT NULL,
     email VARCHAR(128) NOT NULL,
-	daily_calorie_intake DECIMAL(8,4) NOT NULL,
-	daily_calorie_burn DECIMAL(8,4) NOT NULL
+    daily_calorie_intake DECIMAL(8,4) NOT NULL,
+    daily_calorie_burn DECIMAL(8,4) NOT NULL
 );
 
 CREATE TABLE UserPhoto
 (
-       id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-       extension ENUM('jpeg', 'jpg', 'png', 'gif') NOT NULL,
-       user_id INT UNSIGNED,
-       FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    extension ENUM('jpeg', 'jpg', 'png', 'gif') NOT NULL,
+    user_id INT UNSIGNED,
+    FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
 
 
 /* The Recipe table contains attributes of interest of a recipe. */
 CREATE TABLE Recipe
 (
- 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	name VARCHAR(256) NOT NULL,
-	calories DECIMAL(8,4) NOT NULL,
-	fat_total DECIMAL(8,4) NOT NULL,
-	fat_sat DECIMAL(8,4) NOT NULL,
-	fat_trans DECIMAL(8,4) NOT NULL,
-	fat_mono DECIMAL(8,4) NOT NULL,
-	fat_poly DECIMAL(8,4) NOT NULL,
-	carbs DECIMAL(8,4) NOT NULL,
-	protein DECIMAL(8,4) NOT NULL,
-	fat_cal DECIMAL(8,4) NOT NULL,
-	carb_cal DECIMAL(8,4) NOT NULL,
-	protein_cal DECIMAL(8,4) NOT NULL,
-	sodium DECIMAL(8,4) NOT NULL,
-	calcium DECIMAL(8,4) NOT NULL,
-	magnesium DECIMAL(8,4) NOT NULL,
-	potassium DECIMAL(8,4) NOT NULL,
-	iron DECIMAL(8,4) NOT NULL,
-	zinc DECIMAL(8,4) NOT NULL,
-	diet_labels VARCHAR(2048) NOT NULL,
-	ingredients VARCHAR(2048) NOT NULL
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(256) NOT NULL,
+    calories DECIMAL(8,4) NOT NULL,
+    fat_total DECIMAL(8,4) NOT NULL,
+    fat_sat DECIMAL(8,4) NOT NULL,
+    fat_trans DECIMAL(8,4) NOT NULL,
+    fat_mono DECIMAL(8,4) NOT NULL,
+    fat_poly DECIMAL(8,4) NOT NULL,
+    carbs DECIMAL(8,4) NOT NULL,
+    protein DECIMAL(8,4) NOT NULL,
+    fat_cal DECIMAL(8,4) NOT NULL,
+    carb_cal DECIMAL(8,4) NOT NULL,
+    protein_cal DECIMAL(8,4) NOT NULL,
+    sodium DECIMAL(8,4) NOT NULL,
+    calcium DECIMAL(8,4) NOT NULL,
+    magnesium DECIMAL(8,4) NOT NULL,
+    potassium DECIMAL(8,4) NOT NULL,
+    iron DECIMAL(8,4) NOT NULL,
+    zinc DECIMAL(8,4) NOT NULL,
+    diet_labels VARCHAR(2048) NOT NULL,
+    ingredients VARCHAR(2048) NOT NULL
 );
 
 
 /* The Recipe table contains attributes of interest of a recipe. */
 CREATE TABLE UserRecipe
 (
- 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	user_id INT UNSIGNED,
-	name VARCHAR(256) NOT NULL,
-	calories DECIMAL(8,4) NOT NULL,
-	fat_total DECIMAL(8,4) NOT NULL,
-	fat_sat DECIMAL(8,4) NOT NULL,
-	fat_trans DECIMAL(8,4) NOT NULL,
-	fat_mono DECIMAL(8,4) NOT NULL,
-	fat_poly DECIMAL(8,4) NOT NULL,
-	carbs DECIMAL(8,4) NOT NULL,
-	protein DECIMAL(8,4) NOT NULL,
-	fat_cal DECIMAL(8,4) NOT NULL,
-	carb_cal DECIMAL(8,4) NOT NULL,
-	protein_cal DECIMAL(8,4) NOT NULL,
-	sodium DECIMAL(8,4) NOT NULL,
-	calcium DECIMAL(8,4) NOT NULL,
-	magnesium DECIMAL(8,4) NOT NULL,
-	potassium DECIMAL(8,4) NOT NULL,
-	iron DECIMAL(8,4) NOT NULL,
-	zinc DECIMAL(8,4) NOT NULL,
-	diet_labels VARCHAR(2048) NOT NULL,
-	ingredients VARCHAR(2048) NOT NULL,
-	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_id INT UNSIGNED,
+    name VARCHAR(256) NOT NULL,
+    calories DECIMAL(8,4) NOT NULL,
+    fat_total DECIMAL(8,4) NOT NULL,
+    fat_sat DECIMAL(8,4) NOT NULL,
+    fat_trans DECIMAL(8,4) NOT NULL,
+    fat_mono DECIMAL(8,4) NOT NULL,
+    fat_poly DECIMAL(8,4) NOT NULL,
+    carbs DECIMAL(8,4) NOT NULL,
+    protein DECIMAL(8,4) NOT NULL,
+    fat_cal DECIMAL(8,4) NOT NULL,
+    carb_cal DECIMAL(8,4) NOT NULL,
+    protein_cal DECIMAL(8,4) NOT NULL,
+    sodium DECIMAL(8,4) NOT NULL,
+    calcium DECIMAL(8,4) NOT NULL,
+    magnesium DECIMAL(8,4) NOT NULL,
+    potassium DECIMAL(8,4) NOT NULL,
+    iron DECIMAL(8,4) NOT NULL,
+    zinc DECIMAL(8,4) NOT NULL,
+    diet_labels VARCHAR(2048) NOT NULL,
+    ingredients VARCHAR(2048) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
 
 
 /* The Recipe table contains attributes of interest of a recipe. */
 CREATE TABLE UserRecipeConsumed
 (
- 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	user_recipe_id INT UNSIGNED,
-	date DATE NOT NULL,
-	FOREIGN KEY (user_recipe_id) REFERENCES UserRecipe(id) ON DELETE CASCADE
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_recipe_id INT UNSIGNED,
+    date DATE NOT NULL,
+    FOREIGN KEY (user_recipe_id) REFERENCES UserRecipe(id) ON DELETE CASCADE
 );
 
 /* The Recipe table contains attributes of interest of a recipe. */
 CREATE TABLE Workout
 (
- 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	name VARCHAR(256) NOT NULL,
-	category VARCHAR(64) NOT NULL,
-	youtube_tutorial_video_id VARCHAR(64) NOT NULL,
-	burn_rate DECIMAL(8,4) NOT NULL
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(256) NOT NULL,
+    category VARCHAR(64) NOT NULL,
+    youtube_tutorial_video_id VARCHAR(64) NOT NULL,
+    burn_rate DECIMAL(8,4) NOT NULL
 );
 
 
 /* The Recipe table contains attributes of interest of a recipe. */
 CREATE TABLE UserWorkout
 (
- 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	user_id INT UNSIGNED,
-	name VARCHAR(256) NOT NULL,
-	category VARCHAR(64) NOT NULL,
-	youtube_tutorial_video_id VARCHAR(64) NOT NULL,
-	burn_rate DECIMAL(8,4) NOT NULL,
-	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_id INT UNSIGNED,
+    name VARCHAR(256) NOT NULL,
+    category VARCHAR(64) NOT NULL,
+    youtube_tutorial_video_id VARCHAR(64) NOT NULL,
+    burn_rate DECIMAL(8,4) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
 
 
 /* The Recipe table contains attributes of interest of a recipe. */
 CREATE TABLE UserWorkoutDone
 (
- 	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-	user_workout_id INT UNSIGNED,
-	duration INT NOT NULL,
-	calories INT NOT NULL,
-	date DATE NOT NULL,
-	FOREIGN KEY (user_workout_id) REFERENCES UserWorkout(id) ON DELETE CASCADE
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_workout_id INT UNSIGNED,
+    duration INT NOT NULL,
+    calories INT NOT NULL,
+    date DATE NOT NULL,
+    FOREIGN KEY (user_workout_id) REFERENCES UserWorkout(id) ON DELETE CASCADE
 );
 
 CREATE TABLE NutritionalPlan
@@ -197,5 +197,9 @@ INSERT INTO Workout (name, category, youtube_tutorial_video_id, burn_rate) VALUE
 ('Jump Squats', 'Calisthenics', 'A-cFYWvaHr0', 5.8);
 
 INSERT INTO NutritionalPlan (name, daily_calorie_burn, daily_calorie_intake, recipe_names, workout_names, recipe_ids, workout_ids, description) VALUES
-('Plan1', '30','30','Pappardelle With Beef, Pappardelle With Beef','Running, Sleeping','1, 2','1, 2', 'This is a low calorie diet plan'),
-('Plan2', '60','60','Pappardelle With Beef, Pappardelle With Beef, , Pappardelle With Beef','Running, Sleeping','1, 2','1, 2', 'This is a high calorie diet plan')
+('Plan1', '400','2500','Avocado on Toast, Grilled Cheese','Dips, Tricep dips, Running','18, 11','18, 3, 6', 'This plan includes low calorie meals & medium intensity workouts'),
+('Plan2', '500','2700','Dal Fry with Rice, Steak','Dumbbell row, Burpees, Squats','2, 12','2, 8, 4', 'This plan includes medium to low calorie meals & high intensity workouts'),
+('Plan3', '300','3500','Stir fry Tofu, Edamame Sushi','Walking-Lunges, Tricep Dips, Running','3, 17','1, 3, 6', 'This plan includes medium calorie meals & low intensity workouts'),
+('Plan4', '600','4000','Arrabiata Pasta, Almond Ice Cream','Squats, Burpees, Mountain Climbers','13, 4','4, 8, 15', 'This plan includes high calorie meals & high intensity workouts'),
+('Plan5', '400','2400','Sheet-Pan Chicken, Beans on Toast','Dumbbell row, Glute Bridge','2, 10','2, 8', 'This plan includes low calorie meals & medium intensity workouts'),
+('Plan6', '300','8000','Khow Suey, Cashew Cookie','Tricep dips, Running','16, 9','3, 6', 'This plan includes high calorie meals & low intensity workouts')

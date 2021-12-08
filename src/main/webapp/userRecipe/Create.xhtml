@@ -20,12 +20,7 @@
     <p:dialog id="RecipeCreateDlg" header="Create New User Recipe" widgetVar="RecipeCreateDialog"
               modal="true" position="center" appendTo="@(body)"
               showEffect="slide" hideEffect="fade" responsive="true" width="55%">
-        <!--
-        Various effect options can be used when showing and closing the dialog.
-        Use showEffect and hideEffect options to apply these effects:
-            blind, bounce, clip, drop, explode, fade, fold, highlight, puff,
-            pulsate, scale, shake, size, slide and transfer. [PrimeFaces Documentation]
-        -->
+
 
         <!-- class="ui-datatable-data" in siteStyles reduces row paddings -->
         <h:form id="RecipeCreateForm" class="ui-datatable-data">
@@ -50,9 +45,9 @@
                                  required="true" requiredMessage="Recipe name is required!"/>
 
                     <!--
-                    ****************************
-                    *   Recipe Ingredients     *
-                    ****************************
+                    **************************
+                    *   Recipe Ingredients   *
+                    **************************
                     -->
                     <p:outputLabel value="Ingredients:" for="ingredients" />
                     <p:inputText id="ingredients" value="#{userRecipeController.ingredients}" style="width:350px"
