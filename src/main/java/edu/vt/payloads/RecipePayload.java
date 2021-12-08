@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//This payload is used to send request to the API server.
 public class RecipePayload {
     private String title;
     private List<String> ingr;
