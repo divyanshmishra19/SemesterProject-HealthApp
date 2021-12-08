@@ -1,3 +1,7 @@
+/*
+ * Created by Team 10 on 2021.12.08
+ * Copyright © 2021 Team 10. All rights reserved.
+ */
 package edu.vt.FacadeBeans;
 
 import edu.vt.EntityBeans.NutritionalPlan;
