@@ -3,12 +3,18 @@ package edu.vt.controllers;
 import edu.vt.EntityBeans.User;
 import edu.vt.FacadeBeans.*;
 import edu.vt.globals.Constants;
+import edu.vt.globals.Methods;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.*;
 
@@ -383,4 +389,60 @@ public class ReportController implements Serializable {
         }
         return ans;
     }
+
+    public void getDownloadFile(int option) throws IOException {
+        Methods.preserveMessages();
+        String url = "";
+        switch (option) {
+            case 1:
+                url = getDailyCalorieChart();
+                break;
+            case 2:
+                url = getDailyWorkout();
+                break;
+            case 3:
+                url = getDailyFatsChart();
+                break;
+            case 4:
+                url = getDailyCalorieSplit();
+                break;
+            case 5:
+                url = getDailyMicronutrients();
+                break;
+            case 6:
+                url = getDailyCategoryWiseCalories();
+                break;
+            case 7:
+                url = getWeeklyCalorieChart();
+                break;
+            case 8:
+                url = getWeeklyWorkout();
+                break;
+            case 9:
+                url = getWeeklyFatsChart();
+                break;
+            case 10:
+                url = getWeeklyCalorieSplit();
+                break;
+            case 11:
+                url = getWeeklyMicronutrients();
+                break;
+            case 12:
+                url = getWeeklyCategoryWiseCalories();
+            default:
+                Methods.showMessage("Fatal", "Download Failed!",
+                        "An unrecognised error has occurred!.");
+
+        }
+        try (InputStream in = new URL(url).openStream()) {
+            Files.copy(in, Paths.get("C:/Users/chartType_" + option + ".jpg"));
+        } catch (IOException E) {
+            Methods.showMessage("Fatal", "Download Failed!",
+                    "An unrecognised error has occurred!.");
+            E.printStackTrace();
+        }
+        Methods.showMessage("Information", "Downloaded File!",
+                "File has successfully been downloaded to C:/Users/");
+    }
+
 }
