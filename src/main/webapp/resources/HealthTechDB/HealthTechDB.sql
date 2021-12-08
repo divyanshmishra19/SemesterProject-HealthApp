@@ -58,8 +58,8 @@ CREATE TABLE Recipe
 	potassium DECIMAL(8,4) NOT NULL,
 	iron DECIMAL(8,4) NOT NULL,
 	zinc DECIMAL(8,4) NOT NULL,
-	diet_labels VARCHAR(1024) NOT NULL,
-	ingredients VARCHAR(1024) NOT NULL
+	diet_labels VARCHAR(2048) NOT NULL,
+	ingredients VARCHAR(2048) NOT NULL
 );
 
 
@@ -86,8 +86,8 @@ CREATE TABLE UserRecipe
 	potassium DECIMAL(8,4) NOT NULL,
 	iron DECIMAL(8,4) NOT NULL,
 	zinc DECIMAL(8,4) NOT NULL,
-	diet_labels VARCHAR(1024) NOT NULL,
-	ingredients VARCHAR(1024) NOT NULL,
+	diet_labels VARCHAR(2048) NOT NULL,
+	ingredients VARCHAR(2048) NOT NULL,
 	FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
 );
 

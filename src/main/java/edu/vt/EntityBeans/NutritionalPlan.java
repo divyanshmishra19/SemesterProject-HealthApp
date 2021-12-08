@@ -60,7 +60,7 @@ public class NutritionalPlan {
 
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 1024)
+    @Size(min = 1, max = 512)
     @Column(name = "description")
     private String description;
 
