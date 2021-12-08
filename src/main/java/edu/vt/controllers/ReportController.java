@@ -129,8 +129,8 @@ public class ReportController implements Serializable {
             data += nutrient.intValue() + ",";
 
         barChartUrl.append(data, 0, data.length() - 1);
-        barChartUrl.append(Constants.LABEL + nutrients.get(0).intValue() + "|" + nutrients.get(1).intValue() + "|" + nutrients.get(2).intValue() + "|"
-                + nutrients.get(3).intValue() + "|" + nutrients.get(4).intValue() + "|" + nutrients.get(5).intValue());
+        barChartUrl.append(Constants.LABEL + nutrients.get(0).intValue() + "mg|" + nutrients.get(1).intValue() + "mg|" + nutrients.get(2).intValue() + "mg|"
+                + nutrients.get(3).intValue() + "mg|" + nutrients.get(4).intValue() + "mg|" + nutrients.get(5).intValue()+"mg");
         return barChartUrl.toString();
     }
 
@@ -306,8 +306,8 @@ public class ReportController implements Serializable {
             data += nutrient + ",";
 
         barChartUrl.append(data, 0, data.length() - 1);
-        barChartUrl.append(Constants.LABEL + nutrients.get(0).intValue() + "|" + nutrients.get(1).intValue() + "|" + nutrients.get(2).intValue() +
-                "|" + nutrients.get(3).intValue() + "|" + nutrients.get(4).intValue() + "|" + nutrients.get(5).intValue() + "|");
+        barChartUrl.append(Constants.LABEL + nutrients.get(0).intValue() + "mg|" + nutrients.get(1).intValue() + "mg|" + nutrients.get(2).intValue() +
+                "mg|" + nutrients.get(3).intValue() + "mg|" + nutrients.get(4).intValue() + "mg|" + nutrients.get(5).intValue() + "mg");
         return barChartUrl.toString();
     }
 

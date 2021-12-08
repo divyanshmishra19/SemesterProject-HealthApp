@@ -141,6 +141,8 @@ public class UserRecipeController implements Serializable {
         Methods.preserveMessages();
         setApiResponse();
         addToProgress();
+        recipeName = null;
+        ingredients = null;
     }
 
     public void setApiResponse() {
@@ -234,6 +236,8 @@ public class UserRecipeController implements Serializable {
             // No JSF validation error. The CREATE operation is successfully performed.
             selected = null;        // Remove selection
             listOfUserRecipes = null;    // Invalidate listOfMovies to trigger re-query.
+            recipeName = null;
+            ingredients = null;
         }
     }
 
