@@ -155,7 +155,7 @@ public class UserRecipeController implements Serializable {
         try {
             String jsonStr = Obj.writeValueAsString(recipePayload);
 
-            String TARGET = "https://api.edamam.com/api/nutrition-details?app_id=" + Constants.API_ID + "&app_key=" + Constants.API_KEY;
+            String TARGET = Constants.API_URL + Constants.API_ID + "&app_key=" + Constants.API_KEY;
             URI uri = new URI(TARGET);
             HttpRequest request = HttpRequest.newBuilder(uri)
                     .header("Content-Type", "application/json")
