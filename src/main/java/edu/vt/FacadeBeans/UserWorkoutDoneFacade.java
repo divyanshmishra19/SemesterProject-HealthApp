@@ -16,7 +16,7 @@ import java.util.List;
 @Stateless
 public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
 
-    @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
+    @PersistenceContext(unitName = "HealthTechPU")
     private EntityManager entityManager;
 
     @Override

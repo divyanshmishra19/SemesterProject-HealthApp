@@ -22,7 +22,7 @@ public class UserPhotoFacade extends AbstractFacade<UserPhoto> {
     the entityManager instance with the persistence unitName identified below.
     ---------------------------------------------------------------------------------------------
      */
-    @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
+    @PersistenceContext(unitName = "HealthTechPU")
     private EntityManager entityManager;
 
     // Obtain the object reference of the EntityManager instance in charge of
