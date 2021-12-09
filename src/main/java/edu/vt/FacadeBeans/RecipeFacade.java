@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class RecipeFacade extends AbstractFacade<Recipe> {
 
-    @PersistenceContext(unitName = "SemesterProject-HealthAppPU")
+    @PersistenceContext(unitName = "HealthTechPU")
     private EntityManager entityManager;
 
     @Override
