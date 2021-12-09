@@ -27,6 +27,7 @@ We are hereby writing our team name as our signature to declare that the above s
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
 <!-- This page is constructed based on the siteTemplate -->
@@ -70,13 +71,24 @@ We are hereby writing our team name as our signature to declare that the above s
             Various effect options for transitions: blind, bounce, clip, drop, explode, fade,
             fold, highlight, puff, pulsate, scale, shake, size, slide, and transfer.
             -->
-            <p:galleria value="#{sliderController.listOfSliderImageFilenames}" var="imageFilename"
-                        circular="true" autoPlay="true" transitionInterval="4000"
-                        showThumbnails="false" showIndicators="true" style="width: 100%; height: 600px;">>
+            <!--<p:galleria value="#{sliderController.listOfSliderImageFilenames}" var="imageFilename"
+                        circular="true" autoPlay="true" transitionInterval="4000" responsiveOptions="#{galleriaView.responsiveOptions2}"
+                        showThumbnails="false" showIndicators="true" style="max-width: 90%; max-height: 600px;">>
 
                 <p:graphicImage value="/resources/images/slider/#{imageFilename}"
                                 alt="#{sliderController.description(imageFilename)}" title="#{sliderController.description(imageFilename)}" style="width: 85%; height: 600px; display: block;"/>
-            </p:galleria>
+                <f:facet name="thumbnail">
+                    <p:graphicImage value="/resources/images/slider/#{imageFilename}" alt="/resources/images/slider/#{imageFilename}" style="display: block" />
+                </f:facet>
+            </p:galleria>-->
+            <div class="card">
+                <p:galleria value="#{sliderController.listOfSliderImageFilenames}" var="photo" numVisible="7" circular="true" autoPlay="true" transitionInterval="4000" responsiveOptions="#{galleriaView.responsiveOptions2}" style="width: 100%">
+                    <p:graphicImage value="/resources/images/slider/#{photo}" alt="#{photo}" style="width: 85%; display: block"/>
+                    <f:facet name="thumbnail">
+                        <p:graphicImage value="/resources/images/slider/#{photo}" alt="#{photo}" style="display: block; max-height: 50px; max-width: 50px;" />
+                    </f:facet>
+                </p:galleria>
+            </div>
         </div>
     </ui:define>
 </ui:composition>
