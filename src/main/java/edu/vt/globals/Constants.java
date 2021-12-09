@@ -86,7 +86,7 @@ public class Constants {
     //--------------------------------
     // To run on your AWS EC2 instance
     //--------------------------------
-    public static final String PHOTOS_ABSOLUTE_PATH = "/opt/wildfly/DocRoot/UserPhotoStorage/";
+    public static final String PHOTOS_ABSOLUTE_PATH = "/opt/wildfly/DocRoot/CS5704-Team10-FileStorage/";
 
     /*
     =================================================================================================
