@@ -32,11 +32,11 @@
                 </c:if>
                 <h:form>
                     <c:if test="#{achievementController.dailyCalorieIntakeGoal() == true}">
-                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie intake goal today! You can get healthier too by using HealthTech - http://3:90:206:6:8080/HealthTech/"
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie intake goal today! You can get healthier too by using HealthTech - http://3.90.206.6:8080/HealthTech/"
                                   icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                     </c:if>
                     <c:if test="#{achievementController.dailyCalorieIntakeGoal() == false}">
-                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie intake goal today! You can get healthier too by using HealthTech - http://3:90:206:6:8080/HealthTech/"
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie intake goal today! You can get healthier too by using HealthTech - http://3.90.206.6:8080/HealthTech/"
                                   icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                     </c:if>
                 </h:form>
@@ -53,11 +53,11 @@
                 </c:if>
                 <h:form>
                     <c:if test="#{achievementController.dailyCalorieBurnGoal() == true}">
-                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie burn goal today! You can get healthier too by using HealthTech - http://3:90:206:6:8080/HealthTech/"
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have met my calorie burn goal today! You can get healthier too by using HealthTech - http://3.90.206.6:8080/HealthTech/"
                                   icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                     </c:if>
                     <c:if test="#{achievementController.dailyCalorieBurnGoal() == false}">
-                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie burn goal today! You can get healthier too by using HealthTech - http://3:90:206:6:8080/HealthTech/"
+                        <p:button value="Share to WhatsApp" target="_blank" href="https://api.whatsapp.com/send?text=I have failed to meet my calorie burn goal today! You can get healthier too by using HealthTech - http://3.90.206.6:8080/HealthTech/"
                                   icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                     </c:if>
                 </h:form>
@@ -70,7 +70,7 @@
                     #{achievementController.longestCalorieIntakeStreak()}
                 </div>
                 <h:form>
-                    <p:commandButton type="button" target="_blank" href="https://api.whatsapp.com/send?text=Just made a calorie intake goal streak! You can get healthir too by using HealthTech - http://3:90:206:6:8080/HealthTech/"
+                    <p:commandButton type="button" target="_blank" href="https://api.whatsapp.com/send?text=Just made a calorie intake goal streak! You can get healthir too by using HealthTech - http://3.90.206.6:8080/HealthTech/"
                                      value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                 </h:form>
             </div>
@@ -80,7 +80,7 @@
                     #{achievementController.longestCalorieBurnStreak()}
                 </div>
                 <h:form>
-                    <p:commandButton type="button" target="_blank" href="https://api.whatsapp.com/send?text=Just made a calorie burn goal streak! You can get healthir too by using HealthTech - http://3:90:206:6:8080/HealthTech/"
+                    <p:commandButton type="button" target="_blank" href="https://api.whatsapp.com/send?text=Just made a calorie burn goal streak! You can get healthir too by using HealthTech - http://3.90.206.6:8080/HealthTech/"
                                      value="Share to WhatsApp" icon="fab fa-whatsapp" styleClass="ui-button-outlined"/>
                 </h:form>
             </div>
