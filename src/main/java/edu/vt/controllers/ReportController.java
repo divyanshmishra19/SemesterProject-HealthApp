@@ -479,10 +479,13 @@ public class ReportController implements Serializable {
         }
         try (InputStream in = new URL(url).openStream()) {
 
+            // First we copy the file into the file storage for this application
             Files.copy(in, Paths.get("/opt/wildfly/DocRoot/CS5704-Team10-FileStorage/chartType_" + option + "_" + signedInUser.getUsername() + ".jpg"));
 
+            // The file copied above is read as input stream for user to download charts
             FileInputStream streamOfFileToDownload = new FileInputStream("/opt/wildfly/DocRoot/CS5704-Team10-FileStorage/chartType_" + option + "_" + signedInUser.getUsername() +  ".jpg");
 
+            // File on server is converted to streamed content and is downloaded on clients system
             file = DefaultStreamedContent.builder().contentType("jpg").name("chartType_" + option + "_" + signedInUser.getUsername() + ".jpg").stream(() -> streamOfFileToDownload).build();
 
             return file;
