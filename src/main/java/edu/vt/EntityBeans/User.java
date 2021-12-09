@@ -39,7 +39,7 @@ public class User implements Serializable {
     /*
     ========================================================
     Instance variables representing the attributes (columns)
-    of the User table in the CloudDriveDB database.
+    of the User table in the HealthTechDB database.
 
     CREATE TABLE User
     (
@@ -178,7 +178,7 @@ public class User implements Serializable {
     /*
     ===============================================================
     Class constructors for instantiating a User entity object to
-    represent a row in the User table in the CloudDriveDB database.
+    represent a row in the User table in the HealthTechDB database.
     ===============================================================
      */
 
@@ -216,7 +216,7 @@ public class User implements Serializable {
     /*
         ======================================================
         Getter and Setter methods for the attributes (columns)
-        of the User table in the CloudDriveDB database.
+        of the User table in the HealthTechDB database.
         ======================================================
          */
     public Integer getId() {

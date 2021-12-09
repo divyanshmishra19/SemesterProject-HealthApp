@@ -8,10 +8,31 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
+/*
+The @Entity annotation designates this class as a JPA Entity POJO class
+representing the UserWorkoutConsumed table in the HealthTechDB database.
+ */
 @Entity
 // Name of the database table represented
 @Table(name = "UserWorkoutDone")
 public class UserWorkoutDone {
+    /*
+    ========================================================
+    Instance variables representing the attributes (columns)
+    of the UserWorkoutDone table in the HealthTechDB database.
+
+   CREATE TABLE UserWorkoutDone
+(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_workout_id INT UNSIGNED,
+    duration INT NOT NULL,
+    calories INT NOT NULL,
+    date DATE NOT NULL,
+    FOREIGN KEY (user_workout_id) REFERENCES UserWorkout(id) ON DELETE CASCADE
+);
+
+    ========================================================
+     */
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -40,6 +61,12 @@ public class UserWorkoutDone {
     @Basic(optional = false)
     private Date date;
 
+    /*
+    ==========================================================================
+    Class constructors for instantiating a UserWorkoutDone entity object to
+    represent a row in the UserWorkoutDone table in the HealthTechDB database.
+    ==========================================================================
+     */
     public UserWorkoutDone() {
     }
 
@@ -56,6 +83,12 @@ public class UserWorkoutDone {
         this.date = date;
     }
 
+    /*
+    ======================================================
+    Getter and Setter methods for the attributes (columns)
+    of the UserWorkoutDone table in the HealthTechDB database.
+    ======================================================
+     */
     public Integer getId() {
         return id;
     }
@@ -105,9 +138,9 @@ public class UserWorkoutDone {
     }
 
     /*
-     Checks if the User object identified by 'object' is the same as the User object identified by 'id'
-     Parameter object = User object identified by 'object'
-     Returns True if the User 'object' and 'id' are the same; otherwise, return False
+     Checks if the UserWorkoutDone object identified by 'object' is the same as the UserWorkoutDone object identified by 'id'
+     Parameter object = UserWorkoutDone object identified by 'object'
+     Returns True if the UserWorkoutDone 'object' and 'id' are the same; otherwise, return False
      */
     @Override
     public boolean equals(Object object) {

@@ -8,10 +8,48 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+/*
+The @Entity annotation designates this class as a JPA Entity POJO class
+representing the UserRecipe table in the HealthTechDB database.
+ */
 @Entity
 // Name of the database table represented
 @Table(name = "UserRecipe")
 public class UserRecipe {
+    /*
+    ========================================================
+    Instance variables representing the attributes (columns)
+    of the UserRecipe table in the HealthTechDB database.
+
+    CREATE TABLE UserRecipe
+(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_id INT UNSIGNED,
+    name VARCHAR(256) NOT NULL,
+    calories DECIMAL(8,4) NOT NULL,
+    fat_total DECIMAL(8,4) NOT NULL,
+    fat_sat DECIMAL(8,4) NOT NULL,
+    fat_trans DECIMAL(8,4) NOT NULL,
+    fat_mono DECIMAL(8,4) NOT NULL,
+    fat_poly DECIMAL(8,4) NOT NULL,
+    carbs DECIMAL(8,4) NOT NULL,
+    protein DECIMAL(8,4) NOT NULL,
+    fat_cal DECIMAL(8,4) NOT NULL,
+    carb_cal DECIMAL(8,4) NOT NULL,
+    protein_cal DECIMAL(8,4) NOT NULL,
+    sodium DECIMAL(8,4) NOT NULL,
+    calcium DECIMAL(8,4) NOT NULL,
+    magnesium DECIMAL(8,4) NOT NULL,
+    potassium DECIMAL(8,4) NOT NULL,
+    iron DECIMAL(8,4) NOT NULL,
+    zinc DECIMAL(8,4) NOT NULL,
+    diet_labels VARCHAR(2048) NOT NULL,
+    ingredients VARCHAR(2048) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id) ON DELETE CASCADE
+);
+
+    ========================================================
+     */
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -128,6 +166,12 @@ public class UserRecipe {
     @ManyToOne
     private User userId;
 
+    /*
+    =============================================================
+    Class constructors for instantiating a UserRecipe entity object to
+    represent a row in the UserRecipe table in the HealthTechDB database.
+    =============================================================
+     */
     public UserRecipe() {
     }
 
@@ -162,6 +206,12 @@ public class UserRecipe {
         this.userId = userId;
     }
 
+    /*
+    ======================================================
+    Getter and Setter methods for the attributes (columns)
+    of the UserRecipe table in the HealthTechDB database.
+    ======================================================
+     */
     public Integer getId() {
         return id;
     }
@@ -347,9 +397,9 @@ public class UserRecipe {
     }
 
     /*
-     Checks if the User object identified by 'object' is the same as the User object identified by 'id'
-     Parameter object = User object identified by 'object'
-     Returns True if the User 'object' and 'id' are the same; otherwise, return False
+     Checks if the UserRecipe object identified by 'object' is the same as the UserRecipe object identified by 'id'
+     Parameter object = UserRecipe object identified by 'object'
+     Returns True if the UserRecipe 'object' and 'id' are the same; otherwise, return False
      */
     @Override
     public boolean equals(Object object) {

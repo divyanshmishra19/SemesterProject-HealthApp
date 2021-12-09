@@ -9,12 +9,48 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+/*
+The @Entity annotation designates this class as a JPA Entity POJO class
+representing the Recipe table in the HealthTechDB database.
+ */
 @Entity
 // Name of the database table represented
 @Table(name = "Recipe")
 public class Recipe implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /*
+    ========================================================
+    Instance variables representing the attributes (columns)
+    of the Nutritional Plan table in the HealthTechDB database.
+
+    CREATE TABLE Recipe
+(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    name VARCHAR(256) NOT NULL,
+    calories DECIMAL(8,4) NOT NULL,
+    fat_total DECIMAL(8,4) NOT NULL,
+    fat_sat DECIMAL(8,4) NOT NULL,
+    fat_trans DECIMAL(8,4) NOT NULL,
+    fat_mono DECIMAL(8,4) NOT NULL,
+    fat_poly DECIMAL(8,4) NOT NULL,
+    carbs DECIMAL(8,4) NOT NULL,
+    protein DECIMAL(8,4) NOT NULL,
+    fat_cal DECIMAL(8,4) NOT NULL,
+    carb_cal DECIMAL(8,4) NOT NULL,
+    protein_cal DECIMAL(8,4) NOT NULL,
+    sodium DECIMAL(8,4) NOT NULL,
+    calcium DECIMAL(8,4) NOT NULL,
+    magnesium DECIMAL(8,4) NOT NULL,
+    potassium DECIMAL(8,4) NOT NULL,
+    iron DECIMAL(8,4) NOT NULL,
+    zinc DECIMAL(8,4) NOT NULL,
+    diet_labels VARCHAR(2048) NOT NULL,
+    ingredients VARCHAR(2048) NOT NULL
+);
+    ========================================================
+            */
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -125,6 +161,12 @@ public class Recipe implements Serializable {
     @Column(name = "ingredients")
     private String ingredients;
 
+    /*
+    ==========================================================================
+    Class constructors for instantiating a Recipe entity object to
+    represent a row in the NutritionalPlan table in the HealthTechDB database.
+    ==========================================================================
+     */
     public Recipe() {
     }
 
@@ -158,6 +200,13 @@ public class Recipe implements Serializable {
         this.dietLabels = dietLabels;
         this.ingredients = ingredients;
     }
+
+    /*
+    ========================================================
+    Getter and Setter methods for the attributes (columns)
+    of the Recipe table in the HealthTechDB database.
+    ========================================================
+     */
 
     public Integer getId() {
         return id;
@@ -336,9 +385,9 @@ public class Recipe implements Serializable {
     }
 
     /*
-     Checks if the User object identified by 'object' is the same as the User object identified by 'id'
-     Parameter object = User object identified by 'object'
-     Returns True if the User 'object' and 'id' are the same; otherwise, return False
+     Checks if the Recipe object identified by 'object' is the same as the Recipe object identified by 'id'
+     Parameter object = Recipe object identified by 'object'
+     Returns True if the Recipe 'object' and 'id' are the same; otherwise, return False
      */
     @Override
     public boolean equals(Object object) {

@@ -8,10 +8,29 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
+/*
+The @Entity annotation designates this class as a JPA Entity POJO class
+representing the UserRecipeConsumed table in the HealthTechDB database.
+ */
 @Entity
 // Name of the database table represented
 @Table(name = "UserRecipeConsumed")
 public class UserRecipeConsumed {
+    /*
+    ========================================================
+    Instance variables representing the attributes (columns)
+    of the UserRecipeConsumed table in the HealthTechDB database.
+
+    CREATE TABLE UserRecipeConsumed
+(
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    user_recipe_id INT UNSIGNED,
+    date DATE NOT NULL,
+    FOREIGN KEY (user_recipe_id) REFERENCES UserRecipe(id) ON DELETE CASCADE
+);
+
+    ========================================================
+     */
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -30,6 +49,12 @@ public class UserRecipeConsumed {
     @Basic(optional = false)
     private Date date;
 
+    /*
+    =============================================================================
+    Class constructors for instantiating a UserRecipeConsumed entity object to
+    represent a row in the UserRecipeConsumed table in the HealthTechDB database.
+    =============================================================================
+     */
     public UserRecipeConsumed() {
     }
 
@@ -43,6 +68,12 @@ public class UserRecipeConsumed {
         this.date = date;
     }
 
+    /*
+    ==============================================================
+    Getter and Setter methods for the attributes (columns)
+    of the UserRecipeConsumed table in the HealthTechDB database.
+    ===============================================================
+     */
     public Integer getId() {
         return id;
     }
@@ -76,9 +107,9 @@ public class UserRecipeConsumed {
     }
 
     /*
-     Checks if the User object identified by 'object' is the same as the User object identified by 'id'
-     Parameter object = User object identified by 'object'
-     Returns True if the User 'object' and 'id' are the same; otherwise, return False
+     Checks if the UserRecipeConsumed object identified by 'object' is the same as the UserRecipeConsumed object identified by 'id'
+     Parameter object = UserRecipeConsumed object identified by 'object'
+     Returns True if the UserRecipeConsumed 'object' and 'id' are the same; otherwise, return False
      */
     @Override
     public boolean equals(Object object) {

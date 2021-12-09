@@ -91,6 +91,12 @@ public class NutritionalPlan {
     @Column(name = "description")
     private String description;
 
+    /*
+    ==========================================================================
+    Class constructors for instantiating a Nutritional Plan entity object to
+    represent a row in the NutritionalPlan table in the HealthTechDB database.
+    ==========================================================================
+     */
     public NutritionalPlan() {
     }
 
@@ -112,6 +118,12 @@ public class NutritionalPlan {
         this.description = description;
     }
 
+    /*
+    ========================================================
+    Getter and Setter methods for the attributes (columns)
+    of the NutrionalPlan table in the HealthTechDB database.
+    ========================================================
+     */
     public Integer getId() {
         return id;
     }
