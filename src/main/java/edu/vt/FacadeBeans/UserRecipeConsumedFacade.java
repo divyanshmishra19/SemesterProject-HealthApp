@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+// @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
 public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed> {
 
@@ -33,6 +34,7 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
         super(UserRecipeConsumed.class);
     }
 
+    //return total number of calories consumed by a particular user on a particular date
     public Double getTotalDailyCalories(Date date, int userId) {
         Double ans = (Double) getEntityManager().createQuery(
                         "SELECT SUM(d.calories) FROM UserRecipeConsumed c " +
@@ -46,6 +48,7 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
         return ans;
     }
 
+    //return values of different types of fats consumed on a particular day by a particular user
     public List<Double> getFats(Date date, int userId) {
         Double mono = (Double)getEntityManager().createQuery(
                         "SELECT SUM(d.fatMono) FROM UserRecipeConsumed c " +
@@ -88,6 +91,7 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
         return fatList;
     }
 
+    //returns micronutrients for a particular day for a particular user
     public List<Double> getMicronutrients(Date date, int userId) {
         Double na = (Double)getEntityManager().createQuery(
                         "SELECT SUM(d.sodium) FROM UserRecipeConsumed c " +
@@ -148,6 +152,7 @@ public class UserRecipeConsumedFacade extends AbstractFacade<UserRecipeConsumed>
         return micronutrientsList;
     }
 
+    //returns daily split of calories across multiple macronutrients
     public List<Double> getDailyCalorieSplit(Date date, Integer userId) {
         Double carbsCal = (Double)getEntityManager().createQuery(
                         "SELECT SUM(d.carbCal) FROM UserRecipeConsumed c " +

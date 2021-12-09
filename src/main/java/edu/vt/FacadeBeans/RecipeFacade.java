@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+// @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
 public class RecipeFacade extends AbstractFacade<Recipe> {
 
@@ -29,6 +30,7 @@ public class RecipeFacade extends AbstractFacade<Recipe> {
         super(Recipe.class);
     }
 
+    //find recipe by its id
     public Recipe findRecipeById(int id) {
         return (Recipe) getEntityManager().createQuery(
                         "Select c From Recipe c Where c.id = :id")
