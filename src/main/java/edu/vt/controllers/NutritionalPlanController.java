@@ -19,10 +19,18 @@ import java.util.Map;
 @Named("nutritionalController")
 @SessionScoped
 public class NutritionalPlanController implements Serializable {
-
+    /*
+    ===============================
+    Instance Variables (Properties)
+    ===============================
+     */
     private List<NutritionalPlan> listOfNutritionalPlans;
     private NutritionalPlan selected;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    RecipeFacade, WorkoutFacade, UserRecipeFacade, UserWorkoutFacade, UserFacade, NutritionalPlanFacade bean into the instance variable 'recipeFacade', 'workoutFacade', 'userRecipeFacade', 'userWorkoutFacade', 'userFacade' and 'nutritionalPlanFacade' after it is instantiated at runtime.
+     */
     @EJB
     private RecipeFacade recipeFacade;
 
@@ -41,6 +49,11 @@ public class NutritionalPlanController implements Serializable {
     @EJB
     private NutritionalPlanFacade nutritionalPlanFacade;
 
+    /*
+    =========================
+    Getter and Setter Methods
+    =========================
+     */
     public List<NutritionalPlan> getListOfNutritionalPlans() {
         if (listOfNutritionalPlans == null) {
             listOfNutritionalPlans = nutritionalPlanFacade.findAll();
@@ -108,16 +121,31 @@ public class NutritionalPlanController implements Serializable {
         this.nutritionalPlanFacade = nutritionalPlanFacade;
     }
 
+    /*
+     *************************************************
+     *   Unselect Selected Nutritional Plan Object   *
+     *************************************************
+     */
     public void unselect() {
         selected = null;
     }
 
+    /*
+     *************************************
+     *   Cancel and Display List.xhtml   *
+     *************************************
+     */
     public String cancel() {
         // Unselect previously selected nutritionalPlan object if any
         selected = null;
         return "/NutritionalPlan/PlanList?faces-redirect=true";
     }
 
+    /*
+    *****************************************************
+    Nutritional Plan is added to UserRecipe & UserWorkout
+    *****************************************************
+    */
     public void optIn() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User editUser = (User) sessionMap.get("user");

@@ -25,17 +25,35 @@ import java.util.logging.Logger;
 @SessionScoped
 
 public class WorkoutController implements Serializable {
-
+    /*
+    ===============================
+    Instance Variables (Properties)
+    ===============================
+     */
     private List<Workout> listOfWorkouts;
     private Workout selected;
     private UserWorkout userWorkout;
     private String youtubeTutorialVideoId;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    WorkoutFacade bean into the instance variable 'workoutFacade' after it is instantiated at runtime.
+     */
     @EJB
     private WorkoutFacade workoutFacade;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    UserWorkoutFacade bean into the instance variable 'userWorkoutFacade' after it is instantiated at runtime.
+     */
     @EJB
     private UserWorkoutFacade userWorkoutFacade;
+
+    /*
+    =========================
+    Getter and Setter Methods
+    =========================
+     */
 
     public Workout getSelected() {
         return selected;
@@ -92,12 +110,29 @@ public class WorkoutController implements Serializable {
         this.userWorkoutFacade = userWorkoutFacade;
     }
 
+    /*
+    ================
+    Instance Methods
+    ================
+    */
+
+    /*
+     *************************************
+     *   Cancel and Display List.xhtml   *
+     *************************************
+     */
     public String cancel() {
-        // Unselect previously selected movie object if any
+        // Unselect previously selected workout object if any
         selected = null;
         return "/workout/List?faces-redirect=true";
     }
 
+
+    /*
+     **************************************************
+     *   Shares the selected workout to userWorkout   *
+     **************************************************
+     */
     public void share() {
         userWorkout = new UserWorkout();
         User signedIn = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");

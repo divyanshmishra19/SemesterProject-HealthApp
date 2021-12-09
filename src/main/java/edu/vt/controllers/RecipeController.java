@@ -22,11 +22,19 @@ import java.util.List;
 @SessionScoped
 
 public class RecipeController implements Serializable {
-
+    /*
+    ===============================
+    Instance Variables (Properties)
+    ===============================
+     */
     private List<Recipe> listOfRecipes;
     private Recipe selected;
     private UserRecipe userRecipe;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    RecipeFacade and UserRecipeFacade bean into the instance variable 'recipeFacade' and 'userRecipeFacade' after it is instantiated at runtime.
+     */
     @EJB
     private RecipeFacade recipeFacade;
 
@@ -34,6 +42,11 @@ public class RecipeController implements Serializable {
     private UserRecipeFacade userRecipeFacade;
 
 
+    /*
+    ================
+    Instance Methods
+    ================
+    */
     public Recipe getSelected() {
         return selected;
     }
@@ -48,6 +61,12 @@ public class RecipeController implements Serializable {
         }
         return listOfRecipes;
     }
+
+    /*
+    =========================
+    Getter and Setter Methods
+    =========================
+     */
 
     public void setListOfRecipes(List<Recipe> listOfRecipes) {
         this.listOfRecipes = listOfRecipes;
@@ -77,16 +96,32 @@ public class RecipeController implements Serializable {
         this.userRecipeFacade = userRecipeFacade;
     }
 
+
+    /*
+     **************************************
+     *   Unselect Selected Recipe Object  *
+     **************************************
+     */
     public void unselect() {
         selected = null;
     }
 
+    /*
+     *************************************
+     *   Cancel and Display List.xhtml   *
+     *************************************
+     */
     public String cancel() {
-        // Unselect previously selected movie object if any
+        // Unselect previously selected recipe object if any
         selected = null;
         return "/recipe/List?faces-redirect=true";
     }
 
+    /*
+     *********************************************
+     *   ADD the selected recipe to UserRecipe   *
+     *********************************************
+     */
     public void share() {
         userRecipe = new UserRecipe();
         User signedIn = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");

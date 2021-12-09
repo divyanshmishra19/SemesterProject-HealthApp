@@ -28,19 +28,36 @@ import java.util.logging.Logger;
 @SessionScoped
 
 public class UserWorkoutController implements Serializable {
-
+    /*
+    ===============================
+    Instance Variables (Properties)
+    ===============================
+     */
     private List<UserWorkout> listOfUserWorkouts;
     private UserWorkout selected;
     private UserWorkoutDone workoutDone;
     private Double duration;
     private String youtubeTutorialVideoId;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    UserWorkoutFacade bean into the instance variable 'userWorkoutFacade' after it is instantiated at runtime.
+     */
     @EJB
     private UserWorkoutFacade userWorkoutFacade;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    UserWorkoutDoneFacade bean into the instance variable 'workoutDoneFacade' after it is instantiated at runtime.
+     */
     @EJB
     private UserWorkoutDoneFacade workoutDoneFacade;
 
+    /*
+    =========================
+    Getter and Setter Methods
+    =========================
+     */
     public List<UserWorkout> getListOfUserWorkouts() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -99,12 +116,28 @@ public class UserWorkoutController implements Serializable {
         selected.setYoutubeTutorialVideoId(youtubeTutorialVideoId);
     }
 
+    /*
+    ================
+    Instance Methods
+    ================
+    */
+
+    /*
+     ********************************************
+     *   Unselect Selected UserWorkout Object   *
+     ********************************************
+     */
     public void unselect() {
         selected = null;
     }
 
+    /*
+     *************************************
+     *   Cancel and Display List.xhtml   *
+     *************************************
+     */
     public String cancel() {
-        // Unselect previously selected movie object if any
+        // Unselect previously selected userWorkout object if any
         selected = null;
         return "/userWorkout/List?faces-redirect=true";
     }
@@ -118,6 +151,11 @@ public class UserWorkoutController implements Serializable {
     }
 
 
+    /*
+    ****************************************
+    CREATE a New UserWorkout in the Database
+    ****************************************
+     */
     public void create() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -129,10 +167,15 @@ public class UserWorkoutController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The CREATE operation is successfully performed.
             selected = null;        // Remove selection
-            listOfUserWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
+            listOfUserWorkouts = null;    // Invalidate listOfUserWorkouts to trigger re-query.
         }
     }
 
+    /*
+    *******************************************
+    UPDATE Selected UserWorkout in the Database
+    *******************************************
+     */
     public void update() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -144,10 +187,15 @@ public class UserWorkoutController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The UPDATE operation is successfully performed.
             selected = null;        // Remove selection
-            listOfUserWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
+            listOfUserWorkouts = null;    // Invalidate listOfUserWorkouts to trigger re-query.
         }
     }
 
+    /*
+    *********************************************
+    DELETE Selected UserWorkout from the Database
+    *********************************************
+     */
     public void destroy() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -159,7 +207,7 @@ public class UserWorkoutController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             // No JSF validation error. The DELETE operation is successfully performed.
             selected = null;        // Remove selection
-            listOfUserWorkouts = null;    // Invalidate listOfMovies to trigger re-query.
+            listOfUserWorkouts = null;    // Invalidate listOfUserWorkouts to trigger re-query.
         }
     }
 
@@ -185,7 +233,7 @@ public class UserWorkoutController implements Serializable {
                      object in the database regardless of whether the object is a newly
                      created object (CREATE) or an edited (updated) object (EDIT or UPDATE).
 
-                     PublicVideoFacade inherits the edit(selected) method from the AbstractFacade class.
+                     UserWorkoutFacade inherits the edit(selected) method from the AbstractFacade class.
                      */
                     userWorkoutFacade.edit(selected);
                 } else {
@@ -196,7 +244,7 @@ public class UserWorkoutController implements Serializable {
                      The remove(selected) method performs the DELETE operation of the "selected"
                      object in the database.
 
-                     PublicVideoFacade inherits the remove(selected) method from the AbstractFacade class.
+                     UserWorkoutFacade inherits the remove(selected) method from the AbstractFacade class.
                      */
                     userWorkoutFacade.remove(selected);
                 }
@@ -219,6 +267,11 @@ public class UserWorkoutController implements Serializable {
         }
     }
 
+    /*
+    *********************************************
+    Adds the selected Workout into Daily Progress
+    *********************************************
+     */
     public void addToProgress() {
         Date todaysDate = new Date(System.currentTimeMillis());
         workoutDone = new UserWorkoutDone();

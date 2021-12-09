@@ -62,6 +62,7 @@ public class UserController implements Serializable {
 
     private User selected;
 
+    /* Calorie Goals for Daily intake & burn */
     private double dailyCalorieIntake;
     private double dailyCalorieBurnt;
 
@@ -81,11 +82,15 @@ public class UserController implements Serializable {
 
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
-    UserVideoFacade bean into the instance variable 'userVideoFacade' after it is instantiated at runtime.
+    UserRecipeFacade bean into the instance variable 'userRecipeFacade' after it is instantiated at runtime.
      */
     @EJB
     private UserRecipeFacade userRecipeFacade;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    UserWorkoutFacade bean into the instance variable 'userWorkoutFacade' after it is instantiated at runtime.
+     */
     @EJB
     private UserWorkoutFacade userWorkoutFacade;
 
@@ -694,7 +699,7 @@ public class UserController implements Serializable {
 
     /*
     ***********************************************
-    Delete all of the videos that belong to the User
+    Delete all the recipes that belong to the User
     object whose database primary key is primaryKey
     ***********************************************
      */
@@ -717,6 +722,12 @@ public class UserController implements Serializable {
         }
     }
 
+    /*
+    ***********************************************
+    Delete all the workouts that belong to the User
+    object whose database primary key is primaryKey
+    ***********************************************
+     */
     public void deleteAllUserWorkouts(int primaryKey) {
         List<UserWorkout> workoutList = userWorkoutFacade.findWorkoutsByUserId(primaryKey);
         try {

@@ -28,7 +28,8 @@ public class ReportController implements Serializable {
 
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
-    UserRecipeFacade and UserWorkoutFacade bean into the instance variables 'userRecipeFacade' and 'userWorkoutFacade'
+    UserRecipeConsumedFacade, UserWorkoutDoneFacade and UserFacade bean into the instance variables
+    'userRecipeConsumedFacade', 'userWorkoutDoneFacade' and 'userFacade'
     after it is instantiated at runtime.
      */
     @EJB
@@ -351,12 +352,22 @@ public class ReportController implements Serializable {
     }
 
 
+    /*
+    *************************
+    Fetches the LoggedIn User
+    *************************
+    */
     public User getLoggedInUser() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
         return signedInUser;
     }
 
+    /*
+    ***********************************
+    Fetches the generated PIE CHART URL
+    ***********************************
+    */
     public String getFixedPieChartUrl() {
         StringBuilder pieChartUrl = new StringBuilder();
         pieChartUrl.append(Constants.CHART_API_URL);
@@ -366,6 +377,11 @@ public class ReportController implements Serializable {
         return pieChartUrl.toString();
     }
 
+    /*
+    ***********************************
+    Fetches the generated BAR CHART URL
+    ***********************************
+    */
     public String getFixedBarChartUrl() {
         StringBuilder barChartUrl = new StringBuilder();
         barChartUrl.append(Constants.CHART_API_URL);
@@ -377,11 +393,21 @@ public class ReportController implements Serializable {
         return barChartUrl.toString();
     }
 
+    /*
+    *******************************
+    Fetches the previous day's date
+    *******************************
+    */
     public Date getPreviousDate(Date currentDate) {
         currentDate = new Date(currentDate.getTime() - Constants.MILLIS_IN_A_DAY);
         return currentDate;
     }
 
+    /*
+    ***************************************************************
+    Fetches the generated PIE CHART data distribution in percentage
+    ***************************************************************
+    */
     public List<Integer> getPercentFromList(List<Double> list) {
         List<Integer> ans = new ArrayList<>();
         Double sum = 0.0;
@@ -394,6 +420,11 @@ public class ReportController implements Serializable {
         return ans;
     }
 
+    /*
+    *********************************
+    Fetches the file to be downloaded
+    *********************************
+    */
     public void getDownloadFile(int option) throws IOException {
         Methods.preserveMessages();
         String url = "";

@@ -22,7 +22,8 @@ public class AchievementController implements Serializable {
 
     /*
     The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
-    UserRecipeFacade and UserWorkoutFacade bean into the instance variables 'userRecipeFacade' and 'userWorkoutFacade'
+    UserRecipeConsumedFacade, UserWorkoutDoneFacade, UserFacade bean into the instance variables
+    'userRecipeConsumedFacade', 'userWorkoutDoneFacade' and 'userFacade'
     after it is instantiated at runtime.
      */
     @EJB
@@ -34,6 +35,11 @@ public class AchievementController implements Serializable {
     @EJB
     private UserFacade userFacade;
 
+    /*
+    ******************************************************
+    Checks of daily calorie intake goal is achieved or not
+    ******************************************************
+    */
     public boolean dailyCalorieIntakeGoal() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -45,6 +51,11 @@ public class AchievementController implements Serializable {
         return calories > expectedCalories;
     }
 
+    /*
+    ****************************************************
+    Checks of daily calorie burn goal is achieved or not
+    ****************************************************
+    */
     public boolean dailyCalorieBurnGoal() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -56,6 +67,11 @@ public class AchievementController implements Serializable {
         return caloriesBurned > desiredCaloriesBurned;
     }
 
+    /*
+    *******************************************
+    Checks the longest streak of goals achieved
+    *******************************************
+    */
     public String longestCalorieBurnStreak() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -77,6 +93,11 @@ public class AchievementController implements Serializable {
         return maxStreak + (maxStreak == 1 ? " day " : " days ") + burnSymbols(maxStreak);
     }
 
+    /*
+    *******************************************
+    Checks the longest streak of goals achieved
+    *******************************************
+    */
     public String longestCalorieIntakeStreak() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -98,6 +119,11 @@ public class AchievementController implements Serializable {
         return maxStreak + (maxStreak == 1 ? " day " : " days ") + burnSymbols(maxStreak);
     }
 
+    /*
+    ********************************
+    Adds Symbols is Streak is broken
+    ********************************
+    */
     private String burnSymbols(int streak) {
         return streak == 0 ? "☹" : "\uD83D\uDD25";
     }

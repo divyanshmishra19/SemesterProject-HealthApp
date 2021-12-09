@@ -9,10 +9,33 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+/*
+The @Entity annotation designates this class as a JPA Entity POJO class
+representing the NutritionalPlan table in the HealthTechDB database.
+ */
 @Entity
 // Name of the database table represented
 @Table(name = "NutritionalPlan")
 public class NutritionalPlan {
+    /*
+    ========================================================
+    Instance variables representing the attributes (columns)
+    of the Nutritional Plan table in the HealthTechDB database.
+
+    CREATE TABLE NutritionalPlan
+            (
+                    id  				 int auto_increment primary key not null,
+                    name                 varchar(256)  not null,
+    daily_calorie_intake decimal(8,4) not null,
+    daily_calorie_burn   decimal(8,4) not null,
+    recipe_names         varchar(512)  not null,
+    workout_names        varchar(512)  not null,
+    recipe_ids           varchar(64)   not null,
+    workout_ids          varchar(64)   not null,
+    description          varchar(1024)  not null
+            );
+    ========================================================
+            */
 
     private static final long serialVersionUID = 1L;
 

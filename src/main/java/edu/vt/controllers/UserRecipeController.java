@@ -36,7 +36,11 @@ import java.util.logging.Logger;
 @Named("userRecipeController")
 @SessionScoped
 public class UserRecipeController implements Serializable {
-
+    /*
+    ===============================
+    Instance Variables (Properties)
+    ===============================
+     */
     private List<UserRecipe> listOfUserRecipes;
     private UserRecipe selected;
     private UserRecipeConsumed recipeConsumed;
@@ -44,13 +48,25 @@ public class UserRecipeController implements Serializable {
     private String recipeName;
     private String ingredients;
 
-
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    UserRecipeFacade bean into the instance variable 'userRecipeFacade' after it is instantiated at runtime.
+     */
     @EJB
     UserRecipeFacade userRecipeFacade;
 
+    /*
+    The @EJB annotation directs the EJB Container Manager to inject (store) the object reference of the
+    UserRecipeConsumedFacade bean into the instance variable 'userRecipeConsumedFacade' after it is instantiated at runtime.
+     */
     @EJB
     UserRecipeConsumedFacade userRecipeConsumedFacade;
 
+    /*
+    =========================
+    Getter and Setter Methods
+    =========================
+     */
     public List<UserRecipe> getListOfUserRecipes() {
 
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
@@ -118,25 +134,50 @@ public class UserRecipeController implements Serializable {
         this.ingredients = ingredients;
     }
 
+    /*
+    ================
+    Instance Methods
+    ================
+    */
+
+    /*
+     *******************************************
+     *   Unselect Selected UserRecipe Object   *
+     *******************************************
+     */
     public void unselect() {
         selected = null;
     }
 
+    /*
+     *************************************
+     *   Cancel and Display List.xhtml   *
+     *************************************
+     */
     public String cancel() {
         // Unselect previously selected userRecipe object if any
         selected = null;
         return "/userRecipe/List?faces-redirect=true";
     }
 
-
+    /*
+    **********************************
+    Prepare to Create a New UserRecipe
+    **********************************
+    */
     public void prepareCreate() {
         /*
-        Instantiate a new Video object and store its object reference into
+        Instantiate a new UserRecipe object and store its object reference into
         instance variable 'selected'. The UserRecipe class is defined in UserRecipe.java
          */
         selected = new UserRecipe();
     }
 
+    /*
+    ***********************************************************
+    Creates & Adds the UserRecipe created to UserRecipeConsumed
+    ***********************************************************
+     */
     public void createAndAddToProgress() throws IOException {
         Methods.preserveMessages();
         setApiResponse();
@@ -145,6 +186,11 @@ public class UserRecipeController implements Serializable {
         ingredients = null;
     }
 
+    /*
+    *********************************************
+    Parses the API response for Create UserRecipe
+    *********************************************
+     */
     public boolean setApiResponse() {
         recipePayload = new RecipePayload(recipeName, ingredients);
         Methods.preserveMessages();
@@ -234,6 +280,11 @@ public class UserRecipeController implements Serializable {
         }
     }
 
+    /*
+    ***************************************
+    CREATE a New UserRecipe in the Database
+    ***************************************
+     */
     public void create() throws IOException {
         Methods.preserveMessages();
         if(setApiResponse()) {
@@ -248,6 +299,11 @@ public class UserRecipeController implements Serializable {
         }
     }
 
+    /*
+    ********************************************
+    DELETE Selected UserRecipe from the Database
+    ********************************************
+     */
     public void destroy() {
         Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
         User signedInUser = (User) sessionMap.get("user");
@@ -285,7 +341,7 @@ public class UserRecipeController implements Serializable {
                      object in the database regardless of whether the object is a newly
                      created object (CREATE) or an edited (updated) object (EDIT or UPDATE).
 
-                     PublicVideoFacade inherits the edit(selected) method from the AbstractFacade class.
+                     UserRecipeFacade inherits the edit(selected) method from the AbstractFacade class.
                      */
                     userRecipeFacade.edit(selected);
                 } else {
@@ -296,7 +352,7 @@ public class UserRecipeController implements Serializable {
                      The remove(selected) method performs the DELETE operation of the "selected"
                      object in the database.
 
-                     PublicVideoFacade inherits the remove(selected) method from the AbstractFacade class.
+                     UserRecipeFacade inherits the remove(selected) method from the AbstractFacade class.
                      */
                     userRecipeFacade.remove(selected);
                 }
@@ -319,6 +375,11 @@ public class UserRecipeController implements Serializable {
         }
     }
 
+    /*
+    *******************************************************************
+    Adds the selected UserRecipe to Daily Progress (UserRecipeConsumed)
+    *******************************************************************
+     */
     public void addToProgress() {
         Date todaysDate = new Date(System.currentTimeMillis());
         recipeConsumed = new UserRecipeConsumed();
