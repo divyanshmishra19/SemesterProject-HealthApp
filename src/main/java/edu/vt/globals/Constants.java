@@ -101,7 +101,7 @@ public class Constants {
     // To run on your AWS EC2 instance with your IP address
     //-----------------------------------------------------
 
-    public static final String PHOTOS_URI = "http://http://3.90.206.6:8080//healthprofilephotos/";
+    public static final String PHOTOS_URI = "http://3.90.206.6:8080/healthprofilephotos/";
 
     //---------------
     // To run locally
