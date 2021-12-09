@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+// @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
 public class NutritionalPlanFacade extends AbstractFacade<NutritionalPlan>{
 

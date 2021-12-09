@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+// @Stateless annotation implies that the conversational state with the client shall NOT be maintained.
 @Stateless
 public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
 
@@ -32,6 +33,7 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
         super(UserWorkoutDone.class);
     }
 
+    //return calories expended across different categories of calories
     public List<Double> getCategoryWiseCalories(Date date, Integer userId) {
         String category[] = {"Calisthenics", "Cardio", "Strength", "HIIT"};
         Long calis = (Long) getEntityManager().createQuery(
@@ -80,6 +82,7 @@ public class UserWorkoutDoneFacade extends AbstractFacade<UserWorkoutDone> {
         return categoryWiseCalories;
     }
 
+    //get total calories expended in a day by particular user
     public Integer getDailyWorkoutCalories(Date date, Integer userId) {
         Long ans = (Long) getEntityManager().createQuery(
                         "SELECT SUM(c.calories) FROM UserWorkoutDone c " +

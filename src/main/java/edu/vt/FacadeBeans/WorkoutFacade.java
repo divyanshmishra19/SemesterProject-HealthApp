@@ -39,6 +39,7 @@ public class WorkoutFacade extends AbstractFacade<Workout> {
         super(Workout.class);
     }
 
+    //return workout by its id
     public Workout findWorkoutById(int id) {
         return (Workout) getEntityManager().createQuery(
                         "Select c From Workout c Where c.id = :id")

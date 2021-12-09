@@ -37,6 +37,7 @@ public class UserWorkoutFacade extends AbstractFacade<UserWorkout> {
     ================
     */
 
+    //returns list of user workouts by user id
     public List<UserWorkout> findWorkoutsByUserId(int id) {
         return (List<UserWorkout>) getEntityManager().createQuery(
                         "Select c From UserWorkout c Where c.userId.id = :userId")
@@ -44,6 +45,7 @@ public class UserWorkoutFacade extends AbstractFacade<UserWorkout> {
                 .getResultList();
     }
 
+    //returns list of user workouts with matching name for a particular user
     public List<UserWorkout> findUserWorkoutsByName(int id, String name) {
         return (List<UserWorkout>) getEntityManager().createQuery(
                         "Select c From UserWorkout c Where c.userId.id = :userId AND c.name LIKE :name")

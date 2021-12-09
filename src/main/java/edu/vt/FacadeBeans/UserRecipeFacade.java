@@ -37,6 +37,7 @@ public class UserRecipeFacade extends AbstractFacade<UserRecipe> {
     ================
     */
 
+    //returns user recipes by user id
     public List<UserRecipe> findRecipesByUserId(int id) {
         return (List<UserRecipe>) getEntityManager().createQuery(
                         "Select c From UserRecipe c Where c.userId.id = :userId")
@@ -44,6 +45,7 @@ public class UserRecipeFacade extends AbstractFacade<UserRecipe> {
                 .getResultList();
     }
 
+    //finds recipes by recipe name and user id
     public List<UserRecipe> findUserRecipesByName(int id, String name) {
         return (List<UserRecipe>) getEntityManager().createQuery(
                         "Select c From UserRecipe c Where c.userId.id = :userId AND c.name LIKE :name")
