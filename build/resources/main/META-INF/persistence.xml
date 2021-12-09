@@ -4,7 +4,7 @@
              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
              version="2.2">
     <!-- Persistence Unit Definition -->
-    <persistence-unit name="SemesterProject-HealthAppPU" transaction-type="JTA">
+    <persistence-unit name="HealthTechPU" transaction-type="JTA">
         <!-- JTA data source reference must be the same as registered in WildFly -->
         <!-- Copied From HealthTech, need to update database name -->
         <jta-data-source>java:/HealthTechDB</jta-data-source>
