@@ -197,9 +197,9 @@ INSERT INTO Workout (name, category, youtube_tutorial_video_id, burn_rate) VALUE
 ('Jump Squats', 'Calisthenics', 'A-cFYWvaHr0', 5.8);
 
 INSERT INTO NutritionalPlan (name, daily_calorie_burn, daily_calorie_intake, recipe_names, workout_names, recipe_ids, workout_ids, description) VALUES
-('Plan1', '400','2500','Avocado on Toast, Grilled Cheese','Dips, Tricep dips, Running','18, 11','18, 3, 6', 'This plan includes low calorie meals & medium intensity workouts'),
-('Plan2', '500','2700','Dal Fry with Rice, Steak','Dumbbell row, Burpees, Squats','2, 12','2, 8, 4', 'This plan includes medium to low calorie meals & high intensity workouts'),
-('Plan3', '300','3500','Stir fry Tofu, Edamame Sushi','Walking-Lunges, Tricep Dips, Running','3, 17','1, 3, 6', 'This plan includes medium calorie meals & low intensity workouts'),
-('Plan4', '600','4000','Arrabiata Pasta, Almond Ice Cream','Squats, Burpees, Mountain Climbers','13, 4','4, 8, 15', 'This plan includes high calorie meals & high intensity workouts'),
-('Plan5', '400','2400','Sheet-Pan Chicken, Beans on Toast','Dumbbell row, Glute Bridge','2, 10','2, 8', 'This plan includes low calorie meals & medium intensity workouts'),
-('Plan6', '300','8000','Khow Suey, Cashew Cookie','Tricep dips, Running','16, 9','3, 6', 'This plan includes high calorie meals & low intensity workouts')
+('Weight Loose 1', '400','2500','Avocado on Toast, Grilled Cheese','Dips, Tricep dips, Running','18, 11','18, 3, 6', 'This plan includes low calorie meals & medium intensity workouts'),
+('Weight Loose 2', '500','2700','Dal Fry with Rice, Steak','Dumbbell row, Burpees, Squats','2, 12','2, 8, 4', 'This plan includes medium to low calorie meals & high intensity workouts'),
+('High Intensity', '300','3500','Stir fry Tofu, Edamame Sushi','Walking-Lunges, Tricep Dips, Running','3, 17','1, 3, 6', 'This plan includes medium calorie meals & low intensity workouts'),
+('Weight Gain', '600','4000','Arrabiata Pasta, Almond Ice Cream','Squats, Burpees, Mountain Climbers','13, 4','4, 8, 15', 'This plan includes high calorie meals & high intensity workouts'),
+('Muscle Gain', '400','2400','Sheet-Pan Chicken, Beans on Toast','Dumbbell row, Glute Bridge','2, 10','2, 8', 'This plan includes low calorie meals & medium intensity workouts'),
+('Toning', '300','8000','Khow Suey, Cashew Cookie','Tricep dips, Running','16, 9','3, 6', 'This plan includes high calorie meals & low intensity workouts')
