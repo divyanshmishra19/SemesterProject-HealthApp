@@ -8,11 +8,14 @@ import edu.vt.EntityBeans.User;
 import edu.vt.FacadeBeans.*;
 import edu.vt.globals.Constants;
 import edu.vt.globals.Methods;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
@@ -40,6 +43,8 @@ public class ReportController implements Serializable {
 
     @EJB
     private UserFacade userFacade;
+
+    private StreamedContent file;
 
     //Daily Calories Pie Chart
     public String getDailyCalorieChart() {
@@ -137,7 +142,7 @@ public class ReportController implements Serializable {
 
         barChartUrl.append(data, 0, data.length() - 1);
         barChartUrl.append(Constants.LABEL + nutrients.get(0).intValue() + "mg|" + nutrients.get(1).intValue() + "mg|" + nutrients.get(2).intValue() + "mg|"
-                + nutrients.get(3).intValue() + "mg|" + nutrients.get(4).intValue() + "mg|" + nutrients.get(5).intValue()+"mg");
+                + nutrients.get(3).intValue() + "mg|" + nutrients.get(4).intValue() + "mg|" + nutrients.get(5).intValue() + "mg");
         return barChartUrl.toString();
     }
 
@@ -425,8 +430,11 @@ public class ReportController implements Serializable {
     Fetches the file to be downloaded
     *********************************
     */
-    public void getDownloadFile(int option) throws IOException {
+    public StreamedContent getDownloadFile(int option) throws IOException {
         Methods.preserveMessages();
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        User signedInUser = (User) sessionMap.get("user");
+
         String url = "";
         switch (option) {
             case 1:
@@ -470,13 +478,23 @@ public class ReportController implements Serializable {
 
         }
         try (InputStream in = new URL(url).openStream()) {
-            Files.copy(in, Paths.get("C:/Users/chartType_" + option + ".jpg"));
+
+            Files.copy(in, Paths.get("/opt/wildfly/DocRoot/CS5704-Team10-FileStorage/chartType_" + option + "_" + signedInUser.getUsername() + ".jpg"));
+
+            FileInputStream streamOfFileToDownload = new FileInputStream("/opt/wildfly/DocRoot/CS5704-Team10-FileStorage/chartType_" + option + "_" + signedInUser.getUsername() +  ".jpg");
+
+            file = DefaultStreamedContent.builder().contentType("jpg").name("chartType_" + option + "_" + signedInUser.getUsername() + ".jpg").stream(() -> streamOfFileToDownload).build();
+
+            return file;
+
         } catch (IOException E) {
             Methods.showMessage("Fatal", "Download Failed!",
                     "An unrecognised error has occurred!.");
             E.printStackTrace();
         }
         Methods.showMessage("Information", "Downloaded File!",
-                "File has successfully been downloaded to C:/Users/");
+                "File has successfully been downloaded");
+
+        return null;
     }
 }

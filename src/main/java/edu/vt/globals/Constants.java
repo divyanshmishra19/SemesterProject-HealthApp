@@ -81,7 +81,7 @@ public class Constants {
     // To run locally
     //---------------
 
-    // public static final String PHOTOS_ABSOLUTE_PATH = "C:/Users/hp/DocRoot/CS5704-Team10-FileStorage/";
+    // public static final String PHOTOS_ABSOLUTE_PATH = "C:/Users/ayush/DocRoot/UserPhotoHealthStorage/";
 
     //--------------------------------
     // To run on your AWS EC2 instance

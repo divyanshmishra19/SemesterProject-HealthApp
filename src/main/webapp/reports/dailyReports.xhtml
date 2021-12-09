@@ -27,8 +27,10 @@
                     <label class="legend-field-1">Expected Calories</label><br/>
                     <label class="legend-field-2">Calories Extra</label><br/>
                     <h:form>
-                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(1)}"
-                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        <p:commandButton value="Download" ajax="false"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined">
+                            <p:fileDownload value="#{reportController.getDownloadFile(1)}" />
+                        </p:commandButton>
                     </h:form>
                 </div>
             </div>
@@ -40,8 +42,10 @@
                     <label class="legend-field-1">Burnt Calories</label><br/>
                     <label class="legend-field-2">Calories Burnt Extra</label><br/>
                     <h:form>
-                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(2)}"
-                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        <p:commandButton value="Download" ajax="false"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined">
+                            <p:fileDownload value="#{reportController.getDownloadFile(2)}" />
+                        </p:commandButton>
                     </h:form>
                 </div>
             </div>
@@ -55,8 +59,10 @@
                     <label class="legend-field-3">Mono-Unsaturated</label><br/>
                     <label class="legend-field-4">Poly-Unsaturated</label><br/>
                     <h:form>
-                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(3)}"
-                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        <p:commandButton value="Download" ajax="false"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined">
+                            <p:fileDownload value="#{reportController.getDownloadFile(3)}" />
+                        </p:commandButton>
                     </h:form>
                 </div>
             </div>
@@ -69,8 +75,10 @@
                     <label class="legend-field-2">Fats</label><br/>
                     <label class="legend-field-3">Proteins</label><br/>
                     <h:form>
-                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(4)}"
-                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        <p:commandButton value="Download" ajax="false"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined">
+                            <p:fileDownload value="#{reportController.getDownloadFile(4)}" />
+                        </p:commandButton>
                     </h:form>
                 </div>
             </div>
@@ -89,8 +97,10 @@
                     <label class="legend-field-5">Iron</label><br/>
                     <label class="legend-field-6">Zinc</label><br/>
                     <h:form>
-                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(5)}"
-                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        <p:commandButton value="Download" ajax="false"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined">
+                            <p:fileDownload value="#{reportController.getDownloadFile(5)}" />
+                        </p:commandButton>
                     </h:form>
                 </div>
             </div>
@@ -104,8 +114,10 @@
                     <label class="legend-field-3">Strength</label><br/>
                     <label class="legend-field-4">HIIT</label><br/>
                     <h:form>
-                        <p:commandButton value="Download" ajax="false" action="#{reportController.getDownloadFile(6)}"
-                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined"/>
+                        <p:commandButton value="Download" ajax="false"
+                                         icon="pi pi-arrow-down" styleClass="ui-button-outlined">
+                            <p:fileDownload value="#{reportController.getDownloadFile(6)}" />
+                        </p:commandButton>
                     </h:form>
                 </div>
             </div>
